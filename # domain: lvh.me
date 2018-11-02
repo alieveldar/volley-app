@@ -1,0 +1,32 @@
+# domain: lvh.me
+# public: /var/www/html/volley-app.com/public_html/
+<IfModule mod_ssl.c>
+<VirtualHost *:443>
+  # Admin email, Server Name (domain name), and any aliases
+  ServerAdmin webmaster@example.com
+  ServerName  lvh.me
+  ServerAlias www.lvh.me
+
+  # Index file and Document Root (where the public files are located)
+  DirectoryIndex index.html index.php
+  DocumentRoot /var/www/html/volley-app.com/public_html
+  SSLEngine on
+  SSLCertificateFile  /etc/apache2/ssl/apache.crt
+  SSLCertificateKeyFile /etc/apache2/ssl/apache.key
+  <FilesMatch "\.(cgi|shtml|phtml|php)$">
+        SSLOptions +StdEnvVars
+  </FilesMatch>
+  <Directory /usr/lib/cgi-bin>
+        SSLOptions +StdEnvVars
+  </Directory>
+  BrowserMatch "MSIE [2-6]" \
+        nokeepalive ssl-unclean-shutdown \
+        downgrade-1.0 force-response-1.0
+  BrowserMatch "MSIE [17-9]" ssl-unclean-shutdown
+  # Log file locations
+  LogLevel warn
+  ErrorLog  /var/www/html/volley-app.com/log/error.log
+  CustomLog /var/www/html/volley-app.com/log/access.log combined
+</VirtualHost>
+</IfModule>
+
