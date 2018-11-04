@@ -1,0 +1,14 @@
+{
+"response": {
+  "count": 1,
+  "items": 
+           [{
+               "id": 39891999,
+               "first_name": "Эльдар",
+               "last_name": "Юрьевич",
+               "nickname": "",
+               "online": 0,
+               "lists": [27]
+            }]
+}
+}

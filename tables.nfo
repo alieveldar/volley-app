@@ -1,0 +1,19 @@
+----Users
+id
+id_vk
+first_name
+last_name
+age
+nicname
+tel
+----VK_FRIENDS
+id
+id_vk
+first_name
+last_name
+age
+tel
+referrer Users id
+----
+
+
