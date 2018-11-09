@@ -51,6 +51,7 @@ if (isset($_GET['code'])) {
 
 	function destroy_user($datasecret, $connectEDB){
 		echo "DESTROY_WILL";
+		mysqli_query($connectEDB, "DELETE FROM".TUSERS."WHERE id_vk=".$datasecret->{"user_id"}) ? echo "DELETED OK" : echo "SOME ERROR";
 		add_user($datasecret,$connectEDB);
 	}
 	function add_user($datasecret, $connectEDB){
@@ -61,6 +62,10 @@ if (isset($_GET['code'])) {
 
 	function create_session ($datasecret, $role){
 		echo "CREATE_SESSION_WILL";
+	}
+
+	function get_data_vk($datasecret){
+		https://api.vk.com/method/friends.getOnline?v=5.52&access_token=
 	}
 
 	if($connectEDB){
