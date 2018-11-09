@@ -1,19 +1,63 @@
-----Users
+----Users (1)
 id
 id_vk
 first_name
 last_name
 age
 nicname
+sex
 tel
-----VK_FRIENDS
+role
+----VK_FRIENDS (2)
 id
 id_vk
 first_name
 last_name
 age
+sex
 tel
 referrer Users id
-----
+----volley_room  (3)
+adress
+capacity
+city
+gps_latitude
+gps_longitude
+id
+work_time_up
+work_time_down
+-----training (4)
+id
+trainer
+volley_room
+date
+day_of_week
+start_time
+end_time
+capacity
+level
+repeatability
+price
+
+----training_level (5)
+id
+description
+intensity
+
+
+----training_repeatability (6)
+id
+freq
+
+----trainer (7)
+id
+first_name
+last_name
+tel
+vk_id
+sex
+
+
+
 
 

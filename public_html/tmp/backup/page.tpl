@@ -1,0 +1,12 @@
+<HTML>
+<HEAD>
+<BODY>  
+	   {DESCRIPTION}
+	   <TABLE BORDER=0 WIDTH=100%>
+	   	<TR>
+	   		<TD WIDTH=40% VALIGN=TOP>{MENU}</TD>
+	   		<TD WIDTH=60% VALIGN=TOP>{PAGE}</TD>
+	   	</TR>
+	   </TABLE>
+	</BODY>
+</HEAD>
