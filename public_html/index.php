@@ -4,13 +4,9 @@ require "lib/template.php";
 require_once "conf/config.php";
 //require_once "login.php";
 
-echo $_GET['code'];
+//echo $_GET['code'];
 if(isset($_GET['code'])){
 	header("Location: login.php/?code=".$_GET['code']);
-} if (isset($_GET['access_token'])) {
-	# code...
-	echo $_GET['access_token'];
-	echo "That";
 }
 /*
  $v = new Vk(array(
