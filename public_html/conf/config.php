@@ -22,7 +22,7 @@ const TVOLLEY_ROOM        = 'volley_room';
 		'v' => '5.87'
 		);
 $connectEDB = mysqli_connect($dbservice['dbhost'],$dbservice['dbuser'],$dbservice['dbpassword'], $dbservice['dbname']);
-session_save_path ("/var/tmp");
+//session_save_path ("/var/tmp");
 
 
 

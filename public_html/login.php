@@ -131,7 +131,7 @@ if (isset($_GET['code'])) {
 }
 
 echo "<HTML><H1>LOADING</H1></HTML>";
-sleep(5);
+
 
 $url = "/index.php?PHPSESSID=".session_id();
 		if (($count === 1) & $_SESSION["test"] === "TEST"){
