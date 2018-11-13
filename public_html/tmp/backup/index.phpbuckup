@@ -12,7 +12,7 @@
   echo '<p>Hello world!</p>'; 
   echo '<p>Великая депрессия2</p>'; 
   echo '<p> TEST </p>'; 
-/* 
+
  $v = new Vk(array(
 		'client_id' => 6738467, // (обязательно) номер приложения
 		'secret_key' => 'TYxuhRTLXT2snl7iMfpP', // (обязательно) получить тут https://vk.com/editapp?id=6738467&section=options где 12345 - client_id
@@ -32,7 +32,7 @@
 } else {
 	$access_token = $v->get_access_token($_GET['code']);
 }
-*/
+
     $config['secret_key'] = 'TYxuhRTLXT2snl7iMfpP';
 	$config['client_id'] = 6738467; // номер приложения
 	$config['user_id'] = 12345; // id текущего пользователя (не обязательно)
