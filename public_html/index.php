@@ -16,4 +16,6 @@ $trainings = get_alltraining($connectEDB);
 var_dump($trainings);
 
 echo "<BR>" . $trainings["adress"];
+
+echo $trainings["среда"]->{"num_rows"};
 ?>
