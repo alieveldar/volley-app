@@ -13,9 +13,11 @@ $tpl->tpl_parse();
 
 echo $tpl->html;
 $trainings = get_alltraining($connectEDB);
-var_dump($trainings);
+//var_dump($trainings);
 
-echo "<BR>" . $trainings["adress"];
+//echo "<BR>" . $trainings["adress"];
 
-echo $trainings["среда"]->{"num_rows"};
+//echo $trainings["среда"]->{"num_rows"};
+
+
 ?>

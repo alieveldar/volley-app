@@ -3,9 +3,11 @@ function get_alltraining($connectEDB) {
 
 	$week = array();
 	$day_name = '';
+	/*
 	$sql_find_training = "SELECT training.day_of_week, training_level.description, volley_room.adress, training.start_time, training.capacity, trainer.first_name, trainer.last_name, trainer.tel, volley_room.ya_map, training.date, training.price, training_level.intensity, training.id
 FROM training, volley_room, training_level, trainer
 WHERE training.day_of_week =" . $day . " AND training.level = training_level.id AND training.volley_room = volley_room.id AND training.trainer = trainer.id";
+*/
 /*
 mysqli_set_charset($connectEDB, "utf8");
 $result = mysqli_query($connectEDB, $sql_find_training);
@@ -14,9 +16,10 @@ $result = mysqli_fetch_assoc($result);
  */
 	for ($i = 1; $i <= 7; $i++) {
 		$day = $i;
-		$sql_find_training = "SELECT training.day_of_week, training_level.description, volley_room.adress, training.start_time, training.capacity, trainer.first_name, trainer.last_name, trainer.tel, volley_room.ya_map, training.date, training.price, training_level.intensity, training.id
+		$sql_find_training = "SELECT training.day_of_week, training_level.description, volley_room.adress, training.start_time, training.capacity, trainer.first_name, trainer.last_name, trainer.tel, volley_room.ya_map,volley_room.image, training.date, training.price, training_level.intensity, training.id
 FROM training, volley_room, training_level, trainer
 WHERE training.day_of_week =" . $day . " AND training.level = training_level.id AND training.volley_room = volley_room.id AND training.trainer = trainer.id";
+mysqli_set_charset($connectEDB, "utf8");
 		switch ($i) {
 		case 1:
 			$week["понедельник"] = mysqli_query($connectEDB, $sql_find_training);
@@ -42,6 +45,37 @@ WHERE training.day_of_week =" . $day . " AND training.level = training_level.id 
 		}
 	}
 
-	return $week;
+	return td_and_modal($week);
 }
+
+function td_and_modal($week){
+	$day = 'frst';
+	$count = 0;
+	$td_html = array();
+	$mod_html = array();
+	foreach ($week as $dayarr => $value) {
+		//echo "<BR>".$dayarr;
+		$count = 0;
+		$daycount = 1;
+		foreach ($value as $my) {
+			$day = $dayarr;
+			echo "<br>".$my["id"];
+			echo "<BR>".$day;
+			var_dump($my);
+			if($count > 0 && $count < 4){
+				
+				$td_html[]=$table_open;
+				$td_html[]=$tr_open;
+			}elseif ($count = 4){
+				$td_mod[]= 
+			}
+			
+
+		}
+	}
+} 
+function add_to_string($my){
+
+}
+
 ?>

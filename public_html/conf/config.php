@@ -24,6 +24,60 @@ $v = array(
 );
 $connectEDB = mysqli_connect($dbservice['dbhost'], $dbservice['dbuser'], $dbservice['dbpassword'], $dbservice['dbname']);
 
-//session_save_path ("/var/tmp");
+//variables to parse on html
+
+$table_open = '<table><tbody><th>' . $day . '</th>';
+$tr_open = '<tr>';
+$tr_close = '</tr>';
+$table_td = '<div>
+    <td class="btn btn-link" data-toggle="modal" data-target="#'.'cell'. $my["id"] . '"' . ' style="display: block; height: 100%;">'.
+        $my["intensity"] .
+        '</button>
+        <div>
+            <img src='. '"' .$my["image"]. '"' . 'alt="..." class="rounded-circle" style="width: 75px; height: 75px;">
+            <div>
+                <p>'. $my["adress"]. '</p>
+            </div>
+            <div>
+                <p>'.$my["start_time"].'</p>
+            </div>
+            <div>
+                <p>'. $my["capacity"] .'</p>
+            </div>
+    </td>
+</div>';
+
+$modal = 
+'<div class="modal fade" id="'. 'cell'. $my["id"] . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> '. $day  $my["adress"]  $my["capacity"] . '</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="contacts">'
+                    . $contacts .
+                    ' </div>
+                <div class="room_map">' .
+                    $my["ya_map"] . '
+                </div>
+                <div class="date_cost">'.
+                    $my["date"] .
+                    $my["price"] .
+                    ' </div>
+                <div class="training_desc">' .
+                    $my["description"] .
+                    '</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>';
 
 ?>
