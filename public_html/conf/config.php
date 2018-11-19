@@ -25,7 +25,7 @@ $v = array(
 $connectEDB = mysqli_connect($dbservice['dbhost'], $dbservice['dbuser'], $dbservice['dbpassword'], $dbservice['dbname']);
 
 //variables to parse on html
-
+/*
 $table_open = '<table><tbody><th>' . $day . '</th>';
 $tr_open = '<tr>';
 $tr_close = '</tr>';
@@ -79,5 +79,5 @@ $modal =
         </div>
     </div>
 </div>';
-
+*/
 ?>

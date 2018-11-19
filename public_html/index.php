@@ -4,16 +4,20 @@ require_once "conf/config.php";
 require_once "lib/dbq.php";
 session_start();
 session_id($_GET["PHPSESSID"]);
-var_dump($_SESSION);
-echo "Session ID: " . session_id();
-echo "<BR> " . session_name();
+
+$trainings = get_alltraining($connectEDB);
+$td = $trainings[0];
+
 
 $tpl->get_tpl('templates/first.tpl');
+$tpl->set_value('TRAINING_ROOM_TABLE', $td);
 $tpl->tpl_parse();
-
 echo $tpl->html;
-$trainings = get_alltraining($connectEDB);
-//var_dump($trainings);
+//$trainings = get_alltraining($connectEDB);
+//echo $trainings[0];
+//echo $trainings[1];
+//var_dump($trainings[0]);
+//var_dump($trainings[1]);
 
 //echo "<BR>" . $trainings["adress"];
 

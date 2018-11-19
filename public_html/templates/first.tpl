@@ -25,40 +25,12 @@
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <div class="mytable">
-                    <table>{TRAINING_ROOM_TABLE}</table>
-                </div>
+                
+                    {TRAINING_ROOM_TABLE}
+                
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="rooms">
-                    <table>
-                        <tbody>
-                            <th>$day</th>
-                            <tr>
-                                <div>
-                                    <td class="btn btn-link" data-toggle="modal" data-target="#exampleModal" style="display: block; height: 100%;">
-                                        $training_level
-                                        </button>
-                                        <div>
-                                            <img src="https://lvh.me/assets/img/rooms/central.jpg"  class="rounded-circle" style="width: 75px; height: 75px;">
-                                            <div>
-                                                <p>$rooom_adress</p>
-                                            </div>
-                                            <div>
-                                                <p>$training_time</p>
-                                            </div>
-                                            <div>
-                                                <p>$training_capacity</p>
-                                            </div>
-                                    </td>
-                                </div>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                
             </div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">{rent}</div>
         </div>
@@ -73,37 +45,6 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <!-- Button trigger modal -->
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">$day  $room_adress  $training_capascity</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="contacts">
-                    $contacts
-                </div>
-                <div class="room_map">
-                    $room_map
-                </div>
-                <div class="date_cost">
-                    $date
-                    $cost
-                </div>
-                <div class="training_desc">
-                    $description
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal -->
+
 
 </html>

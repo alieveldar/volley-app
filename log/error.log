@@ -83,3 +83,118 @@
 [Fri Nov 16 10:54:24.613827 2018] [ssl:warn] [pid 43] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
 [Fri Nov 16 10:54:33.366211 2018] [php7:notice] [pid 92] [client 172.17.0.1:34826] PHP Notice:  Undefined variable: day in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 8
 [Fri Nov 16 10:54:33.369151 2018] [php7:notice] [pid 92] [client 172.17.0.1:34826] PHP Notice:  Undefined index: adress in /var/www/html/volley-app.com/public_html/index.php on line 18
+[Sun Nov 18 16:24:21.882174 2018] [ssl:warn] [pid 41] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Nov 18 16:24:22.075256 2018] [ssl:warn] [pid 42] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Nov 18 16:24:52.220781 2018] [php7:emerg] [pid 48] [client 172.17.0.1:55856] PHP Parse error:  syntax error, unexpected '$my' (T_VARIABLE) in /var/www/html/volley-app.com/public_html/conf/config.php on line 55
+[Sun Nov 18 16:26:47.484840 2018] [php7:emerg] [pid 505] [client 172.17.0.1:55950] PHP Parse error:  syntax error, unexpected '$my' (T_VARIABLE) in /var/www/html/volley-app.com/public_html/conf/config.php on line 55
+[Sun Nov 18 16:26:54.479294 2018] [php7:emerg] [pid 504] [client 172.17.0.1:55990] PHP Parse error:  syntax error, unexpected '$my' (T_VARIABLE) in /var/www/html/volley-app.com/public_html/conf/config.php on line 55
+[Sun Nov 18 17:54:04.443376 2018] [php7:notice] [pid 506] [client 172.17.0.1:56854] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 17:54:05.310140 2018] [php7:emerg] [pid 48] [client 172.17.0.1:56888] PHP Parse error:  syntax error, unexpected '$my' (T_VARIABLE) in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 88
+[Sun Nov 18 17:54:42.801706 2018] [php7:notice] [pid 47] [client 172.17.0.1:56904] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 17:54:43.840210 2018] [php7:notice] [pid 79] [client 172.17.0.1:56938] PHP Notice:  Undefined variable: contacts in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 95
+[Sun Nov 18 17:54:43.840303 2018] [php7:notice] [pid 79] [client 172.17.0.1:56938] PHP Notice:  Undefined variable: contacts in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 95
+[Sun Nov 18 17:54:43.840347 2018] [php7:notice] [pid 79] [client 172.17.0.1:56938] PHP Notice:  Undefined variable: contacts in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 95
+[Sun Nov 18 17:54:43.840388 2018] [php7:notice] [pid 79] [client 172.17.0.1:56938] PHP Notice:  Undefined variable: contacts in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 95
+[Sun Nov 18 17:54:43.840430 2018] [php7:notice] [pid 79] [client 172.17.0.1:56938] PHP Notice:  Undefined variable: contacts in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 95
+[Sun Nov 18 17:54:43.840475 2018] [php7:notice] [pid 79] [client 172.17.0.1:56938] PHP Notice:  Undefined variable: contacts in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 95
+[Sun Nov 18 17:54:43.840517 2018] [php7:notice] [pid 79] [client 172.17.0.1:56938] PHP Notice:  Undefined variable: contacts in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 95
+[Sun Nov 18 17:54:43.840559 2018] [php7:notice] [pid 79] [client 172.17.0.1:56938] PHP Notice:  Undefined variable: contacts in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 95
+[Sun Nov 18 17:54:43.840600 2018] [php7:notice] [pid 79] [client 172.17.0.1:56938] PHP Notice:  Undefined variable: contacts in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 95
+[Sun Nov 18 17:55:47.006337 2018] [php7:notice] [pid 47] [client 172.17.0.1:56978] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 17:56:24.176475 2018] [php7:notice] [pid 505] [client 172.17.0.1:57028] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 17:56:47.902532 2018] [php7:notice] [pid 486] [client 172.17.0.1:57080] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:00:54.581190 2018] [php7:notice] [pid 48] [client 172.17.0.1:57680] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:01:25.435256 2018] [php7:notice] [pid 506] [client 172.17.0.1:57746] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:09:33.423955 2018] [php7:notice] [pid 504] [client 172.17.0.1:59284] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:16:39.963778 2018] [php7:notice] [pid 48] [client 172.17.0.1:59500] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:17:27.063937 2018] [php7:notice] [pid 504] [client 172.17.0.1:59566] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:18:56.271425 2018] [php7:notice] [pid 506] [client 172.17.0.1:59616] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:18:56.979516 2018] [php7:emerg] [pid 487] [client 172.17.0.1:59648] PHP Parse error:  syntax error, unexpected ',' in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 133
+[Sun Nov 18 18:19:14.572179 2018] [php7:notice] [pid 487] [client 172.17.0.1:59658] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:19:15.269826 2018] [php7:emerg] [pid 505] [client 172.17.0.1:59690] PHP Parse error:  syntax error, unexpected ',' in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 133
+[Sun Nov 18 18:19:46.822057 2018] [php7:notice] [pid 487] [client 172.17.0.1:59706] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:19:48.134241 2018] [php7:emerg] [pid 506] [client 172.17.0.1:59738] PHP Parse error:  syntax error, unexpected ',' in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 133
+[Sun Nov 18 18:21:46.554829 2018] [php7:notice] [pid 505] [client 172.17.0.1:59752] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:21:47.239584 2018] [php7:emerg] [pid 47] [client 172.17.0.1:59784] PHP Parse error:  syntax error, unexpected ',' in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 135
+[Sun Nov 18 18:22:37.130023 2018] [php7:notice] [pid 486] [client 172.17.0.1:59794] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:22:38.407180 2018] [php7:notice] [pid 506] [client 172.17.0.1:59832] PHP Notice:  Array to string conversion in /var/www/html/volley-app.com/public_html/index.php on line 16
+[Sun Nov 18 18:22:58.706010 2018] [php7:notice] [pid 507] [client 172.17.0.1:59872] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:23:28.708407 2018] [php7:notice] [pid 487] [client 172.17.0.1:59922] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:30:45.825149 2018] [php7:notice] [pid 505] [client 172.17.0.1:33336] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:32:52.663319 2018] [php7:notice] [pid 506] [client 172.17.0.1:34422] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:35:30.376283 2018] [php7:notice] [pid 507] [client 172.17.0.1:35742] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:38:38.220432 2018] [php7:notice] [pid 48] [client 172.17.0.1:37306] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:40:55.599836 2018] [php7:notice] [pid 505] [client 172.17.0.1:38488] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:51:47.997291 2018] [php7:notice] [pid 486] [client 172.17.0.1:43820] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:53:44.904823 2018] [php7:notice] [pid 486] [client 172.17.0.1:44804] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 18:57:58.231518 2018] [php7:notice] [pid 48] [client 172.17.0.1:46910] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:02:37.923589 2018] [php7:notice] [pid 47] [client 172.17.0.1:49256] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:03:57.922474 2018] [php7:notice] [pid 486] [client 172.17.0.1:49968] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:09:01.509388 2018] [ssl:warn] [pid 701] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Nov 18 19:09:01.571899 2018] [ssl:warn] [pid 702] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Nov 18 19:09:05.031702 2018] [php7:notice] [pid 713] [client 172.17.0.1:52510] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:10:32.050873 2018] [php7:notice] [pid 714] [client 172.17.0.1:53294] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:12:08.591402 2018] [php7:notice] [pid 705] [client 172.17.0.1:54124] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:15:00.020253 2018] [php7:notice] [pid 717] [client 172.17.0.1:55566] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:16:29.617520 2018] [php7:notice] [pid 715] [client 172.17.0.1:56358] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:18:13.710464 2018] [php7:notice] [pid 713] [client 172.17.0.1:57306] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:18:35.924069 2018] [php7:notice] [pid 712] [client 172.17.0.1:57554] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:20:55.744719 2018] [php7:notice] [pid 706] [client 172.17.0.1:58742] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:25:13.422160 2018] [php7:notice] [pid 715] [client 172.17.0.1:60920] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:26:28.030268 2018] [php7:notice] [pid 716] [client 172.17.0.1:33444] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:40:42.962141 2018] [php7:notice] [pid 717] [client 172.17.0.1:39834] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:40:43.860834 2018] [php7:warn] [pid 713] [client 172.17.0.1:39876] PHP Warning:  Unterminated comment starting line 13 in /var/www/html/volley-app.com/public_html/index.php on line 13
+[Sun Nov 18 19:41:38.085337 2018] [php7:notice] [pid 717] [client 172.17.0.1:40330] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:42:49.799171 2018] [php7:notice] [pid 714] [client 172.17.0.1:40948] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:44:11.595159 2018] [php7:notice] [pid 717] [client 172.17.0.1:41654] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:44:12.134652 2018] [php7:warn] [pid 705] [client 172.17.0.1:41686] PHP Warning:  Unterminated comment starting line 11 in /var/www/html/volley-app.com/public_html/index.php on line 11
+[Sun Nov 18 19:44:33.727797 2018] [php7:notice] [pid 714] [client 172.17.0.1:41884] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:50:50.599801 2018] [php7:notice] [pid 715] [client 172.17.0.1:44982] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:50:51.321881 2018] [php7:emerg] [pid 713] [client 172.17.0.1:45024] PHP Parse error:  syntax error, unexpected '$tr_open' (T_VARIABLE) in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 67
+[Sun Nov 18 19:51:15.173091 2018] [php7:notice] [pid 711] [client 172.17.0.1:45232] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:51:16.190105 2018] [php7:notice] [pid 717] [client 172.17.0.1:45272] PHP Notice:  Undefined variable: table_open in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 57
+[Sun Nov 18 19:51:16.190171 2018] [php7:notice] [pid 717] [client 172.17.0.1:45272] PHP Notice:  Undefined variable: tr_open in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 58
+[Sun Nov 18 19:52:55.245862 2018] [php7:notice] [pid 716] [client 172.17.0.1:46090] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:52:56.199260 2018] [php7:notice] [pid 717] [client 172.17.0.1:46132] PHP Notice:  Undefined variable: table_open in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 57
+[Sun Nov 18 19:52:56.199333 2018] [php7:notice] [pid 717] [client 172.17.0.1:46132] PHP Notice:  Undefined variable: tr_open in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 58
+[Sun Nov 18 19:53:15.972983 2018] [php7:notice] [pid 705] [client 172.17.0.1:46312] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:54:30.568690 2018] [php7:notice] [pid 713] [client 172.17.0.1:46956] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 19:59:12.403239 2018] [php7:notice] [pid 714] [client 172.17.0.1:49282] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:00:13.427819 2018] [php7:notice] [pid 714] [client 172.17.0.1:49562] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:01:02.984644 2018] [php7:notice] [pid 715] [client 172.17.0.1:49970] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:02:36.896887 2018] [php7:notice] [pid 714] [client 172.17.0.1:50774] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:06:01.697422 2018] [php7:notice] [pid 716] [client 172.17.0.1:52502] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:08:21.697477 2018] [php7:notice] [pid 716] [client 172.17.0.1:53706] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:08:22.288555 2018] [php7:warn] [pid 712] [client 172.17.0.1:53746] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:22.288727 2018] [php7:warn] [pid 712] [client 172.17.0.1:53746] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:22.288831 2018] [php7:warn] [pid 712] [client 172.17.0.1:53746] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:22.288874 2018] [php7:warn] [pid 712] [client 172.17.0.1:53746] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:22.288914 2018] [php7:warn] [pid 712] [client 172.17.0.1:53746] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:22.288955 2018] [php7:warn] [pid 712] [client 172.17.0.1:53746] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:22.288996 2018] [php7:warn] [pid 712] [client 172.17.0.1:53746] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:52.355575 2018] [php7:notice] [pid 711] [client 172.17.0.1:53998] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:08:53.168784 2018] [php7:warn] [pid 715] [client 172.17.0.1:54038] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:53.168903 2018] [php7:warn] [pid 715] [client 172.17.0.1:54038] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:53.168955 2018] [php7:warn] [pid 715] [client 172.17.0.1:54038] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:53.168975 2018] [php7:warn] [pid 715] [client 172.17.0.1:54038] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:53.168994 2018] [php7:warn] [pid 715] [client 172.17.0.1:54038] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:53.169013 2018] [php7:warn] [pid 715] [client 172.17.0.1:54038] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:53.169031 2018] [php7:warn] [pid 715] [client 172.17.0.1:54038] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:56.308214 2018] [php7:notice] [pid 712] [client 172.17.0.1:54080] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:08:56.970971 2018] [php7:warn] [pid 706] [client 172.17.0.1:54120] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:56.971125 2018] [php7:warn] [pid 706] [client 172.17.0.1:54120] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:56.971260 2018] [php7:warn] [pid 706] [client 172.17.0.1:54120] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:56.971300 2018] [php7:warn] [pid 706] [client 172.17.0.1:54120] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:56.971339 2018] [php7:warn] [pid 706] [client 172.17.0.1:54120] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:56.971377 2018] [php7:warn] [pid 706] [client 172.17.0.1:54120] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:08:56.971420 2018] [php7:warn] [pid 706] [client 172.17.0.1:54120] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 59
+[Sun Nov 18 20:11:42.456543 2018] [php7:notice] [pid 717] [client 172.17.0.1:55486] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:12:34.905099 2018] [php7:notice] [pid 711] [client 172.17.0.1:55952] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:13:24.856546 2018] [php7:notice] [pid 716] [client 172.17.0.1:56402] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:14:36.462806 2018] [php7:notice] [pid 713] [client 172.17.0.1:57020] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:17:36.607530 2018] [php7:notice] [pid 705] [client 172.17.0.1:58528] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:17:55.221344 2018] [php7:notice] [pid 713] [client 172.17.0.1:58724] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:19:20.765865 2018] [php7:notice] [pid 717] [client 172.17.0.1:59454] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:20:03.191813 2018] [php7:notice] [pid 716] [client 172.17.0.1:59868] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:21:19.646579 2018] [php7:notice] [pid 714] [client 172.17.0.1:60044] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
+[Sun Nov 18 20:24:05.282025 2018] [php7:notice] [pid 714] [client 172.17.0.1:32844] PHP Notice:  Undefined variable: _SESSION in /var/www/html/volley-app.com/public_html/login.php on line 131
