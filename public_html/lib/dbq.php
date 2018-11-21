@@ -1,25 +1,16 @@
 <?php
+require_once 'lib/template.php';
 function get_alltraining($connectEDB) {
 
 	$week = array();
 	$day_name = '';
-	/*
-	$sql_find_training = "SELECT training.day_of_week, training_level.description, volley_room.adress, training.start_time, training.capacity, trainer.first_name, trainer.last_name, trainer.tel, volley_room.ya_map, training.date, training.price, training_level.intensity, training.id
-FROM training, volley_room, training_level, trainer
-WHERE training.day_of_week =" . $day . " AND training.level = training_level.id AND training.volley_room = volley_room.id AND training.trainer = trainer.id";
-*/
-/*
-mysqli_set_charset($connectEDB, "utf8");
-$result = mysqli_query($connectEDB, $sql_find_training);
-mysqli_data_seek($result, 2);
-$result = mysqli_fetch_assoc($result);
- */
+
 	for ($i = 1; $i <= 7; $i++) {
 		$day = $i;
 		$sql_find_training = "SELECT training.day_of_week, training_level.description, volley_room.adress, training.start_time, training.capacity, trainer.first_name, trainer.last_name, trainer.tel, volley_room.ya_map,volley_room.image, training.date, training.price, training_level.intensity, training.id
 FROM training, volley_room, training_level, trainer
 WHERE training.day_of_week =" . $day . " AND training.level = training_level.id AND training.volley_room = volley_room.id AND training.trainer = trainer.id";
-mysqli_set_charset($connectEDB, "utf8");
+		mysqli_set_charset($connectEDB, "utf8");
 		switch ($i) {
 		case 1:
 			$week["понедельник"] = mysqli_query($connectEDB, $sql_find_training);
@@ -48,103 +39,81 @@ mysqli_set_charset($connectEDB, "utf8");
 	return td_and_modal($week);
 }
 
-function td_and_modal($week){
+function td_and_modal($week) {
 	$day = 'frst';
 	$contacts = 'temproary var';
-	
-	$td_html = array();
-	$mod_html = array();
-	
+	$mod_arr = array();
+	$col_arr = array();
+	$rez_row = array();
+	$rez_mod = array();
+
 	foreach ($week as $dayarr => $value) {
-	$count = 0;	
-		
-		
+		$tp_row = New Template;
+		$tp_row->get_tpl('templates/row.tpl');
+		$day_count = 0;
+
 		foreach ($value as $my) {
+			global $day;
+			$tp_col = New Template;
+			$tp_modal = New Template;
+			$tp_col->get_tpl('templates/col.tpl');
+			$tp_modal->get_tpl('templates/modal.tpl');
 			$day = $dayarr;
-			$table_open = '<table><tbody><th>'. $day.'</th>';
-			$table_close = '</tbody></table>';
-			$tr_open = '<tr>';
-			$tr_close = '</tr>';
-			$table_td = '<div>
-    <td class="btn btn-link" data-toggle="modal" data-target="#'.'cell'. $my["id"] . '"' . ' style="display: block-inline; height: 100%;">'.
-        $my["intensity"] .
-        '</button>
-        <div>
-            <img src='. '"' .$my["image"]. '"' . 'alt="..." class="rounded-circle" style="width: 75px; height: 75px;">
-            <div>
-                <p>'. $my["adress"]. '</p>
-            </div>
-            <div>
-                <p>'.$my["start_time"].'</p>
-            </div>
-            <div>
-                <p>'. $my["capacity"] .'</p>
-            </div>
-    </td>
-</div>';
+			$image_url = $my["image"];
+			$cell_id = "cell" . $my["id"];
+			$adress = $my["adress"];
+			$capacity = "0/" . $my["capacity"];
+			$contacts = "NOT VAR HERE";
+			$ya_map = $my["ya_map"];
+			$date = $my["date"];
+			$price = $my["price"];
+			$training_desc = $my["description"];
+			$intensity = $my["intensity"];
+			$start_time = $my["start_time"];
+			$tp_modal->set_value('DAY', $day);
+			$tp_modal->set_value('CELL_ID', $cell_id);
+			$tp_modal->set_value('ADRESS', $adress);
+			$tp_modal->set_value('CAPACITY', $capacity);
+			$tp_modal->set_value('CONTACTS', $contacts);
+			$tp_modal->set_value('YA_MAP', $ya_map);
+			$tp_modal->set_value('DATE', $date);
+			$tp_modal->set_value('PRICE', $price);
+			$tp_modal->set_value('TRAINING_DESC', $training_desc);
+			$tp_col->set_value('CELL_ID', $cell_id);
+			$tp_col->set_value('IMAGE_URL', $image_url);
+			$tp_col->set_value('INTENSITY', $intensity);
+			$tp_col->set_value('ADRESS', $adress);
+			$tp_col->set_value('START_TIME', $start_time);
+			$tp_col->set_value('CAPACITY', $capacity);
+			$tp_modal->tpl_parse();
+			$tp_col->tpl_parse();
+			global $col_arr;
+			global $mod_arr;
+			$col_arr[] = $tp_col->html;
+			$mod_arr[] = $tp_modal->html;
+			unset($tp_col, $tp_modal);
+		} //day end
+		global $rez_row, $rez_mod, $col_arr, $mod_arr, $day;
+		if (count($col_arr) > 0) {
+			# code...
 
-$modal = 
-'<div class="modal fade" id="'. 'cell'. $my["id"] . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"> '. $day . $my["adress"] . $my["capacity"] . '</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="contacts">'
-                    . $contacts .
-                    ' </div>
-                <div class="room_map">' .
-                    $my["ya_map"] . '
-                </div>
-                <div class="date_cost">'.
-                    $my["date"] .
-                    $my["price"] .
-                    ' </div>
-                <div class="training_desc">' .
-                    $my["description"] .
-                    '</div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>';
-			//echo "<br>".$my["id"];
-			//echo "<BR>".$day;
-			//var_dump($my);
-						
-			if($count === 0){
-				$td_html[]=$table_open;
-				$td_html[]=$tr_open;
-				$count++;
-			}
-				
-			if ($count ===4 ){
-				$td_html[]= $tr_close;
-				$count = 1;
-			} 
-			$td_html[] = $table_td;
-			$mod_html[] = $modal;
-			$count++;
-			
-
+			$tp_row->set_value('DAY', $day);
+			$tp_row->set_value('SHEDULE', implode($col_arr));
+			$tp_row->tpl_parse();
+			$rez_row[] = $tp_row->html;
+			$rez_mod[] = implode($mod_arr);
+			global $day;
+			$day = '';
+			$col_arr = array();
+			$mod_arr = array();
 		}
 	}
-	$td_html = implode($td_html);
-	$mod_html = implode($mod_html);
-	$result = array();
-	$result[] = ($td_html); 
-	$result[]= ($mod_html);
-		
+
+	$result[] = implode($rez_row);
+	$result[] = implode($rez_mod);
 	return $result;
-} 
-function add_to_string($my){
+}
+function add_to_string($my) {
 
 }
 

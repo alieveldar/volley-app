@@ -6,22 +6,12 @@ session_start();
 session_id($_GET["PHPSESSID"]);
 
 $trainings = get_alltraining($connectEDB);
-$td = $trainings[0];
 
-
-$tpl->get_tpl('templates/first.tpl');
-$tpl->set_value('TRAINING_ROOM_TABLE', $td);
-$tpl->tpl_parse();
-echo $tpl->html;
-//$trainings = get_alltraining($connectEDB);
-//echo $trainings[0];
-//echo $trainings[1];
-//var_dump($trainings[0]);
-//var_dump($trainings[1]);
-
-//echo "<BR>" . $trainings["adress"];
-
-//echo $trainings["среда"]->{"num_rows"};
-
+$first_tpl = New Template;
+$first_tpl->get_tpl('templates/first.tpl');
+$first_tpl->set_value('TRAINING_ROOM_TABLE', $trainings[0]);
+$first_tpl->set_value('MODAL', $trainings[1]);
+$first_tpl->tpl_parse();
+echo $first_tpl->html;
 
 ?>
