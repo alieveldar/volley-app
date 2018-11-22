@@ -2,7 +2,7 @@
 require_once "lib/template.php";
 require_once "conf/config.php";
 require_once "lib/dbq.php";
-session_start();
+//session_start();
 session_id($_GET["PHPSESSID"]);
 
 $trainings = get_alltraining($connectEDB);

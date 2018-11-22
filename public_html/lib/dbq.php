@@ -1,4 +1,7 @@
 <?php
+require_once 'conf/config.php';
+session_start();
+//session_id($_GET["PHPSESSID"]);
 require_once 'lib/template.php';
 function get_alltraining($connectEDB) {
 
@@ -79,6 +82,8 @@ function td_and_modal($week) {
 			$tp_modal->set_value('DATE', $date);
 			$tp_modal->set_value('PRICE', $price);
 			$tp_modal->set_value('TRAINING_DESC', $training_desc);
+			$tp_modal->set_value('vkid', $_SESSION["vkid"]);
+			$tp_modal->set_value('trid', $my["id"]);
 			$tp_col->set_value('CELL_ID', $cell_id);
 			$tp_col->set_value('IMAGE_URL', $image_url);
 			$tp_col->set_value('INTENSITY', $intensity);
@@ -98,7 +103,7 @@ function td_and_modal($week) {
 			# code...
 
 			$tp_row->set_value('DAY', $day);
-			$tp_row->set_value('SHEDULE', implode($col_arr));
+			$tp_row->set_value('SCHEDULE', implode($col_arr));
 			$tp_row->tpl_parse();
 			$rez_row[] = $tp_row->html;
 			$rez_mod[] = implode($mod_arr);
@@ -113,8 +118,11 @@ function td_and_modal($week) {
 	$result[] = implode($rez_mod);
 	return $result;
 }
-function add_to_string($my) {
-
+function find_by_cond($table, $req_fields, $fields, $rez_field) {
+	$req_sql = "SELECT " . $rez_field . " FROM " . $table . " WHERE "
+		. $req_fields[0] . "=" . $fields[0] . " AND " . $req_fields[1] . "=" . $fields[1];
+	$rez = mysqli_query($connectEDB, $req_sql);
+	return $rez;
 }
 
 ?>

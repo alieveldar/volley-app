@@ -11,7 +11,7 @@ $(document).ready(function() {
         target.text("ОТПИСАТЬСЯ");
         //$(".signup-friend").addClass('MyClass');
         var uri = "/api.php?action=";
-        var action = "shedule";
+        var action = "schedule";
         var vkid = "&vkid=" + target.data("vkid");
         var trid = "&trid=" + target.data("trid");
         
