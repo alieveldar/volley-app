@@ -123,21 +123,30 @@ function find_by_cond($table, $req_fields, $fields, $rez_field, $connectEDB) {
 	$req_sql = "SELECT * FROM " . $table . " WHERE "
 		. $req_fields[0] . "=" . $fields[0] . " AND " . $req_fields[1] . "=" . $fields[1];
 	$rez = mysqli_query($connectEDB, $req_sql);
-	
-	$rez1 = mysqli_fetch_assoc($rez);
+
+	$rez = mysqli_fetch_assoc($rez);
 	//return mysqli_error($rez);
 	//return mysqli_error($rez);
-	return $rez1;
+	return $rez["sched"];
 }
-function sched_user ($vkid, $trid, $connectEDB){
+function sched_user($vkid, $trid, $connectEDB) {
 	$shed_es = 1;
-	$req_sql1 = "INSERT INTO event_training (training,player,sсheduled) VALUES ('$trid','$vkid','$shed_es')";
+	$req_sql1 = "INSERT INTO event_training (training,player,sched) VALUES ($trid,$vkid,'$shed_es')";
 	$rez_sched = mysqli_query($connectEDB, $req_sql1);
-	if ($rez_sched){
+	if ($rez_sched) {
 		return 1;
 	} else {
 		return mysqli_error($connectEDB);
 		//return $req_sql;
+	}
+}
+function update_field($table, $req_field, $value, $condition_field, $condition_value, $connectEDB) {
+	$req_sql = "UPDATE $table SET $req_field=$value WHERE $condition_field[0]=$condition_value[0] AND $condition_field[1]=$condition_value[1]";
+	$rez_update = mysqli_query($connectEDB, $req_sql);
+	if ($rez_update) {
+		return $req_sql;
+	} else {
+		return mysqli_error($connectEDB);
 	}
 }
 ?>
