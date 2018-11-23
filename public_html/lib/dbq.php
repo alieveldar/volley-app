@@ -1,6 +1,7 @@
 <?php
-require_once 'conf/config.php';
+
 session_start();
+
 //session_id($_GET["PHPSESSID"]);
 require_once 'lib/template.php';
 function get_alltraining($connectEDB) {
@@ -118,11 +119,25 @@ function td_and_modal($week) {
 	$result[] = implode($rez_mod);
 	return $result;
 }
-function find_by_cond($table, $req_fields, $fields, $rez_field) {
-	$req_sql = "SELECT " . $rez_field . " FROM " . $table . " WHERE "
+function find_by_cond($table, $req_fields, $fields, $rez_field, $connectEDB) {
+	$req_sql = "SELECT * FROM " . $table . " WHERE "
 		. $req_fields[0] . "=" . $fields[0] . " AND " . $req_fields[1] . "=" . $fields[1];
 	$rez = mysqli_query($connectEDB, $req_sql);
-	return $rez;
+	
+	$rez1 = mysqli_fetch_assoc($rez);
+	//return mysqli_error($rez);
+	//return mysqli_error($rez);
+	return $rez1;
 }
-
+function sched_user ($vkid, $trid, $connectEDB){
+	$shed_es = 1;
+	$req_sql1 = "INSERT INTO event_training (training,player,sсheduled) VALUES ('$trid','$vkid','$shed_es')";
+	$rez_sched = mysqli_query($connectEDB, $req_sql1);
+	if ($rez_sched){
+		return 1;
+	} else {
+		return mysqli_error($connectEDB);
+		//return $req_sql;
+	}
+}
 ?>

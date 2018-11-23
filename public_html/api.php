@@ -1,5 +1,5 @@
 <?php
-
+require_once 'conf/config.php';
 require 'lib/dbq.php';
 
 if (isset($_GET['code'])) {
@@ -16,11 +16,17 @@ if (isset($_GET["action"])) {
 		$vkid = $_GET['vkid'];
 		$trid = $_GET['trid'];
 		$table = 'event_training';
-		$rez_field = 'scheduled';
+		$rez_field = "'scheduled'";
 		$fields_value = array($vkid, $trid);
 		$req_fields = array('player', 'training');
-		$shed_rez = find_by_cond($table, $req_fields, $fields_value, $rez_field);
-		echo $shed_rez;
+		$shed_rez = find_by_cond($table, $req_fields, $fields_value, $rez_field, $connectEDB);
+		//echo var_dump($shed_rez);		
+		echo $shed_rez["scheduled"];
+		if ($shed_rez === 0 ){
+			$rez = sched_user ($vkid, $trid, $connectEDB);
+			echo $rez;
+		}
+
 	}
 }
 
