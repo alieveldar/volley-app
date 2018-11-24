@@ -18,7 +18,7 @@
                 <div class="training_desc">{TRAINING_DESC} </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary sign-up " data-vkid="{vkid}" data-trid = "{trid}">Записаться</button>
+                <button type="button" class="btn btn-primary sign-up " data-vkid="{vkid}" data-trid = "{trid}" data-sched = "{sched}">{schedbutton}</button>
                 <button type="button" class="btn btn-primary signup-friend" data-vkid="{vkid}">Записать друга</button>
             </div>
         </div>

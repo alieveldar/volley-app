@@ -40,10 +40,10 @@ WHERE training.day_of_week =" . $day . " AND training.level = training_level.id 
 		}
 	}
 
-	return td_and_modal($week);
+	return td_and_modal($week, $connectEDB);
 }
 
-function td_and_modal($week) {
+function td_and_modal($week, $connectEDB) {
 	$day = 'frst';
 	$contacts = 'temproary var';
 	$mod_arr = array();
@@ -85,6 +85,16 @@ function td_and_modal($week) {
 			$tp_modal->set_value('TRAINING_DESC', $training_desc);
 			$tp_modal->set_value('vkid', $_SESSION["vkid"]);
 			$tp_modal->set_value('trid', $my["id"]);
+			$sched = find_by_cond("event_training", array("player", "training"), array($_SESSION["vkid"],$my["id"]),"sched", $connectEDB);
+			if ($sched === NULL) {
+				$schedbutton = "Записаться";
+			}elseif ($sched == 1) {
+				$schedbutton = "Отписаться";
+			}elseif ($sched == 2) {
+				$schedbutton = "Записаться";
+			}
+			$tp_modal->set_value('sched', $sched);
+			$tp_modal->set_value('schedbutton', $schedbutton);
 			$tp_col->set_value('CELL_ID', $cell_id);
 			$tp_col->set_value('IMAGE_URL', $image_url);
 			$tp_col->set_value('INTENSITY', $intensity);
@@ -101,8 +111,7 @@ function td_and_modal($week) {
 		} //day end
 		global $rez_row, $rez_mod, $col_arr, $mod_arr, $day;
 		if (count($col_arr) > 0) {
-			# code...
-
+			
 			$tp_row->set_value('DAY', $day);
 			$tp_row->set_value('SCHEDULE', implode($col_arr));
 			$tp_row->tpl_parse();
@@ -119,7 +128,7 @@ function td_and_modal($week) {
 	$result[] = implode($rez_mod);
 	return $result;
 }
-function find_by_cond($table, $req_fields, $fields, $rez_field, $connectEDB) {
+function find_by_cond($table = "event_training", $req_fields = array("player", "training"), $fields, $rez_field  = "sched", $connectEDB) {
 	$req_sql = "SELECT * FROM " . $table . " WHERE "
 		. $req_fields[0] . "=" . $fields[0] . " AND " . $req_fields[1] . "=" . $fields[1];
 	$rez = mysqli_query($connectEDB, $req_sql);
