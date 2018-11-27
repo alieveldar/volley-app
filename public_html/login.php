@@ -3,7 +3,7 @@
 require_once 'conf/config.php';
 $count = 0;
 if (isset($_GET['code'])) {
-
+	global $datasecret;
 	$datasecret = getAcces($_GET['code'], $v, $connectEDB);
 } else {
 
@@ -50,7 +50,7 @@ function destroy_user($datasecret, $connectEDB) {
 	add_user($datasecret, $connectEDB);
 }
 function add_user($datasecret, $connectEDB) {
-	
+
 	$role = 0;
 	$data_db = get_data_vk($datasecret);
 	$user_data_db = $data_db["user_data_db"];
@@ -106,6 +106,7 @@ function create_session($datasecret, $role) {
 	$_SESSION["role"] = $role;
 	$_SESSION["vkid"] = $idvk;
 	$_SESSION["test"] = "TEST";
+	$_SESSION["access_token"] = $datasecret->{"access_token"};
 	echo "<br> CREATE_SESSION_WILL";
 	echo "<BR> SNAME IS  " . $sname;
 	$count++;

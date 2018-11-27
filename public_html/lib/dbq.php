@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 //session_id($_GET["PHPSESSID"]);
 require_once 'lib/template.php';
 function get_alltraining($connectEDB) {
@@ -60,8 +58,10 @@ function td_and_modal($week, $connectEDB) {
 			global $day;
 			$tp_col = New Template;
 			$tp_modal = New Template;
+
 			$tp_col->get_tpl('templates/col.tpl');
 			$tp_modal->get_tpl('templates/modal.tpl');
+
 			$day = $dayarr;
 			$image_url = $my["image"];
 			$cell_id = "cell" . $my["id"];
@@ -85,12 +85,12 @@ function td_and_modal($week, $connectEDB) {
 			$tp_modal->set_value('TRAINING_DESC', $training_desc);
 			$tp_modal->set_value('vkid', $_SESSION["vkid"]);
 			$tp_modal->set_value('trid', $my["id"]);
-			$sched = find_by_cond("event_training", array("player", "training"), array($_SESSION["vkid"],$my["id"]),"sched", $connectEDB);
+			$sched = find_by_cond("event_training", array("player", "training"), array($_SESSION["vkid"], $my["id"]), "sched", $connectEDB);
 			if ($sched === NULL) {
 				$schedbutton = "Записаться";
-			}elseif ($sched == 1) {
+			} elseif ($sched == 1) {
 				$schedbutton = "Отписаться";
-			}elseif ($sched == 2) {
+			} elseif ($sched == 2) {
 				$schedbutton = "Записаться";
 			}
 			$tp_modal->set_value('sched', $sched);
@@ -101,6 +101,8 @@ function td_and_modal($week, $connectEDB) {
 			$tp_col->set_value('ADRESS', $adress);
 			$tp_col->set_value('START_TIME', $start_time);
 			$tp_col->set_value('CAPACITY', $capacity);
+			$shed_users = get_shed_users($my["id"], $connectEDB); ///////////////
+			$tp_modal->set_value('SHED_USERS', $shed_users);
 			$tp_modal->tpl_parse();
 			$tp_col->tpl_parse();
 			global $col_arr;
@@ -111,7 +113,7 @@ function td_and_modal($week, $connectEDB) {
 		} //day end
 		global $rez_row, $rez_mod, $col_arr, $mod_arr, $day;
 		if (count($col_arr) > 0) {
-			
+
 			$tp_row->set_value('DAY', $day);
 			$tp_row->set_value('SCHEDULE', implode($col_arr));
 			$tp_row->tpl_parse();
@@ -128,7 +130,7 @@ function td_and_modal($week, $connectEDB) {
 	$result[] = implode($rez_mod);
 	return $result;
 }
-function find_by_cond($table = "event_training", $req_fields = array("player", "training"), $fields, $rez_field  = "sched", $connectEDB) {
+function find_by_cond($table = "event_training", $req_fields = array("player", "training"), $fields, $rez_field = "sched", $connectEDB) {
 	$req_sql = "SELECT * FROM " . $table . " WHERE "
 		. $req_fields[0] . "=" . $fields[0] . " AND " . $req_fields[1] . "=" . $fields[1];
 	$rez = mysqli_query($connectEDB, $req_sql);
@@ -158,4 +160,38 @@ function update_field($table, $req_field, $value, $condition_field, $condition_v
 		return mysqli_error($connectEDB);
 	}
 }
+function get_user_vk($vkid) {
+	$vk_user_data = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids=" . $vkid . "&fields=first_name,last_name,photo_50&access_token=" . $_SESSION["access_token"] . "&v=5.87"));
+	/*
+		$friends_data_db = json_decode(file_get_contents("https://api.vk.com/method/friends.get?user_id=".$datasecret->{"user_id"}."&fields=first_name,last_name,contacts,nickname,photo_50,sex,bdate&order=hints&access_token=".$datasecret->{"access_token"}."&v=5.87"));
+		*/
+	//delete when friends must be entered into the database
+
+	return $vk_user_data;
+}
+function get_shed_users($trid, $connectEDB) {
+	$users_sql = "SELECT player FROM event_training WHERE training = $trid AND sched = 1";
+	$rez = mysqli_query($connectEDB, $users_sql);
+	$rez = mysqli_fetch_assoc($rez);
+	$tp_colusers = New Template;
+	$tp_colusers->get_tpl('templates/colusers.tpl');
+	$arr_cols = array();
+
+	if ($rez != NULL) {
+		foreach ($rez as $key => $value) {
+			$arr_users = get_user_vk($value);
+			$tp_colusers->set_value('AVATAR_URL', $arr_users->{'response'}[0]->{'photo_50'});
+			$tp_colusers->set_value('USERNAME', $arr_users->{'response'}[0]->{'first_name'} . "<BR>" . $arr_users->{'response'}[0]->{'last_name'});
+			$tp_colusers->tpl_parse();
+			$arr_cols[] = $tp_colusers->html;
+			echo $tp_colusers->html;
+		}
+	}
+
+	$arr_cols = implode($arr_cols);
+	//echo $arr_cols;
+	//return $arr_cols;
+
+}
+
 ?>
