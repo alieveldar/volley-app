@@ -1,6 +1,6 @@
 <?php
 require_once 'conf/config.php';
-require 'lib/dbq.php';
+require_once 'lib/dbq.php';
 
 if (isset($_GET['code'])) {
 	if (!isset($_SESSION["test"])) {
@@ -23,7 +23,7 @@ if (isset($_GET["action"])) {
 		if ($shed_rez === NULL) {
 			$rez = sched_user($vkid, $trid, $connectEDB);
 			echo "Вы записались на тренировку!";
-			
+
 		}
 		if ($shed_rez == 1) {
 

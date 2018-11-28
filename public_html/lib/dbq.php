@@ -1,6 +1,8 @@
 <?php
-session_start();
-//session_id($_GET["PHPSESSID"]);
+if (!isset($_SESSION['test'])) {
+	session_start();
+}
+require_once 'conf/config.php';
 require_once 'lib/template.php';
 function get_alltraining($connectEDB) {
 
@@ -133,11 +135,13 @@ function td_and_modal($week, $connectEDB) {
 function find_by_cond($table = "event_training", $req_fields = array("player", "training"), $fields, $rez_field = "sched", $connectEDB) {
 	$req_sql = "SELECT * FROM " . $table . " WHERE "
 		. $req_fields[0] . "=" . $fields[0] . " AND " . $req_fields[1] . "=" . $fields[1];
-	$rez = mysqli_query($connectEDB, $req_sql);
 
+	if ($rez = mysqli_query($connectEDB, $req_sql)) {
+
+	} else {
+
+	}
 	$rez = mysqli_fetch_assoc($rez);
-	//return mysqli_error($rez);
-	//return mysqli_error($rez);
 	return $rez["sched"];
 }
 function sched_user($vkid, $trid, $connectEDB) {
@@ -162,36 +166,37 @@ function update_field($table, $req_field, $value, $condition_field, $condition_v
 }
 function get_user_vk($vkid) {
 	$vk_user_data = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids=" . $vkid . "&fields=first_name,last_name,photo_50&access_token=" . $_SESSION["access_token"] . "&v=5.87"));
-	/*
-		$friends_data_db = json_decode(file_get_contents("https://api.vk.com/method/friends.get?user_id=".$datasecret->{"user_id"}."&fields=first_name,last_name,contacts,nickname,photo_50,sex,bdate&order=hints&access_token=".$datasecret->{"access_token"}."&v=5.87"));
-		*/
-	//delete when friends must be entered into the database
 
 	return $vk_user_data;
 }
 function get_shed_users($trid, $connectEDB) {
+	$rezarr = array();
 	$users_sql = "SELECT player FROM event_training WHERE training = $trid AND sched = 1";
 	$rez = mysqli_query($connectEDB, $users_sql);
-	$rez = mysqli_fetch_assoc($rez);
-	$tp_colusers = New Template;
-	$tp_colusers->get_tpl('templates/colusers.tpl');
+	//rez = mysqli_fetch_row($rez);
+	foreach ($rez as $value) {
+		$rezarr[] = $value;
+	}
 	$arr_cols = array();
 
 	if ($rez != NULL) {
-		foreach ($rez as $key => $value) {
-			$arr_users = get_user_vk($value);
+		foreach ($rezarr as $key => $value) {
+			$tp_colusers = New Template;
+			$tp_colusers->get_tpl('templates/colusers.tpl');
+			$arr_users = get_user_vk($value["player"]);
+			$tp_colusers->set_value('USERSSID', $value["player"] . $trid);
 			$tp_colusers->set_value('AVATAR_URL', $arr_users->{'response'}[0]->{'photo_50'});
 			$tp_colusers->set_value('USERNAME', $arr_users->{'response'}[0]->{'first_name'} . "<BR>" . $arr_users->{'response'}[0]->{'last_name'});
 			$tp_colusers->tpl_parse();
+			//echo "<BR> 1 colusers is " . $tp_colusers->html;
 			$arr_cols[] = $tp_colusers->html;
-			echo $tp_colusers->html;
+
 		}
 	}
 
 	$arr_cols = implode($arr_cols);
-	//echo $arr_cols;
-	//return $arr_cols;
-
+	//var_dump($arr_cols);
+	return $arr_cols;
 }
 
 ?>

@@ -1,4 +1,4 @@
-<div class="col-auto left">
+<div class="col-auto left" data-userssid="{USERSSID}">
     <div class="user">
         <div><img src="{AVATAR_URL}" alt="..." class="rounded-circle" style="width: 50px; height: 50px;">
         </div>
