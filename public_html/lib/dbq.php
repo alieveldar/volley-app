@@ -64,7 +64,7 @@ function td_and_modal($week, $connectEDB, $vkid) {
 			$day = $dayarr;
 			$image_url = $my["image"];
 			$cell_id = "cell" . $my["id"];
-			$adress = $my["adress"];
+			$adress = str_replace(", Казань", "", $my["adress"]);
 			$shedcount = get_count_shed($connectEDB, $my['id']);
 			$capacity = $shedcount . "/" . $my["capacity"];
 			$contacts = "NOT VAR HERE";
