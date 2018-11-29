@@ -4,7 +4,8 @@ $datasecret = new stdClass();
 $count = 0;
 if (isset($_GET['viewer_id'])) {
 	global $datasecret;
-	$datasecretarr = array("user_id" => $_GET['viewer_id'], "access_token" => $_GET['access_token'], "role" => $GET_['viewer_type']);
+
+	$datasecretarr = array("user_id" => $_GET['viewer_id'], "access_token" => get_ssid($connectEDB), "role" => $_GET['viewer_type'], "api_url" => $_GET['api_url']);
 	foreach ($datasecretarr as $key => $value) {
 		$datasecret->$key = $value;
 	}
@@ -16,18 +17,24 @@ if (isset($_GET['code'])) {
 	$datasecret = getAcces($_GET['code'], $v, $connectEDB);
 } else {
 
-	$url = "Location: https://oauth.vk.com/authorize?client_id=" . $v["client_id"] . "&display=popup&redirect_uri=https://lvh.me/api.php&scope=" . $v["scope"] . "&response_type=code&v=5.87";
+	$url = "Location: https://oauth.vk.com/authorize?client_id=" . $v["client_id"] . "&display=popup&redirect_uri=" . $v['redirect_url'] . "&scope=" . $v["scope"] . "&response_type=code&v=5.87";
 
 	header($url);
 }
 
 function getAcces($code, $arr, $connectEDB) {
-
+	truncate_ssid($connectEDB);
 	$v = &$arr;
-	$urlacc = "https://oauth.vk.com/access_token?client_id=" . $v["client_id"] . "&client_secret=" . $v["secret_key"] . "&redirect_uri=https://lvh.me/api.php&code=" . $code;
+	$urlacc = "https://oauth.vk.com/access_token?client_id=" . $v["client_id"] . "&client_secret=" . $v["secret_key"] . "&redirect_uri=" . $v['redirect_url'] . "&code=" . $code;
 	$datasecret = file_get_contents($urlacc);
 	$datasecret = json_decode($datasecret);
-	check_user($datasecret, $connectEDB);
+	$insert = insert_ssid(($datasecret->{'access_token'}), $connectEDB);
+	if ($insert === "OK") {
+		check_user($datasecret, $connectEDB);
+	} else {
+		echo "INSERT TO DATABASE FAIL ";
+		echo mysqli_error($connectEDB);
+	}
 
 }
 
@@ -110,6 +117,7 @@ function create_session($datasecret, $role) {
 	$_SESSION["vkid"] = $datasecret->{"user_id"};
 	$_SESSION["test"] = "TEST";
 	$_SESSION["access_token"] = $datasecret->{"access_token"};
+
 	$count++;
 
 }
@@ -118,6 +126,27 @@ function Redirect($url, $permanent = false) {
 	header('Location: ' . $url, true, $permanent ? 301 : 302);
 
 	exit();
+}
+function insert_ssid($acc, $connectEDB) {
+	$sql = "INSERT INTO " . TSSID . " (us_key) VALUE ('$acc')";
+
+	$rez = mysqli_query($connectEDB, $sql);
+	if ($rez) {
+		return "OK";
+	} else {
+		return mysqli_error($connectEDB);
+	}
+}
+function get_ssid($connectEDB) {
+	$sql = "SELECT * FROM " . TSSID;
+	$rez = mysqli_query($connectEDB, $sql);
+	$rez = mysqli_fetch_assoc($rez);
+	return $rez["us_key"];
+}
+function truncate_ssid($connectEDB) {
+	$sql = "TRUNCATE TABLE " . TSSID;
+	$rez = mysqli_query($connectEDB, $sql);
+	return $rez;
 }
 
 $url = "/index.php?PHPSESSID=" . session_id();

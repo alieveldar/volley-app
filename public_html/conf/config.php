@@ -9,6 +9,7 @@ const TUSERS = 'users';
 const TVKFRIENDS = 'vkfriends';
 const TVOLLEY_ROOM = 'volley_room';
 const TEVENT_TRAINING = 'event_training';
+const TSSID = "ssid";
 $dbservice = array(
 	'dbhost' => 'lvh.me',
 	'dbname' => 'eDb',
@@ -16,11 +17,12 @@ $dbservice = array(
 	'dbpassword' => 'volley2018',
 );
 $v = array(
-	'client_id' => 6739525, // (обязательно) номер приложения
-	'secret_key' => 'Z1G1vY4Hj2fxbG1qkTmA', // (обязательно) получить тут https://vk.com/editapp?id=6738467&section=options где 12345 - client_id
-	'user_id' => 12345, // ваш номер пользователя в вк
-	'scope' => 'wall', // права доступа
+	'client_id' => 6739525, // (обязательно) номер приложения standalone
+	'secret_key' => 'Z1G1vY4Hj2fxbG1qkTmA', // (обязательно) standalone
+	'user_id' => 12345, // not used
+	'scope' => 'offline,wall', // used
 	'v' => '5.87',
+	'redirect_url' => "https://lvh.me/api.php",
 );
 $connectEDB = mysqli_connect($dbservice['dbhost'], $dbservice['dbuser'], $dbservice['dbpassword'], $dbservice['dbname']);
 mysqli_set_charset($connectEDB, "utf8");

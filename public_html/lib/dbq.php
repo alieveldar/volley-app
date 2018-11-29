@@ -164,8 +164,9 @@ function update_field($table, $req_field, $value, $condition_field, $condition_v
 		return mysqli_error($connectEDB);
 	}
 }
-function get_user_vk($vkid) {
-	$vk_user_data = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids=" . $vkid . "&fields=first_name,last_name,photo_50&access_token=" . $_SESSION["access_token"] . "&v=5.87"));
+function get_user_vk($vkid, $connectEDB) {
+	$ssid = gets_ssid($connectEDB);
+	$vk_user_data = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids=" . $vkid . "&fields=first_name,last_name,photo_50&access_token=" . $ssid . "&v=5.87"));
 
 	return $vk_user_data;
 }
@@ -183,7 +184,7 @@ function get_shed_users($trid, $connectEDB) {
 		foreach ($rezarr as $key => $value) {
 			$tp_colusers = New Template;
 			$tp_colusers->get_tpl('templates/colusers.tpl');
-			$arr_users = get_user_vk($value["player"]);
+			$arr_users = get_user_vk($value["player"], $connectEDB);
 			$tp_colusers->set_value('USERSSID', $value["player"] . $trid);
 			$tp_colusers->set_value('AVATAR_URL', $arr_users->{'response'}[0]->{'photo_50'});
 			$tp_colusers->set_value('USERNAME', $arr_users->{'response'}[0]->{'first_name'} . "<BR>" . $arr_users->{'response'}[0]->{'last_name'});
@@ -198,5 +199,10 @@ function get_shed_users($trid, $connectEDB) {
 	//var_dump($arr_cols);
 	return $arr_cols;
 }
-
+function gets_ssid($connectEDB) {
+	$sql = "SELECT * FROM " . TSSID;
+	$rez = mysqli_query($connectEDB, $sql);
+	$rez = mysqli_fetch_assoc($rez);
+	return $rez["us_key"];
+}
 ?>
