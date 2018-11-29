@@ -17,10 +17,10 @@
                 </div>
                 <div class="training_desc">{TRAINING_DESC} </div>
             </div>
-            <div class="row users" style="display: block;">
-                <div class="users_content">
+            <div class="row" style="display: block-inline;"> 
+             <!--   <div class="users_content"> -->
                     {SHED_USERS}
-                </div>
+                <!--</div> -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary sign-up " data-vkid="{vkid}" data-trid="{trid}" data-sched="{sched}">{schedbutton}</button>
