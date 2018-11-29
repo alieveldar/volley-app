@@ -4,7 +4,7 @@ require_once 'lib/dbq.php';
 
 if (isset($_GET['code'])) {
 	if (!isset($_SESSION["test"])) {
-		$url = "/login.php/?code=" . $_GET['code'];
+		$url = "login.php/?code=" . $_GET['code'];
 		Redirect($url);
 	}
 }

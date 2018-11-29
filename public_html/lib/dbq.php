@@ -1,11 +1,7 @@
 <?php
-if (!isset($_SESSION['test'])) {
-	session_start();
-}
 require_once 'conf/config.php';
 require_once 'lib/template.php';
-function get_alltraining($connectEDB) {
-
+function get_alltraining($connectEDB, $vkid) {
 	$week = array();
 	$day_name = '';
 
@@ -40,10 +36,11 @@ WHERE training.day_of_week =" . $day . " AND training.level = training_level.id 
 		}
 	}
 
-	return td_and_modal($week, $connectEDB);
+	return td_and_modal($week, $connectEDB, $vkid);
 }
 
-function td_and_modal($week, $connectEDB) {
+function td_and_modal($week, $connectEDB, $vkid) {
+
 	$day = 'frst';
 	$contacts = 'temproary var';
 	$mod_arr = array();
@@ -68,14 +65,15 @@ function td_and_modal($week, $connectEDB) {
 			$image_url = $my["image"];
 			$cell_id = "cell" . $my["id"];
 			$adress = $my["adress"];
-			$capacity = "0/" . $my["capacity"];
+			$shedcount = get_count_shed($connectEDB, $my['id']);
+			$capacity = $shedcount . "/" . $my["capacity"];
 			$contacts = "NOT VAR HERE";
 			$ya_map = $my["ya_map"];
 			$date = $my["date"];
 			$price = $my["price"];
 			$training_desc = $my["description"];
 			$intensity = $my["intensity"];
-			$start_time = $my["start_time"];
+			$start_time = $my["start_time"][0] . $my["start_time"][1] . ":" . $my["start_time"][2] . $my["start_time"][3];
 			$tp_modal->set_value('DAY', $day);
 			$tp_modal->set_value('CELL_ID', $cell_id);
 			$tp_modal->set_value('ADRESS', $adress);
@@ -85,9 +83,9 @@ function td_and_modal($week, $connectEDB) {
 			$tp_modal->set_value('DATE', $date);
 			$tp_modal->set_value('PRICE', $price);
 			$tp_modal->set_value('TRAINING_DESC', $training_desc);
-			$tp_modal->set_value('vkid', $_SESSION["vkid"]);
+			$tp_modal->set_value('vkid', $vkid);
 			$tp_modal->set_value('trid', $my["id"]);
-			$sched = find_by_cond("event_training", array("player", "training"), array($_SESSION["vkid"], $my["id"]), "sched", $connectEDB);
+			$sched = find_by_cond("event_training", array("player", "training"), array($vkid, $my["id"]), "sched", $connectEDB);
 			if ($sched === NULL) {
 				$schedbutton = "Записаться";
 			} elseif ($sched == 1) {
@@ -166,6 +164,7 @@ function update_field($table, $req_field, $value, $condition_field, $condition_v
 }
 function get_user_vk($vkid, $connectEDB) {
 	$ssid = gets_ssid($connectEDB);
+	sleep(1);
 	$vk_user_data = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids=" . $vkid . "&fields=first_name,last_name,photo_50&access_token=" . $ssid . "&v=5.87"));
 
 	return $vk_user_data;
@@ -189,7 +188,6 @@ function get_shed_users($trid, $connectEDB) {
 			$tp_colusers->set_value('AVATAR_URL', $arr_users->{'response'}[0]->{'photo_50'});
 			$tp_colusers->set_value('USERNAME', $arr_users->{'response'}[0]->{'first_name'} . "<BR>" . $arr_users->{'response'}[0]->{'last_name'});
 			$tp_colusers->tpl_parse();
-			//echo "<BR> 1 colusers is " . $tp_colusers->html;
 			$arr_cols[] = $tp_colusers->html;
 
 		}
@@ -204,5 +202,12 @@ function gets_ssid($connectEDB) {
 	$rez = mysqli_query($connectEDB, $sql);
 	$rez = mysqli_fetch_assoc($rez);
 	return $rez["us_key"];
+}
+
+function get_count_shed($connectEDB, $trid) {
+	$sql = "SELECT training, COUNT(*) FROM event_training WHERE training = $trid AND sched=1";
+	$rez = mysqli_query($connectEDB, $sql);
+	$rez = mysqli_fetch_assoc($rez);
+	return $rez["COUNT(*)"];
 }
 ?>

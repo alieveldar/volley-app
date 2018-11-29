@@ -1,14 +1,18 @@
 <?php
+session_start();
 require_once 'conf/config.php';
 $datasecret = new stdClass();
 $count = 0;
-if (isset($_GET['viewer_id'])) {
-	global $datasecret;
-
-	$datasecretarr = array("user_id" => $_GET['viewer_id'], "access_token" => get_ssid($connectEDB), "role" => $_GET['viewer_type'], "api_url" => $_GET['api_url']);
+$urlind;
+if (isset($_GET['access_token'])) {
+	global $datasecret, $urlind;
+	$acces_tok = get_ssid($connectEDB);
+	//echo " ACCESS TOKEN FROM BD IS ".$acces_tok;
+	$datasecretarr = array("user_id" => $_GET['viewer_id'], "access_token" => $acces_tok, "role" => $_GET['viewer_type'], "api_url" => $_GET['api_url']);
 	foreach ($datasecretarr as $key => $value) {
 		$datasecret->$key = $value;
 	}
+	$urlind = "/index.php?vkid=" . $datasecret->{"user_id"};
 	check_user($datasecret, $connectEDB);
 }
 
@@ -23,12 +27,17 @@ if (isset($_GET['code'])) {
 }
 
 function getAcces($code, $arr, $connectEDB) {
-	truncate_ssid($connectEDB);
+	global $urlind;
+
 	$v = &$arr;
 	$urlacc = "https://oauth.vk.com/access_token?client_id=" . $v["client_id"] . "&client_secret=" . $v["secret_key"] . "&redirect_uri=" . $v['redirect_url'] . "&code=" . $code;
 	$datasecret = file_get_contents($urlacc);
-	$datasecret = json_decode($datasecret);
+	if ($datasecret = json_decode($datasecret)) {
+		truncate_ssid($connectEDB);
+	}
 	$insert = insert_ssid(($datasecret->{'access_token'}), $connectEDB);
+	// $datasecret->{"user_id"};
+	$urlind = "/index.php?vkid=" . $datasecret->{"user_id"};
 	if ($insert === "OK") {
 		check_user($datasecret, $connectEDB);
 	} else {
@@ -72,6 +81,8 @@ function add_user($datasecret, $connectEDB) {
 	$data_db = get_data_vk($datasecret);
 	$user_data_db = $data_db["user_data_db"];
 	$friends_data_db = $data_db["friends_data_db"];
+	//var_dump($datasecret);
+	//var_dump($user_data_db);
 	$sql_querry_add_user = "INSERT INTO " . TUSERS . " (id_vk, first_name, last_name, age,role, sex, avatar) VALUES (" . $datasecret->{"user_id"} . "," . "'" . $user_data_db->{"response"}[0]->{"first_name"} . "'" . "," . "'" . $user_data_db->{"response"}[0]->{"last_name"} . "'" . "," . "'" . $user_data_db->{"response"}[0]->{"bdate"} . "'" . "," . $role . "," . $user_data_db->{"response"}[0]->{"sex"} . "," . "'" . $user_data_db->{"response"}[0]->{"photo_50"} . "'" . ")";
 
 	if (mysqli_query($connectEDB, $sql_querry_add_user)) {
@@ -107,11 +118,6 @@ function create_session($datasecret, $role) {
 	} else {
 
 	}
-	if (session_start()) {
-
-	} else {
-
-	}
 
 	$_SESSION["role"] = $role;
 	$_SESSION["vkid"] = $datasecret->{"user_id"};
@@ -128,13 +134,15 @@ function Redirect($url, $permanent = false) {
 	exit();
 }
 function insert_ssid($acc, $connectEDB) {
-	$sql = "INSERT INTO " . TSSID . " (us_key) VALUE ('$acc')";
 
-	$rez = mysqli_query($connectEDB, $sql);
-	if ($rez) {
-		return "OK";
-	} else {
-		return mysqli_error($connectEDB);
+	$sql = "INSERT INTO " . TSSID . " (us_key) VALUE ('$acc')";
+	if ($acc !== '') {
+		$rez = mysqli_query($connectEDB, $sql);
+		if ($rez) {
+			return "OK";
+		} else {
+			return mysqli_error($connectEDB);
+		}
 	}
 }
 function get_ssid($connectEDB) {
@@ -149,9 +157,8 @@ function truncate_ssid($connectEDB) {
 	return $rez;
 }
 
-$url = "/index.php?PHPSESSID=" . session_id();
 if (($count === 1) & $_SESSION["test"] === "TEST") {
-	Redirect($url);
+	Redirect($urlind);
 }
 
 ?>
