@@ -7,20 +7,28 @@ $(document).ready(function() {
         var target = $(event.target);
         var id = target.data("vkid");
         var trid = target.data("trid");
-        var sched = target.data("sched");
+        var sched = target.attr("data-sched");
         var hideUser = $(".u" + id + trid);
-        
+        var currUser = $(".c"+ id);
         if (sched == "") {
             target.text("Отписаться");
-            target.data("sched", 1);
+            target.attr("data-sched", 3);            
+            currUser.show();
+            
         } else if (sched == 1) {
             target.text("Записаться");
-            target.data("sched" , 2);
+            target.attr("data-sched" , 2);
             hideUser.hide();
+            currUser.hide();
         } else if (sched == 2) {
             target.text("Отписаться");
-            target.data("sched", 1);
-            hideUser.show();
+            target.attr("data-sched", 1);
+            currUser.show();
+            
+        } else if (sched == 3) {
+            target.text("Записаться");
+            target.attr("data-sched", "");
+            currUser.hide();
         }
         
         var uri = "/api.php?action=";

@@ -1,4 +1,4 @@
-<div class="col-3 u{USERSSID}" data-userssid="{USERSSID}">
+<div class="col-3 c{USERSSID}" data-userssid="{USERSSID}" style="display: none">
     <div class="user"> 
         <div><img src="{AVATAR_URL}" alt="..." class="rounded-circle" style="width: 50px; height: 50px;">
         </div>

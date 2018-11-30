@@ -5,6 +5,7 @@ $datasecret = new stdClass();
 $count = 0;
 $urlind;
 if (isset($_GET['access_token'])) {
+
 	global $datasecret, $urlind;
 	$acces_tok = get_ssid($connectEDB);
 	//echo " ACCESS TOKEN FROM BD IS ".$acces_tok;
@@ -83,7 +84,7 @@ function add_user($datasecret, $connectEDB) {
 	$friends_data_db = $data_db["friends_data_db"];
 	//var_dump($datasecret);
 	//var_dump($user_data_db);
-	$sql_querry_add_user = "INSERT INTO " . TUSERS . " (id_vk, first_name, last_name, age,role, sex, avatar) VALUES (" . $datasecret->{"user_id"} . "," . "'" . $user_data_db->{"response"}[0]->{"first_name"} . "'" . "," . "'" . $user_data_db->{"response"}[0]->{"last_name"} . "'" . "," . "'" . $user_data_db->{"response"}[0]->{"bdate"} . "'" . "," . $role . "," . $user_data_db->{"response"}[0]->{"sex"} . "," . "'" . $user_data_db->{"response"}[0]->{"photo_50"} . "'" . ")";
+	$sql_querry_add_user = "INSERT INTO " . TUSERS . " (id_vk, first_name, last_name, age,role, sex, avatar) VALUES (" . $datasecret->{"user_id"} . "," . "'" . $user_data_db->{"response"}[0]->{"first_name"} . "'" . "," . "'" . $user_data_db->{"response"}[0]->{"last_name"} . "'" . "," . "'" . $user_data_db->{"response"}[0]->{"bdate"} . "'" . "," . $datasecret->{"role"} . "," . $user_data_db->{"response"}[0]->{"sex"} . "," . "'" . $user_data_db->{"response"}[0]->{"photo_50"} . "'" . ")";
 
 	if (mysqli_query($connectEDB, $sql_querry_add_user)) {
 

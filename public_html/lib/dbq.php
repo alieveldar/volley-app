@@ -1,7 +1,10 @@
 <?php
 require_once 'conf/config.php';
 require_once 'lib/template.php';
+$current_user;
 function get_alltraining($connectEDB, $vkid) {
+	global $current_user;
+	$current_user = col_current_user($connectEDB, $vkid);
 	$week = array();
 	$day_name = '';
 
@@ -170,6 +173,7 @@ function get_user_vk($vkid, $connectEDB) {
 	return $vk_user_data;
 }
 function get_shed_users($trid, $connectEDB) {
+	global $current_user;
 	$rezarr = array();
 	$users_sql = "SELECT player FROM event_training WHERE training = $trid AND sched = 1";
 	$rez = mysqli_query($connectEDB, $users_sql);
@@ -192,7 +196,7 @@ function get_shed_users($trid, $connectEDB) {
 
 		}
 	}
-
+	$arr_cols[] = $current_user;
 	$arr_cols = implode($arr_cols);
 	//var_dump($arr_cols);
 	return $arr_cols;
@@ -209,5 +213,20 @@ function get_count_shed($connectEDB, $trid) {
 	$rez = mysqli_query($connectEDB, $sql);
 	$rez = mysqli_fetch_assoc($rez);
 	return $rez["COUNT(*)"];
+}
+function col_current_user($connectEDB, $vkid) {
+	$sql = "SELECT * FROM " . TUSERS . " WHERE id_vk=$vkid";
+	$rez = mysqli_query($connectEDB, $sql);
+
+	$rez = mysqli_fetch_assoc($rez);
+
+	$tp_curr_us = New Template;
+	$tp_curr_us->get_tpl('templates/current_coluser.tpl');
+	$tp_curr_us->set_value('USERSSID', $vkid);
+	$tp_curr_us->set_value('AVATAR_URL', $rez["avatar"]);
+	$tp_curr_us->set_value('USERNAME', $rez['first_name'] . "<BR>" . $rez['last_name']);
+	$tp_curr_us->tpl_parse();
+
+	return $tp_curr_us->html;
 }
 ?>
