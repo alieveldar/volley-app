@@ -9,8 +9,8 @@ $(document).ready(function() {
         var trid = target.data("trid");
         var sched = target.attr("data-sched");
         var hideUser = $(".u" + id + trid);
-        var currUser = $(".c"+ id);
-        currUser.hide();
+        var currUser = $(".c"+ id +trid);
+
         if (sched == "") {
             target.text("Отписаться");
             target.attr("data-sched", 3);            
@@ -43,6 +43,7 @@ $(document).ready(function() {
                 alert(data);
             }
         });
+        
 
     });
 });

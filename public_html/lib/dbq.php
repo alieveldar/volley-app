@@ -3,8 +3,7 @@ require_once 'conf/config.php';
 require_once 'lib/template.php';
 $current_user;
 function get_alltraining($connectEDB, $vkid) {
-	global $current_user;
-	$current_user = col_current_user($connectEDB, $vkid);
+
 	$week = array();
 	$day_name = '';
 
@@ -104,7 +103,7 @@ function td_and_modal($week, $connectEDB, $vkid) {
 			$tp_col->set_value('ADRESS', $adress);
 			$tp_col->set_value('START_TIME', $start_time);
 			$tp_col->set_value('CAPACITY', $capacity);
-			$shed_users = get_shed_users($my["id"], $connectEDB); ///////////////
+			$shed_users = get_shed_users($my["id"], $connectEDB, $vkid); ///////////////
 			$tp_modal->set_value('SHED_USERS', $shed_users);
 			$tp_modal->tpl_parse();
 			$tp_col->tpl_parse();
@@ -172,12 +171,12 @@ function get_user_vk($vkid, $connectEDB) {
 
 	return $vk_user_data;
 }
-function get_shed_users($trid, $connectEDB) {
+function get_shed_users($trid, $connectEDB, $vkid) {
 	global $current_user;
 	$rezarr = array();
 	$users_sql = "SELECT player FROM event_training WHERE training = $trid AND sched = 1";
 	$rez = mysqli_query($connectEDB, $users_sql);
-	//rez = mysqli_fetch_row($rez);
+
 	foreach ($rez as $value) {
 		$rezarr[] = $value;
 	}
@@ -196,6 +195,7 @@ function get_shed_users($trid, $connectEDB) {
 
 		}
 	}
+	$current_user = col_current_user($connectEDB, $vkid, $trid);
 	$arr_cols[] = $current_user;
 	$arr_cols = implode($arr_cols);
 	//var_dump($arr_cols);
@@ -214,7 +214,7 @@ function get_count_shed($connectEDB, $trid) {
 	$rez = mysqli_fetch_assoc($rez);
 	return $rez["COUNT(*)"];
 }
-function col_current_user($connectEDB, $vkid) {
+function col_current_user($connectEDB, $vkid, $trid) {
 	$sql = "SELECT * FROM " . TUSERS . " WHERE id_vk=$vkid";
 	$rez = mysqli_query($connectEDB, $sql);
 
@@ -222,7 +222,7 @@ function col_current_user($connectEDB, $vkid) {
 
 	$tp_curr_us = New Template;
 	$tp_curr_us->get_tpl('templates/current_coluser.tpl');
-	$tp_curr_us->set_value('USERSSID', $vkid);
+	$tp_curr_us->set_value('USERSSID', $vkid . $trid);
 	$tp_curr_us->set_value('AVATAR_URL', $rez["avatar"]);
 	$tp_curr_us->set_value('USERNAME', $rez['first_name'] . "<BR>" . $rez['last_name']);
 	$tp_curr_us->tpl_parse();
