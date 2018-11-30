@@ -10,6 +10,7 @@ $(document).ready(function() {
         var sched = target.attr("data-sched");
         var hideUser = $(".u" + id + trid);
         var currUser = $(".c"+ id);
+        currUser.hide();
         if (sched == "") {
             target.text("Отписаться");
             target.attr("data-sched", 3);            
