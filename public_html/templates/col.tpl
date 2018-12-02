@@ -5,6 +5,6 @@
         </div>
             <p>{ADRESS}</p>
             <p>{START_TIME}</p>
-            <p>{CAPACITY}</p>
+            <p><span class="shedcapacity" >{CAPACITY}</p>
         </div>
     </div>

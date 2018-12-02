@@ -166,10 +166,15 @@ function update_field($table, $req_field, $value, $condition_field, $condition_v
 }
 function get_user_vk($vkid, $connectEDB) {
 	$ssid = gets_ssid($connectEDB);
-	sleep(1);
-	$vk_user_data = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids=" . $vkid . "&fields=first_name,last_name,photo_50&access_token=" . $ssid . "&v=5.87"));
-
-	return $vk_user_data;
+	$sql = "SELECT * FROM " . TUSERS . " WHERE id_vk=$vkid";
+	$rez = mysqli_query($connectEDB, $sql);
+	$rez = mysqli_fetch_assoc($rez);
+	//sleep(1);
+	/*
+		$vk_user_data = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids=" . $vkid . "&fields=first_name,last_name,photo_50&access_token=" . $ssid . "&v=5.87"));
+	*/
+	//return $vk_user_data;
+	return $rez;
 }
 function get_shed_users($trid, $connectEDB, $vkid) {
 	global $current_user;
@@ -188,8 +193,8 @@ function get_shed_users($trid, $connectEDB, $vkid) {
 			$tp_colusers->get_tpl('templates/colusers.tpl');
 			$arr_users = get_user_vk($value["player"], $connectEDB);
 			$tp_colusers->set_value('USERSSID', $value["player"] . $trid);
-			$tp_colusers->set_value('AVATAR_URL', $arr_users->{'response'}[0]->{'photo_50'});
-			$tp_colusers->set_value('USERNAME', $arr_users->{'response'}[0]->{'first_name'} . "<BR>" . $arr_users->{'response'}[0]->{'last_name'});
+			$tp_colusers->set_value('AVATAR_URL', $arr_users["avatar"]);
+			$tp_colusers->set_value('USERNAME', $arr_users['first_name'] . "<BR>" . $arr_users['last_name']);
 			$tp_colusers->tpl_parse();
 			$arr_cols[] = $tp_colusers->html;
 

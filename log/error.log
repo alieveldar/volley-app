@@ -1,0 +1,4 @@
+[Sun Dec 02 07:29:59.467577 2018] [ssl:warn] [pid 42] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Dec 02 07:29:59.597393 2018] [ssl:warn] [pid 43] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Dec 02 07:30:09.851024 2018] [php7:notice] [pid 48] [client 172.17.0.1:47264] PHP Notice:  Undefined index: test in /var/www/html/volley-app.com/public_html/login.php on line 161
+[Sun Dec 02 07:30:10.511678 2018] [php7:notice] [pid 504] [client 172.17.0.1:47286] PHP Notice:  Undefined property: stdClass::$role in /var/www/html/volley-app.com/public_html/login.php on line 87
