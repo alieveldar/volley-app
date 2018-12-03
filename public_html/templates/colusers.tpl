@@ -5,6 +5,6 @@
             <div class="user_name">{USERNAME}
             </div>
         </div> 
-        <div class="reserve hide-rez" style="display: none;">Резерв
+        <div class="reserve hide-rez" style="{RESERVESTYLE}">Резерв
         </div> 
     </div>

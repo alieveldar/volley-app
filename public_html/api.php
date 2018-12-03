@@ -25,7 +25,7 @@ if (isset($_GET["action"])) {
 			echo "Вы записались на тренировку!";
 
 		}
-		if ($shed_rez == 1) {
+		if ($shed_rez == 1 || $shed_rez == 3) {
 
 			$req_field = "sched";
 			$value = 2;
@@ -35,6 +35,7 @@ if (isset($_GET["action"])) {
 			$condition_field[] = "training";
 			$condition_value[] = $vkid;
 			$condition_value[] = $trid;
+
 			$rez = update_field($table, $req_field, $value, $condition_field, $condition_value, $connectEDB);
 			//echo $rez;
 			echo "Вы отписались с тренировки";
@@ -49,6 +50,7 @@ if (isset($_GET["action"])) {
 			$condition_field[] = "training";
 			$condition_value[] = $vkid;
 			$condition_value[] = $trid;
+
 			$rez = update_field($table, $req_field, $value, $condition_field, $condition_value, $connectEDB);
 			//echo $rez;
 			echo "Вы снова записались на тренировку";

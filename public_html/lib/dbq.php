@@ -59,10 +59,8 @@ function td_and_modal($week, $connectEDB, $vkid) {
 			global $day;
 			$tp_col = New Template;
 			$tp_modal = New Template;
-
 			$tp_col->get_tpl('templates/col.tpl');
 			$tp_modal->get_tpl('templates/modal.tpl');
-
 			$day = $dayarr;
 			$image_url = $my["image"];
 			$cell_id = "cell" . $my["id"];
@@ -76,6 +74,7 @@ function td_and_modal($week, $connectEDB, $vkid) {
 			$training_desc = $my["description"];
 			$intensity = $my["intensity"];
 			$start_time = $my["start_time"][0] . $my["start_time"][1] . ":" . $my["start_time"][2] . $my["start_time"][3];
+
 			$tp_modal->set_value('DAY', $day);
 			$tp_modal->set_value('CELL_ID', $cell_id);
 			$tp_modal->set_value('ADRESS', $adress);
@@ -94,6 +93,8 @@ function td_and_modal($week, $connectEDB, $vkid) {
 				$schedbutton = "Отписаться";
 			} elseif ($sched == 2) {
 				$schedbutton = "Записаться";
+			} elseif ($sched == 3) {
+				$schedbutton = "Отписаться";
 			}
 			$tp_modal->set_value('sched', $sched);
 			$tp_modal->set_value('schedbutton', $schedbutton);
@@ -103,7 +104,7 @@ function td_and_modal($week, $connectEDB, $vkid) {
 			$tp_col->set_value('ADRESS', $adress);
 			$tp_col->set_value('START_TIME', $start_time);
 			$tp_col->set_value('CAPACITY', $capacity);
-			$shed_users = get_shed_users($my["id"], $connectEDB, $vkid); ///////////////
+			$shed_users = get_shed_users($my["id"], $connectEDB, $vkid);
 			$tp_modal->set_value('SHED_USERS', $shed_users);
 			$tp_modal->tpl_parse();
 			$tp_col->tpl_parse();
@@ -145,7 +146,13 @@ function find_by_cond($table = "event_training", $req_fields = array("player", "
 	return $rez["sched"];
 }
 function sched_user($vkid, $trid, $connectEDB) {
-	$shed_es = 1;
+	$count = get_count_shed($connectEDB, $trid);
+	$capacity = get_training_capacity($connectEDB, $trid);
+	if ($count >= ($capacity)) {
+		$shed_es = 3;
+	} else {
+		$shed_es = 1;
+	}
 	$req_sql1 = "INSERT INTO event_training (training,player,sched) VALUES ($trid,$vkid,'$shed_es')";
 	$rez_sched = mysqli_query($connectEDB, $req_sql1);
 	if ($rez_sched) {
@@ -155,7 +162,20 @@ function sched_user($vkid, $trid, $connectEDB) {
 		//return $req_sql;
 	}
 }
-function update_field($table, $req_field, $value, $condition_field, $condition_value, $connectEDB) {
+function update_field($table = "event_training", $req_field, $value, $condition_field, $condition_value, $connectEDB) {
+	if ($value === 1) {
+		$trid = $condition_value[1];
+
+		$count = get_count_shed($connectEDB, $trid);
+		$capacity = get_training_capacity($connectEDB, $trid);
+
+		if ($count >= $capacity) {
+			$value = 3;
+		} else {
+			$value = 1;
+		}
+	}
+
 	$req_sql = "UPDATE $table SET $req_field=$value WHERE $condition_field[0]=$condition_value[0] AND $condition_field[1]=$condition_value[1]";
 	$rez_update = mysqli_query($connectEDB, $req_sql);
 	if ($rez_update) {
@@ -171,7 +191,7 @@ function get_user_vk($vkid, $connectEDB) {
 	$rez = mysqli_fetch_assoc($rez);
 	//sleep(1);
 	/*
-		$vk_user_data = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids=" . $vkid . "&fields=first_name,last_name,photo_50&access_token=" . $ssid . "&v=5.87"));
+				$vk_user_data = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids=" . $vkid . "&fields=first_name,last_name,photo_50&access_token=" . $ssid . "&v=5.87"));
 	*/
 	//return $vk_user_data;
 	return $rez;
@@ -179,8 +199,9 @@ function get_user_vk($vkid, $connectEDB) {
 function get_shed_users($trid, $connectEDB, $vkid) {
 	global $current_user;
 	$rezarr = array();
-	$users_sql = "SELECT player FROM event_training WHERE training = $trid AND sched = 1";
+	$users_sql = "SELECT player, sched FROM event_training WHERE training = $trid AND sched != 2 ORDER BY id";
 	$rez = mysqli_query($connectEDB, $users_sql);
+	//$rez = mysqli_fetch_assoc($rez);
 
 	foreach ($rez as $value) {
 		$rezarr[] = $value;
@@ -189,12 +210,33 @@ function get_shed_users($trid, $connectEDB, $vkid) {
 
 	if ($rez != NULL) {
 		foreach ($rezarr as $key => $value) {
+			if ($value["sched"] == 1) {
+				$reservestyle = "display: none;";
+			} else {
+				$reservestyle = "";
+			}
+			if ($value["sched"] == 3) {
+				//echo "<BR> VALUE SCHED 3 FROM GETSVHED USERS " . $value["sched"];
+
+				$table = 'event_training';
+				$req_field = "sched";
+				$condition_value = array();
+				$condition_field = array();
+				$condition_field[] = "player";
+				$condition_field[] = "training";
+				$condition_value[] = $value["player"];
+				$condition_value[] = $trid;
+				$value_key = 1;
+
+				update_field($table, $req_field, $value_key, $condition_field, $condition_value, $connectEDB);
+			}
 			$tp_colusers = New Template;
 			$tp_colusers->get_tpl('templates/colusers.tpl');
 			$arr_users = get_user_vk($value["player"], $connectEDB);
 			$tp_colusers->set_value('USERSSID', $value["player"] . $trid);
 			$tp_colusers->set_value('AVATAR_URL', $arr_users["avatar"]);
 			$tp_colusers->set_value('USERNAME', $arr_users['first_name'] . "<BR>" . $arr_users['last_name']);
+			$tp_colusers->set_value('RESERVESTYLE', $reservestyle);
 			$tp_colusers->tpl_parse();
 			$arr_cols[] = $tp_colusers->html;
 
@@ -214,10 +256,11 @@ function gets_ssid($connectEDB) {
 }
 
 function get_count_shed($connectEDB, $trid) {
-	$sql = "SELECT training, COUNT(*) FROM event_training WHERE training = $trid AND sched=1";
+	$sql = "SELECT training, COUNT(*) FROM event_training WHERE training = '$trid' AND sched='1'"; //OR sched='3'";
 	$rez = mysqli_query($connectEDB, $sql);
 	$rez = mysqli_fetch_assoc($rez);
-	return $rez["COUNT(*)"];
+	$rez = (integer) $rez["COUNT(*)"];
+	return $rez;
 }
 function col_current_user($connectEDB, $vkid, $trid) {
 	$sql = "SELECT * FROM " . TUSERS . " WHERE id_vk=$vkid";
@@ -233,5 +276,13 @@ function col_current_user($connectEDB, $vkid, $trid) {
 	$tp_curr_us->tpl_parse();
 
 	return $tp_curr_us->html;
+}
+function get_training_capacity($connectEDB, $trid) {
+	$sql = "SELECT capacity FROM training WHERE id = '$trid'";
+	$rez = mysqli_query($connectEDB, $sql);
+	$rez = mysqli_fetch_assoc($rez);
+	$rez = (int) ((string) $rez["capacity"]);
+	return $rez;
+	//return mysqli_error($connectEDB);
 }
 ?>

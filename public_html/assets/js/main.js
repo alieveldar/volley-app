@@ -13,7 +13,7 @@ $(document).ready(function() {
 
         if (sched == "") {
             target.text("Отписаться");
-            target.attr("data-sched", 3);            
+            target.attr("data-sched", 5);            
             currUser.show();
             
         } else if (sched == 1) {
@@ -26,7 +26,7 @@ $(document).ready(function() {
             target.attr("data-sched", 1);
             currUser.show();
             
-        } else if (sched == 3) {
+        } else if (sched == 5) {
             target.text("Записаться");
             target.attr("data-sched", "");
             currUser.hide();
