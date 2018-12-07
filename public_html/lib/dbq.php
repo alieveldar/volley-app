@@ -332,3 +332,60 @@ function delete_trainer($connectEDB, $id) {
 		return "Запись успешно удалена";
 	}
 }
+/////
+function edit_unit($connectEDB, $fields, $columns, $table) {
+	$set_string = function ($fields, $columns) {
+		$count = 0;
+		$set_str = array();
+		foreach ($fields as $field) {
+			$set_str[] = $field . " = " . "'" . $columns[$count] . "'";
+			$count++;
+		}
+		return implode(",", $set_str);
+	};
+	$sql = "UPDATE " . $table . " SET " . $set_string;
+	$result = mysqli_query($connectEDB, $sql);
+	if (mysqli_error($connectEDB)) {
+		return "DATABASE ERROR!";
+	} else {
+		return "Запись успешно изменена";
+	}
+}
+
+function add_unit($connectEDB, $fields, $columns, $table) {
+	$insert_string = function ($fields, $columns) {
+		$count = 0;
+		$set_columns = array();
+		foreach ($fields as $field) {
+			$set_columns[] = "'" . $columns[$count] . "'";
+			$count++;
+		}
+		return implode(",", $set_columns);
+	};
+	$sql = "INSERT INTO " . $table . " (" . (implode(",", $fields)) . ") VALUES ( " . $insert_string . ")";
+	$result = mysqli_query($connectEDB, $sql);
+	//return mysqli_error($connectEDB);
+	return $sql;
+	/*
+		if (mysqli_error($connectEDB)) {
+			return "DATABASE ERROR! " . $sql . "  " . mysqli_error($connectEDB);
+		} else {
+			return "Запись успешно внесена";
+	*/
+}
+
+function del_unit($connectEDB, $id, $table) {
+	$checksql = "SELECT * FROM " . $table;
+	$checkrez = mysqli_query($connectEDB, $checksql);
+	if (mysqli_num_rows($checkrez) == 1) {
+		return "Невозможно удалить единственную запись, отредактируйте данные";
+		exit();
+	}
+	$sql = "DELETE FROM " . $table . " WHERE id='$id'";
+	$result = mysqli_query($connectEDB, $sql);
+	if (mysqli_error($connectEDB)) {
+		return "DATABASE ERROR!";
+	} else {
+		return "Запись успешно удалена";
+	}
+}

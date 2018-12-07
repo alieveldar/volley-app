@@ -14,8 +14,8 @@
                         <input type="text" class="form-control levelintensity{ID}"  aria-describedby="" value="{LEVINTENSITY}">
                     </div>
                     <div class="form-group">
-                        <label for="trainersurname{ID}">Описание</label>
-                        <textarea class="form-control trainersurname{ID}" rows="10">{LEVDESC}</textarea>
+                        <label for="leveldescription{ID}">Описание</label>
+                        <textarea class="form-control leveldescription{ID}" rows="10">{LEVDESC}</textarea>
                     </div>
                 </form>
             </div>

@@ -35,7 +35,6 @@ if (isset($_GET["action"])) {
 			$condition_field[] = "training";
 			$condition_value[] = $vkid;
 			$condition_value[] = $trid;
-
 			$rez = update_field($table, $req_field, $value, $condition_field, $condition_value, $connectEDB);
 			//echo $rez;
 			echo "Вы отписались с тренировки";
@@ -75,6 +74,29 @@ if (isset($_GET["action"])) {
 	} elseif ($_GET["action"] == 'trainerdel') {
 		$id = $_GET["id"];
 		echo delete_trainer($connectEDB, $id);
+
+	} elseif ($_GET["action"] == 'leveledit') {
+		$id = $_GET["id"];
+		$intensity = $_GET["intensity"];
+		$description = $_GET['description'];
+		$fields = array("id", "description", "intensity");
+		$columns = array($id, $description, $intensity);
+		$table = "training_level";
+		edit_unit($connectEDB, $fields, $columns, $table);
+
+	} elseif ($_GET["action"] == 'leveladd') {
+		$id = $_GET["id"];
+		$intensity = $_GET["intensity"];
+		$description = $_GET['description'];
+		$fields = array("description", "intensity");
+		$columns = array($description, $intensity);
+		$table = "training_level";
+		echo add_unit($connectEDB, $fields, $columns, $table);
+
+	} elseif ($_GET["action"] == 'leveldel') {
+		$id = $_GET["id"];
+		$table = "training_level";
+		echo del_unit($connectEDB, $id, $table);
 	}
 }
 
