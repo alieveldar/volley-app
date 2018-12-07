@@ -4,11 +4,11 @@ require_once 'conf/config.php';
 $datasecret = new stdClass();
 $count = 0;
 $urlind;
+$bigGet;
 if (isset($_GET['access_token'])) {
-
+	$bigGet = $_GET;
 	global $datasecret, $urlind;
 	$acces_tok = get_ssid($connectEDB);
-	//echo " ACCESS TOKEN FROM BD IS ".$acces_tok;
 	$datasecretarr = array("user_id" => $_GET['viewer_id'], "access_token" => $acces_tok, "role" => $_GET['viewer_type'], "api_url" => $_GET['api_url']);
 	foreach ($datasecretarr as $key => $value) {
 		$datasecret->$key = $value;
@@ -38,7 +38,7 @@ function getAcces($code, $arr, $connectEDB) {
 	}
 	$insert = insert_ssid(($datasecret->{'access_token'}), $connectEDB);
 	// $datasecret->{"user_id"};
-	$urlind = "/index.php?vkid=" . $datasecret->{"user_id"};
+	$urlind = "/index.php?" . $bigGet . "&vkid=" . $datasecret->{"user_id"};
 	if ($insert === "OK") {
 		check_user($datasecret, $connectEDB);
 	} else {
@@ -55,8 +55,10 @@ function check_user($datasecret, $connectEDB) {
 	$sql_find_user = "SELECT role FROM " . TUSERS . " WHERE id_vk =" . $user_id;
 	$result = mysqli_query($connectEDB, $sql_find_ad);
 	if (mysqli_num_rows($result) > 0) {
-		$role = mysqli_result_fetch_assoc($result);
-		$role = $role->{"role"};
+		/*
+			$role = mysqli_result_fetch_assoc($result);
+			$role = $role->{"role"};
+		*/
 		create_session($datasecret, $role);
 	} else {
 		if (mysqli_num_rows(mysqli_query($connectEDB, $sql_find_user)) > 0) {

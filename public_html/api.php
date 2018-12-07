@@ -11,7 +11,7 @@ if (isset($_GET['code'])) {
 
 if (isset($_GET["action"])) {
 
-	if ($_GET["action"] = 'schedule') {
+	if ($_GET["action"] == 'schedule') {
 
 		$vkid = $_GET['vkid'];
 		$trid = $_GET['trid'];
@@ -56,6 +56,25 @@ if (isset($_GET["action"])) {
 			echo "Вы снова записались на тренировку";
 		}
 
+	} elseif ($_GET["action"] == 'traineredit') {
+		$id = $_GET["id"];
+		$name = $_GET["name"];
+		$lastname = $_GET["surname"];
+		$tel = $_GET["tel"];
+		$vkid = $_GET["vkid"];
+		$sex = $_GET["sex"];
+		echo edit_trainer($connectEDB, $id, $name, $lastname, $tel, $vkid, $sex);
+	} elseif ($_GET["action"] == 'traineradd') {
+		$id = $_GET["id"];
+		$name = $_GET["name"];
+		$lastname = $_GET["surname"];
+		$tel = $_GET["tel"];
+		$vkid = $_GET["vkid"];
+		$sex = $_GET["sex"];
+		echo add_trainer($connectEDB, $id, $name, $lastname, $tel, $vkid, $sex);
+	} elseif ($_GET["action"] == 'trainerdel') {
+		$id = $_GET["id"];
+		echo delete_trainer($connectEDB, $id);
 	}
 }
 

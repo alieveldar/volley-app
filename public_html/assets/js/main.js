@@ -49,4 +49,18 @@ $(document).ready(function() {
 
     });
 
+ VK.init(function() { 
+     // API initialization succeeded 
+     // Your code here 
+  }, function() { 
+     // API initialization failed 
+     // Can reload page here 
+     location.reload();
+}, '5.92'); 
+ var vkFUsers = $(".signup-friend");
+  vkFUsers.on("click", function(event){
+ VK.callMethod("showInviteBox");
+ //VK.callMethod("showRequestBox", 123456789, "Hello!", "myRequestKey");
+ 
+});
 });

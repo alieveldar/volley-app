@@ -42,7 +42,7 @@ WHERE training.day_of_week =" . $day . " AND training.level = training_level.id 
 }
 
 function td_and_modal($week, $connectEDB, $vkid) {
-
+	$adminbutton = get_admin_button($connectEDB, $vkid);
 	$day = 'frst';
 	$contacts = 'temproary var';
 	$mod_arr = array();
@@ -74,7 +74,6 @@ function td_and_modal($week, $connectEDB, $vkid) {
 			$training_desc = $my["description"];
 			$intensity = $my["intensity"];
 			$start_time = $my["start_time"][0] . $my["start_time"][1] . ":" . $my["start_time"][2] . $my["start_time"][3];
-
 			$tp_modal->set_value('DAY', $day);
 			$tp_modal->set_value('CELL_ID', $cell_id);
 			$tp_modal->set_value('ADRESS', $adress);
@@ -86,6 +85,7 @@ function td_and_modal($week, $connectEDB, $vkid) {
 			$tp_modal->set_value('TRAINING_DESC', $training_desc);
 			$tp_modal->set_value('vkid', $vkid);
 			$tp_modal->set_value('trid', $my["id"]);
+
 			$sched = find_by_cond("event_training", array("player", "training"), array($vkid, $my["id"]), "sched", $connectEDB);
 			if ($sched === NULL) {
 				$schedbutton = "Записаться";
@@ -283,6 +283,52 @@ function get_training_capacity($connectEDB, $trid) {
 	$rez = mysqli_fetch_assoc($rez);
 	$rez = (int) ((string) $rez["capacity"]);
 	return $rez;
-	//return mysqli_error($connectEDB);
+
 }
-?>
+function get_admin_button($connectEDB, $vkid) {
+	$sql_find_ad = "SELECT role FROM " . TROOTS . " WHERE id_vk =" . $vkid;
+	$result = mysqli_query($connectEDB, $sql_find_ad);
+	if (mysqli_num_rows($result) > 0) {
+		$adminbutton = '<a href="/adminapp.php">Администрирование</a>';
+	} else {
+
+		$adminbutton = '';
+	}
+	return $adminbutton;
+}
+function edit_trainer($connectEDB, $id, $name, $lastname, $tel, $vkid, $sex) {
+	$sql = "UPDATE " . TTRAINER . " SET first_name = '$name', last_name = '$lastname', tel = '$tel', vk_id = '$vkid', sex = '$sex'  WHERE id = '$id'";
+	$result = mysqli_query($connectEDB, $sql);
+	if (mysqli_error($connectEDB)) {
+		return "DATABASE ERROR!";
+	} else {
+		return "Запись успешно изменена";
+	}
+
+}
+function add_trainer($connectEDB, $id, $name, $lastname, $tel, $vkid, $sex) {
+	$sql = "INSERT INTO " . TTRAINER . " (first_name,last_name,tel,vk_id,sex) VALUES ('$name','$lastname','$tel','$vkid','$sex')";
+	$result = mysqli_query($connectEDB, $sql);
+	//return mysqli_error($connectEDB);
+	//return $sql;
+	if (mysqli_error($connectEDB)) {
+		return "DATABASE ERROR! " . $sql . "  " . mysqli_error($connectEDB);
+	} else {
+		return "Запись успешно внесена";
+	}
+}
+function delete_trainer($connectEDB, $id) {
+	$checksql = "SELECT * FROM " . TTRAINER;
+	$checkrez = mysqli_query($connectEDB, $checksql);
+	if (mysqli_num_rows($checkrez) == 1) {
+		return "Невозможно удалить единственную запись, отредактируйте данные";
+		exit();
+	}
+	$sql = "DELETE FROM " . TTRAINER . " WHERE id='$id'";
+	$result = mysqli_query($connectEDB, $sql);
+	if (mysqli_error($connectEDB)) {
+		return "DATABASE ERROR!";
+	} else {
+		return "Запись успешно удалена";
+	}
+}
