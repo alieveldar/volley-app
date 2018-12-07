@@ -79,10 +79,10 @@ if (isset($_GET["action"])) {
 		$id = $_GET["id"];
 		$intensity = $_GET["intensity"];
 		$description = $_GET['description'];
-		$fields = array("id", "description", "intensity");
-		$columns = array($id, $description, $intensity);
+		$fields = array("description", "intensity");
+		$columns = array($description, $intensity);
 		$table = "training_level";
-		edit_unit($connectEDB, $fields, $columns, $table);
+		echo edit_unit($connectEDB, $fields, $columns, $table, $id);
 
 	} elseif ($_GET["action"] == 'leveladd') {
 		$id = $_GET["id"];
@@ -95,11 +95,10 @@ if (isset($_GET["action"])) {
 
 	} elseif ($_GET["action"] == 'leveldel') {
 		$id = $_GET["id"];
-		$table = "training_level";
+		$table = "training_level";		
 		echo del_unit($connectEDB, $id, $table);
 	}
 }
-
 function Redirect($url, $permanent = false) {
 	header('Location: ' . $url, true, $permanent ? 301 : 302);
 

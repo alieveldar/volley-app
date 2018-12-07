@@ -48,6 +48,7 @@ $(document).ready(function() {
         var description = "&description=" + $(".leveldescription" + id).val();
         console.log(description);
         id = "&id=" + id;
+        console.log(id);
         var uri = "/api.php?action=" + action + id + intensity + description;
         $.ajax({
             url: uri,

@@ -22,7 +22,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary level" data-level="{ID}" data-act="leveledit">Изменить</button>
                 <button type="button" class="btn btn-primary level" data-level="{ID}" data-act="leveladd">Создать</button>
-                <button type="button" class="btn btn-primary level" data-level="{ID}" data-act="Leveldel">Удалить</button>
+                <button type="button" class="btn btn-primary level" data-level="{ID}" data-act="leveldel">Удалить</button>
             </div>
         </div>
     </div>

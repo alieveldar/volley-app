@@ -333,7 +333,7 @@ function delete_trainer($connectEDB, $id) {
 	}
 }
 /////
-function edit_unit($connectEDB, $fields, $columns, $table) {
+function edit_unit($connectEDB, $fields, $columns, $table, $id) {
 	$set_string = function ($fields, $columns) {
 		$count = 0;
 		$set_str = array();
@@ -343,10 +343,10 @@ function edit_unit($connectEDB, $fields, $columns, $table) {
 		}
 		return implode(",", $set_str);
 	};
-	$sql = "UPDATE " . $table . " SET " . $set_string;
+	$sql = "UPDATE " . $table . " SET " . $set_string($fields, $columns) . " WHERE id='$id'";
 	$result = mysqli_query($connectEDB, $sql);
 	if (mysqli_error($connectEDB)) {
-		return "DATABASE ERROR!";
+		return "DATABASE ERROR!" . mysqli_error($connectEDB);
 	} else {
 		return "Запись успешно изменена";
 	}
@@ -362,16 +362,16 @@ function add_unit($connectEDB, $fields, $columns, $table) {
 		}
 		return implode(",", $set_columns);
 	};
-	$sql = "INSERT INTO " . $table . " (" . (implode(",", $fields)) . ") VALUES ( " . $insert_string . ")";
+	$sql = "INSERT INTO " . $table . " (" . (implode(",", $fields)) . ") VALUES ( " . $insert_string($fields, $columns) . ")";
 	$result = mysqli_query($connectEDB, $sql);
 	//return mysqli_error($connectEDB);
-	return $sql;
-	/*
+	//return $sql;
+	
 		if (mysqli_error($connectEDB)) {
 			return "DATABASE ERROR! " . $sql . "  " . mysqli_error($connectEDB);
 		} else {
 			return "Запись успешно внесена";
-	*/
+	}
 }
 
 function del_unit($connectEDB, $id, $table) {
