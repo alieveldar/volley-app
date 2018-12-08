@@ -54,3 +54,59 @@ function get_level($connectEDB) {
 	$levelsmod = implode($levelsmod);
 	return array($levelsarr, $levelsmod);
 }
+function get_room($connectEDB) {
+	$sql = "SELECT * FROM " . TVOLLEY_ROOM;
+	$rez = mysqli_query($connectEDB, $sql);
+	$roomsarr = array();
+	$roomsmod = array();
+	while ($value = mysqli_fetch_assoc($rez)) {
+		$id = $value['id'];
+		$roomname = $value['name'];
+		$roomcity = $value['city'];
+		$roomadress = $value['adress'];
+		$roomimage = $value['image'];
+		$roomiya = $value['ya_map'];
+		$button = '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#' . "edit_room$id" . '"' . '>Редактировать</button>';
+		$room_tr = "<tr><td>$roomname</td><td>$button</td></tr>";
+		$roomsarr[] = $room_tr;
+		$tp_add_room = new Template;
+		$tp_add_room->get_tpl('templates/add_room.tpl');
+		$tp_add_room->set_value('ROOMNAME', $roomname);
+		$tp_add_room->set_value('ROOMCITY', $roomcity);
+		$tp_add_room->set_value('ROOMADRESS', $roomadress);
+		$tp_add_room->set_value('ROOMIMAGE', $roomimage);
+		$tp_add_room->set_value('ROOMIYA', $roomiya);
+		$tp_add_room->set_value('ID', $id);
+		$tp_add_room->tpl_parse();
+		$roomsmod[] = $tp_add_room->html;
+	}
+	$roomsarr = implode($roomsarr);
+	$roomsmod = implode($roomsmod);
+	return array($roomsarr, $roomsmod);
+}
+function get_root($connectEDB) {
+	$sql = "SELECT * FROM " . TROOTS;
+	$rez = mysqli_query($connectEDB, $sql);
+	$rootsarr = array();
+	$rootsmod = array();
+	while ($value = mysqli_fetch_assoc($rez)) {
+		$id = $value['id'];
+		$rootname = $value['first_name'];
+		$rootsurname = $value['last_name'];
+		$rootidvk = $value['id_vk'];
+		$button = '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#' . "edit_root$id" . '"' . '>Редактировать</button>';
+		$root_tr = "<tr><td>$rootname</td><td>$rootsurname</td><td>$button</td></tr>";
+		$rootsarr[] = $root_tr;
+		$tp_add_root = new Template;
+		$tp_add_root->get_tpl('templates/add_root.tpl');
+		$tp_add_root->set_value('ROOTNAME', $rootname);
+		$tp_add_root->set_value('ROOTSURNAME', $rootsurname);
+		$tp_add_root->set_value('ROOTIDVK', $rootidvk);
+		$tp_add_root->set_value('ID', $id);
+		$tp_add_root->tpl_parse();
+		$rootsmod[] = $tp_add_root->html;
+	}
+	$rootsarr = implode($rootsarr);
+	$rootsmod = implode($rootsmod);
+	return array($rootsarr, $rootsmod);
+}

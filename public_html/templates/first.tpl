@@ -33,15 +33,7 @@
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 {TRAINING_ROOM_TABLE}
             </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div id="vk_post_-151872661_2932"></div>
-                <script type="text/javascript" src="https://vk.com/js/api/openapi.js?160"></script>
-                <script type="text/javascript">
-                (function() {
-                    VK.Widgets.Post("vk_post_-151872661_2932", -151872661, 2932, 'Ui9IpFZerwVR-iYjBH__b_gGrao');
-                }());
-                </script>
-            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">{NEWS}</div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">{rent}</div>
             <hr>
             </hr>

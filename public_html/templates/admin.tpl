@@ -61,7 +61,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">Название</th>                            
+                            <th scope="col">Название</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -70,20 +70,44 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-        <div class="tab-pane fade" id="volley_rooms" role="tabpanel" aria-labelledby="volley_rooms-tab"></div>
-        <div class="tab-pane fade" id="trainings" role="tabpanel" aria-labelledby="trainings-tab"></div>
-        <div class="tab-pane fade" id="messages_list" role="tabpanel" aria-labelledby="messages_list-tab"></div>
-        <div class="tab-pane fade" id="analitik" role="tabpanel" aria-labelledby="analitik-tab"></div>
-        <div class="tab-pane fade" id="news" role="tabpanel" aria-labelledby="mews-tab"></div>
-        <div class="tab-pane fade" id="admins" role="tabpanel" aria-labelledby="admins-tab"></div>
-        <hr>
-        </hr>
-        {TRAINERMODALS}
-        
-        {LEVELMODALS}
-
-        <script src="/assets/js/adm.js" type="text/javascript"></script>
+            <div class="tab-pane fade" id="volley_rooms" role="tabpanel" aria-labelledby="volley_rooms-tab">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Название</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {TABROOM}
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="trainings" role="tabpanel" aria-labelledby="trainings-tab"></div>
+            <div class="tab-pane fade" id="messages_list" role="tabpanel" aria-labelledby="messages_list-tab"></div>
+            <div class="tab-pane fade" id="analitik" role="tabpanel" aria-labelledby="analitik-tab"></div>
+            <div class="tab-pane fade" id="news" role="tabpanel" aria-labelledby="mews-tab"></div>
+            <div class="tab-pane fade" id="admins" role="tabpanel" aria-labelledby="admins-tab">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Имя</th>
+                            <th scope="col">Фамилия</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {TABROOT}
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+            </hr>
+            {TRAINERMODALS}
+            {LEVELMODALS}
+            {ROOMMODALS}
+            {ROOOTMODALS}
+            <script src="/assets/js/adm.js" type="text/javascript"></script>
 </body>
 
 </html>

@@ -58,4 +58,50 @@ $(document).ready(function() {
             }
         });
     });
+
+    var rooms = $(".room");
+    rooms.on("click", function(event) {
+        var target = $(event.target);
+        var id = target.data("room");
+        var action = target.data("act");
+        var roomname = "&roomname=" + $(".roomname" + id).val();
+        var roomcity = "&roomcity=" + $(".roomcity" + id).val();
+        var roomadress = "&roomadress=" + $(".roomadress" + id).val();
+        var roomimage = "&roomimage=" + $(".roomimage" + id).val();
+        var roomiya = "&roomiya=" + $(".roomiya" + id).val();
+        id = "&id=" + id;
+        var uri = "/api.php?action=" + action + id + roomname + roomcity + roomadress + roomimage + roomiya;
+        $.ajax({
+            url: uri,
+            success: function(data) {
+                alert(data);
+                location.reload();
+            }
+        });
+    });
+
+    var roots = $(".roots");
+    roots.on("click", function(event) {
+        var target = $(event.target);
+        var id = target.data("roots");
+        console.log(id);
+        var action = target.data("act");
+        console.log(action);
+        var rootname = "&rootname=" + $(".rootname" + id).val();
+        console.log(rootname);
+        var rootsurname = "&rootsurname=" + $(".rootsurname" + id).val();
+        console.log(rootsurname);
+        var rootidvk = "&rootidvk=" + $(".rootidvk" + id).val();        
+        console.log(rootidvk);
+        id = "&id=" + id;
+        var uri = "/api.php?action=" + action + id + rootname + rootsurname + rootidvk;
+        $.ajax({
+            url: uri,
+            success: function(data) {
+                alert(data);
+                location.reload();
+            }
+        });
+    });
+
 });
