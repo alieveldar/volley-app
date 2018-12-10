@@ -338,7 +338,7 @@ function edit_unit($connectEDB, $fields, $columns, $table, $id) {
 		$count = 0;
 		$set_str = array();
 		foreach ($fields as $field) {
-			$set_str[] = $field . " = " . "'" . $columns[$count] . "'";
+			$set_str[] = $field . " = " . "'" . addcslashes($columns[$count], "'") . "'";
 			$count++;
 		}
 		return implode(",", $set_str);
@@ -353,24 +353,27 @@ function edit_unit($connectEDB, $fields, $columns, $table, $id) {
 }
 
 function add_unit($connectEDB, $fields, $columns, $table) {
-	$insert_string = function ($fields, $columns) {
+	$insert_string = function ($fields, $columns, $connectEDB) {
 		$count = 0;
 		$set_columns = array();
 		foreach ($fields as $field) {
-			$set_columns[] = "'" . $columns[$count] . "'";
+			$set_columns[] = "'" . addcslashes($columns[$count], "'") . "'";
 			$count++;
 		}
-		return implode(",", $set_columns);
+		$rez = implode(",", $set_columns);
+		//$rez = mysqli_real_escape_string($connectEDB, $rez);
+		return $rez;
 	};
-	$sql = "INSERT INTO " . $table . " (" . (implode(",", $fields)) . ") VALUES ( " . $insert_string($fields, $columns) . ")";
+	$sql = "INSERT INTO " . $table . " (" . (implode(",", $fields)) . ") VALUES ( " . $insert_string($fields, $columns, $connectEDB) . ")";
+
 	$result = mysqli_query($connectEDB, $sql);
 	//return mysqli_error($connectEDB);
 	//return $sql;
-	
-		if (mysqli_error($connectEDB)) {
-			return "DATABASE ERROR! " . $sql . "  " . mysqli_error($connectEDB);
-		} else {
-			return "Запись успешно внесена";
+
+	if (mysqli_error($connectEDB)) {
+		return "DATABASE ERROR! " . $sql . "  " . mysqli_error($connectEDB);
+	} else {
+		return "Запись успешно внесена";
 	}
 }
 

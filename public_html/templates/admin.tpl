@@ -86,7 +86,20 @@
             <div class="tab-pane fade" id="trainings" role="tabpanel" aria-labelledby="trainings-tab"></div>
             <div class="tab-pane fade" id="messages_list" role="tabpanel" aria-labelledby="messages_list-tab"></div>
             <div class="tab-pane fade" id="analitik" role="tabpanel" aria-labelledby="analitik-tab"></div>
-            <div class="tab-pane fade" id="news" role="tabpanel" aria-labelledby="mews-tab"></div>
+            <div class="tab-pane fade" id="news" role="tabpanel" aria-labelledby="mews-tab">
+                <thead>
+                    <tr>
+                        <th scope="col">Новость</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div class="row">
+                        {NEWS}
+                    </div>
+                </tbody>
+                </table>
+            </div>
             <div class="tab-pane fade" id="admins" role="tabpanel" aria-labelledby="admins-tab">
                 <table class="table table-striped">
                     <thead>
@@ -107,6 +120,7 @@
             {LEVELMODALS}
             {ROOMMODALS}
             {ROOOTMODALS}
+            {NEWSMODALS}
             <script src="/assets/js/adm.js" type="text/javascript"></script>
 </body>
 

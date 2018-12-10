@@ -110,3 +110,25 @@ function get_root($connectEDB) {
 	$rootsmod = implode($rootsmod);
 	return array($rootsarr, $rootsmod);
 }
+function get_news($connectEDB) {
+	$sql = "SELECT * FROM " . TNEWS;
+	$rez = mysqli_query($connectEDB, $sql);
+	$rootsarr = array();
+	$rootsmod = array();
+	while ($value = mysqli_fetch_assoc($rez)) {
+		$id = $value['id'];
+		$newstext = $value['text'];
+		$button = '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#' . "edit_news$id" . '"' . '>Редактировать</button>';
+		$root_tr = "<tr><div class= " . "col-8" . "><td>$newstext</td></div><td><div class=" . "col-4" . "> $button</div></td></tr>";
+		$newsarr[] = $root_tr;
+		$tp_add_news = new Template;
+		$tp_add_news->get_tpl('templates/add_news.tpl');
+		$tp_add_news->set_value('NEWS', $newstext);
+		$tp_add_news->set_value('ID', $id);
+		$tp_add_news->tpl_parse();
+		$newsmod[] = $tp_add_news->html;
+	}
+	$newsarr = implode($newsarr);
+	$newsmod = implode($newsmod);
+	return array($newsarr, $newsmod);
+}

@@ -91,10 +91,27 @@ $(document).ready(function() {
         console.log(rootname);
         var rootsurname = "&rootsurname=" + $(".rootsurname" + id).val();
         console.log(rootsurname);
-        var rootidvk = "&rootidvk=" + $(".rootidvk" + id).val();        
+        var rootidvk = "&rootidvk=" + $(".rootidvk" + id).val();
         console.log(rootidvk);
         id = "&id=" + id;
         var uri = "/api.php?action=" + action + id + rootname + rootsurname + rootidvk;
+        $.ajax({
+            url: uri,
+            success: function(data) {
+                alert(data);
+                location.reload();
+            }
+        });
+    });
+
+    var news = $(".news");
+    news.on("click", function(event) {
+        var target = $(event.target);
+        var id = target.data("news");
+        var action = target.data("act");
+        var newstext = "&newstext=" + encodeURIComponent($(".newstext" + id).val());
+        id = "&id=" + id;
+        var uri = "/api.php?action=" + action + id + newstext;
         $.ajax({
             url: uri,
             success: function(data) {

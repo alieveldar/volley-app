@@ -151,7 +151,28 @@ if (isset($_GET["action"])) {
 		$id = $_GET["id"];
 		$table = "roots";
 		echo del_unit($connectEDB, $id, $table);
+
+	} elseif ($_GET["action"] == 'newsedit') {
+		$id = $_GET["id"];
+		$newstext = $_GET["newstext"];
+		$fields = array("id", "text");
+		$columns = array($id, $newstext);
+		$table = "news";
+		echo edit_unit($connectEDB, $fields, $columns, $table, $id);
+
+	} elseif ($_GET["action"] == 'newsadd') {
+		$newstext = $_GET["newstext"];
+		$fields = array("text");
+		$columns = array($newstext);
+		$table = "news";
+		echo add_unit($connectEDB, $fields, $columns, $table);
+
+	} elseif ($_GET["action"] == 'newsdel') {
+		$id = $_GET["id"];
+		$table = "news";
+		echo del_unit($connectEDB, $id, $table);
 	}
+
 }
 function Redirect($url, $permanent = false) {
 	header('Location: ' . $url, true, $permanent ? 301 : 302);
