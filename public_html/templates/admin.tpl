@@ -83,7 +83,23 @@
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane fade" id="trainings" role="tabpanel" aria-labelledby="trainings-tab"></div>
+            <div class="tab-pane fade" id="trainings" role="tabpanel" aria-labelledby="trainings-tab">
+                <table class="table table-striped">
+                    <thead>
+                        <tr><th scope="col">День недели</th>
+                            <th scope="col">Название</th>
+                            <th scope="col">Адресс</th>
+                            <th scope="col">Время</th>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Кол. участников</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {TABTRAINING}
+                    </tbody>
+                </table>
+            </div>
             <div class="tab-pane fade" id="messages_list" role="tabpanel" aria-labelledby="messages_list-tab"></div>
             <div class="tab-pane fade" id="analitik" role="tabpanel" aria-labelledby="analitik-tab"></div>
             <div class="tab-pane fade" id="news" role="tabpanel" aria-labelledby="mews-tab">
@@ -121,6 +137,7 @@
             {ROOMMODALS}
             {ROOOTMODALS}
             {NEWSMODALS}
+            {TRAININGSMODAL}
             <script src="/assets/js/adm.js" type="text/javascript"></script>
 </body>
 

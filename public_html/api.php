@@ -171,6 +171,53 @@ if (isset($_GET["action"])) {
 		$id = $_GET["id"];
 		$table = "news";
 		echo del_unit($connectEDB, $id, $table);
+	} elseif ($_GET["action"] == "trainingedit") {
+		$id = $_GET['id'];
+		$fields = array();
+		$columns = array();
+		$table = 'training';
+		//$count = 0;
+		foreach ($_GET as $key => $value) {
+
+			if ($key != "action" & $key != "id") {
+				if ($key == 'date' || $key == 'start_time') {
+					$fields[] = $key;
+					$columns[] = $value;
+				}
+				$rez = check_values_training($value);
+				if ($rez != 0) {
+					$fields[] = $key;
+					$columns[] = $value;
+				}
+			}
+		}
+
+		echo edit_unit($connectEDB, $fields, $columns, $table, $id);
+
+	} elseif ($_GET['action'] == 'trainingadd') {
+		$fields = array();
+		$columns = array();
+		$table = 'training';
+		foreach ($_GET as $key => $value) {
+
+			if ($key != "action" & $key != "id") {
+				if ($key == 'date' || $key == 'start_time') {
+					$fields[] = $key;
+					$columns[] = $value;
+				}
+				$rez = check_values_training($value);
+				if ($rez != 0) {
+					$fields[] = $key;
+					$columns[] = $value;
+				}
+			}
+		}
+		echo add_unit($connectEDB, $fields, $columns, $table);
+	} elseif ($_GET['action'] == 'trainingdel') {
+		$id = $_GET['id'];
+		$table = 'training';
+		echo del_unit($connectEDB, $id, $table);
+		del_unit_training($connectEDB, $id);
 	}
 
 }
@@ -178,5 +225,14 @@ function Redirect($url, $permanent = false) {
 	header('Location: ' . $url, true, $permanent ? 301 : 302);
 
 	exit();
+}
+
+function check_values_training($value) {
+	if (is_numeric($value)) {
+		echo "ITS INT";
+		return $value;
+	} else {
+		return 0;
+	}
 }
 ?>

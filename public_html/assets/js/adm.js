@@ -121,4 +121,30 @@ $(document).ready(function() {
         });
     });
 
+    var training = $(".training");
+    training.on("click", function(event) {
+        var target = $(event.target);
+        var id = target.data("training");
+        var action = target.data("act");
+        var trainer = "&trainer=" + $(".training_trainer" + id).val();
+        var room = "&volley_room=" + $(".training_room" + id).val();
+        var date = "&date=" + $(".training_date" + id).val();
+        console.log(date);
+        var day = "&day_of_week=" + $(".training_weekDay" + id).val();
+        console.log(day);
+        var startTime = "&start_time=" + $(".training_time" + id).val();
+        var capacity = "&capacity=" + $(".training_capacity" + id).val();
+        var intensity = "&level=" + $(".training_level" + id).val();
+        var price = "&price=" + $(".training_price" + id).val();
+        id = "&id=" + id;
+        var uri = "/api.php?action=" + action + id + trainer + room + date + day + startTime + capacity + intensity + price;
+        $.ajax({
+            url: uri,
+            success: function(data) {
+                alert(data);
+                location.reload();
+            }
+        });
+    });
+
 });

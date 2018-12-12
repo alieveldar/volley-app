@@ -9,9 +9,11 @@ function get_alltraining($connectEDB, $vkid) {
 
 	for ($i = 1; $i <= 7; $i++) {
 		$day = $i;
-		$sql_find_training = "SELECT training.day_of_week, training_level.description, volley_room.adress, training.start_time, training.capacity, trainer.first_name, trainer.last_name, trainer.tel, volley_room.ya_map,volley_room.image, training.date, training.price, training_level.intensity, training.id
-FROM training, volley_room, training_level, trainer
-WHERE training.day_of_week =" . $day . " AND training.level = training_level.id AND training.volley_room = volley_room.id AND training.trainer = trainer.id";
+		/*
+					$sql_find_training = "SELECT training.day_of_week, training_level.description, volley_room.adress, training.start_time, training.capacity, trainer.first_name, trainer.last_name, trainer.tel, volley_room.ya_map,volley_room.image, training.date, training.price, training_level.intensity, training.id
+			FROM training, volley_room, training_level, trainer
+		*/
+		$sql_find_training = "SELECT * FROM all_training WHERE day=$day";
 		mysqli_set_charset($connectEDB, "utf8");
 		switch ($i) {
 		case 1:
@@ -73,7 +75,7 @@ function td_and_modal($week, $connectEDB, $vkid) {
 			$price = $my["price"];
 			$training_desc = $my["description"];
 			$intensity = $my["intensity"];
-			$start_time = $my["start_time"][0] . $my["start_time"][1] . ":" . $my["start_time"][2] . $my["start_time"][3];
+			$start_time = substr($my["start_time"], 1, -3);
 			$tp_modal->set_value('DAY', $day);
 			$tp_modal->set_value('CELL_ID', $cell_id);
 			$tp_modal->set_value('ADRESS', $adress);
@@ -346,7 +348,7 @@ function edit_unit($connectEDB, $fields, $columns, $table, $id) {
 	$sql = "UPDATE " . $table . " SET " . $set_string($fields, $columns) . " WHERE id='$id'";
 	$result = mysqli_query($connectEDB, $sql);
 	if (mysqli_error($connectEDB)) {
-		return "DATABASE ERROR!" . mysqli_error($connectEDB);
+		return "DATABASE ERROR!" . /*mysqli_error($connectEDB);*/$sql . var_dump($fields);
 	} else {
 		return "Запись успешно изменена";
 	}
@@ -391,4 +393,8 @@ function del_unit($connectEDB, $id, $table) {
 	} else {
 		return "Запись успешно удалена";
 	}
+}
+function del_unit_training($connectEDB, $id) {
+	$sql = "DELETE FROM event_training WHERE training='$id'";
+	$rez = mysqli_query($connectEDB, $sql);
 }

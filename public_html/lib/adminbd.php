@@ -132,3 +132,61 @@ function get_news($connectEDB) {
 	$newsmod = implode($newsmod);
 	return array($newsarr, $newsmod);
 }
+function get_trainings($connectEDB) {
+
+	$sql = "SELECT * FROM all_training";
+	$rez = mysqli_query($connectEDB, $sql);
+	$trainingsarr = array();
+	$trainingsmodal = array();
+	while ($value = mysqli_fetch_assoc($rez)) {
+		$id = $value['id'];
+		$price = $value['price'];
+		$day_week = $value['dayname'];
+		$name_training = $value['intensity'];
+		$adress = $value['adress'];
+		$time_start = $value['start_time'];
+		$dates = $value['date'];
+		$date = new DateTime($value['date']);
+		$date = date_format($date, 'd-m-y');
+		$capacity = $value['capacity'];
+		$trname = $value['first_name'] . " " . $value['last_name'];
+		$button = '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#' . "edit_training$id" . '"' . '>Редактировать</button>';
+		$training_tr = "<tr><td>$day_week</td><td>$name_training</td><td>$adress</td><td>$time_start</td><td>$date</td><td>$capacity</td><td>$button</td></tr>";
+		$trainingsarr[] = $training_tr;
+		$tp_add_trainings = new Template;
+		$tp_add_trainings->get_tpl('templates/add_training.tpl');
+		$tp_add_trainings->set_value('ID', $id);
+		$tp_add_trainings->set_value('TRPRICE', $price);
+		$tp_add_trainings->set_value('TRCAPACITY', $capacity);
+		$tp_add_trainings->set_value('TRAINERNAME', $trname);
+		$tp_add_trainings->set_value('TRPRICE', $price);
+		$tp_add_trainings->set_value('VOLLEYROOM', $adress);
+		$tp_add_trainings->set_value('TRPRICE', $price);
+		$tp_add_trainings->set_value('WEEKDAY', $day_week);
+		$tp_add_trainings->set_value('TRTAIM', $time_start);
+		$tp_add_trainings->set_value('TRAININGLEVEL', $name_training);
+		$tp_add_trainings->set_value('TRAININGDATE', $dates);
+		$tp_add_trainings->set_value('TRAINERS', get_key_value($connectEDB, "trainer", array("id", "first_name")));
+		$tp_add_trainings->set_value('VOLLEYROOMS', get_key_value($connectEDB, "volley_room", array("id", "adress")));
+		$tp_add_trainings->set_value('WEEKDAYS', get_key_value($connectEDB, "week_day", array("id", "dayname")));
+		$tp_add_trainings->set_value('TRAININGLEVELS', get_key_value($connectEDB, "training_level", array("id", "intensity")));
+		$tp_add_trainings->tpl_parse();
+		$trainingsmodal[] = $tp_add_trainings->html;
+	}
+	$trainingsmodal = implode($trainingsmodal);
+	$trainingsarr = implode($trainingsarr);
+	return array($trainingsarr, $trainingsmodal);
+}
+function get_key_value($connectEDB, $table, $fields) {
+	$fieldsql = implode(",", $fields);
+	$sql = "SELECT $fieldsql FROM $table";
+	$rez = mysqli_query($connectEDB, $sql);
+	$tr_arr = array();
+	while ($value = mysqli_fetch_assoc($rez)) {
+		$id = $value['id'];
+		$name = $value[$fields[1]];
+		$tr_arr[] = "<option value=$id>$name</option>";
+	}
+	//var_dump($tr_arr);
+	return implode($tr_arr);
+}

@@ -7,6 +7,7 @@ $level = get_level($connectEDB);
 $room = get_room($connectEDB);
 $root = get_root($connectEDB);
 $news = get_news($connectEDB);
+$trainings = get_trainings($connectEDB);
 $admin_tpl = New Template;
 $admin_tpl->get_tpl('templates/admin.tpl');
 $admin_tpl->set_value('TABLETRAINERS', $trainers[0]);
@@ -19,6 +20,8 @@ $admin_tpl->set_value('TABROOT', $root[0]);
 $admin_tpl->set_value('ROOOTMODALS', $root[1]);
 $admin_tpl->set_value('NEWS', $news[0]);
 $admin_tpl->set_value('NEWSMODALS', $news[1]);
+$admin_tpl->set_value('TABTRAINING', $trainings[0]);
+$admin_tpl->set_value('TRAININGSMODAL', $trainings[1]);
 $admin_tpl->tpl_parse();
 echo $admin_tpl->html;
 
