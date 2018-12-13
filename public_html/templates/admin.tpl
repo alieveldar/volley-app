@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="adminbutton"><a href="login.php">Клиентская Часть --></a></div>
+    <div class="adminbutton"><input type="button" class="btn btn-link" value="Клиентская часть" onclick="history.back()"></div>
     <div id="exTab2" class="container">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
