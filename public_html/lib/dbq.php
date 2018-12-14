@@ -398,3 +398,11 @@ function del_unit_training($connectEDB, $id) {
 	$sql = "DELETE FROM event_training WHERE training='$id'";
 	$rez = mysqli_query($connectEDB, $sql);
 }
+function get_news($connectEDB) {
+	$sql = "SELECT * FROM news";
+	$rez = mysqli_query($connectEDB, $sql);
+	while ($value = mysqli_fetch_assoc($rez)) {
+		$newsarr[] = $value['text'];
+	}
+	return implode($newsarr);
+}

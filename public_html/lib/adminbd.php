@@ -149,7 +149,7 @@ function get_trainings($connectEDB) {
 		$date = new DateTime($value['date']);
 		$date = date_format($date, 'd-m-y');
 		$capacity = $value['capacity'];
-		$trname = $value['first_name'] . " " . $value['last_name'];
+		$trname = $value['first_name']; //. " " . $value['last_name'];
 		$button = '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#' . "edit_training$id" . '"' . '>Редактировать</button>';
 		$training_tr = "<tr><td>$day_week</td><td>$name_training</td><td>$adress</td><td>$time_start</td><td>$date</td><td>$capacity</td><td>$button</td></tr>";
 		$trainingsarr[] = $training_tr;

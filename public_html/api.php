@@ -193,6 +193,7 @@ if (isset($_GET["action"])) {
 		}
 
 		echo edit_unit($connectEDB, $fields, $columns, $table, $id);
+		//echo "fields" . var_dump($fields) . "COLUMNS" . var_dump($columns);
 
 	} elseif ($_GET['action'] == 'trainingadd') {
 		$fields = array();
@@ -229,7 +230,6 @@ function Redirect($url, $permanent = false) {
 
 function check_values_training($value) {
 	if (is_numeric($value)) {
-		echo "ITS INT";
 		return $value;
 	} else {
 		return 0;
