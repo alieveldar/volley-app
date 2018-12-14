@@ -86,7 +86,8 @@
             <div class="tab-pane fade" id="trainings" role="tabpanel" aria-labelledby="trainings-tab">
                 <table class="table table-striped">
                     <thead>
-                        <tr><th scope="col">День недели</th>
+                        <tr>
+                            <th scope="col">День недели</th>
                             <th scope="col">Название</th>
                             <th scope="col">Адресс</th>
                             <th scope="col">Время</th>
@@ -100,7 +101,22 @@
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane fade" id="messages_list" role="tabpanel" aria-labelledby="messages_list-tab"></div>
+            <div class="tab-pane fade" id="messages_list" role="tabpanel" aria-labelledby="messages_list-tab">
+                <thead>
+                    <tr>
+                        <th scope="col">Название группы</th>
+                        <th scope="col">Участников</th>
+                        <th scope="col">Управление</th>
+                        <th scope="col">Отправка сообщений</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div class="row">
+                        {MESSGROUP}
+                    </div>
+                </tbody>
+                </table>
+            </div>
             <div class="tab-pane fade" id="analitik" role="tabpanel" aria-labelledby="analitik-tab"></div>
             <div class="tab-pane fade" id="news" role="tabpanel" aria-labelledby="mews-tab">
                 <thead>
@@ -138,6 +154,7 @@
             {ROOOTMODALS}
             {NEWSMODALS}
             {TRAININGSMODAL}
+            {MESSMODALS}
             <script src="/assets/js/adm.js" type="text/javascript"></script>
 </body>
 
