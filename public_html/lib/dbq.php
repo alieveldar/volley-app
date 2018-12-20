@@ -13,7 +13,7 @@ function get_alltraining($connectEDB, $vkid) {
 					$sql_find_training = "SELECT training.day_of_week, training_level.description, volley_room.adress, training.start_time, training.capacity, trainer.first_name, trainer.last_name, trainer.tel, volley_room.ya_map,volley_room.image, training.date, training.price, training_level.intensity, training.id
 			FROM training, volley_room, training_level, trainer
 		*/
-		$sql_find_training = "SELECT * FROM all_training WHERE day=$day";
+		$sql_find_training = "SELECT * FROM all_training WHERE day=$day ORDER BY start_time";
 		mysqli_set_charset($connectEDB, "utf8");
 		switch ($i) {
 		case 1:

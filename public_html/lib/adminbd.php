@@ -134,7 +134,7 @@ function get_news($connectEDB) {
 }
 function get_trainings($connectEDB) {
 
-	$sql = "SELECT * FROM all_training";
+	$sql = "SELECT * FROM all_training ORDER BY day";
 	$rez = mysqli_query($connectEDB, $sql);
 	$trainingsarr = array();
 	$trainingsmodal = array();
@@ -238,7 +238,7 @@ function get_msgroup_count($connectEDB, $id) {
 }
 
 function get_group_users($connectEDB, $id) {
-	$sql = "SELECT * FROM users";
+	$sql = "SELECT * FROM users ORDER BY first_name";
 	$rez = mysqli_query($connectEDB, $sql);
 	$groupcheckbox = array();
 	while ($value = mysqli_fetch_assoc($rez)) {
