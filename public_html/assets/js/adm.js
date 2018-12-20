@@ -147,4 +147,46 @@ $(document).ready(function() {
         });
     });
 
+    var groups = $(".group");
+    groups.on("click", function(event) {
+        var target = $(event.target);
+        var id = target.data("group");
+        var action = target.data("act");        
+        var checked = $('.users_list' + id);
+        var idvkstr = '&idvk=';        
+        var groupname = '&groupname=' + $('.groupname' + id).val();        
+        checked.each(function() {
+            if ($(this).prop('checked')) {
+               // checked.push($(this).data("vkid"));
+               idvkstr = idvkstr +  ($(this).data("vkid")) + ',';
+            }
+        });        
+        id = "&id=" + id;
+        var uri = "/api.php?action=" + action + idvkstr + id + groupname;        
+        $.ajax({
+            url: uri,
+            success: function(data) {
+                alert(data);
+                location.reload();
+            }
+        });
+    });
+
+    var trainMessage = $(".tmess");
+    trainMessage.on("click", function(event){
+        var target = $(event.target);
+        var id = target.data('trid');
+        var action = target.data("act");
+        var message = "&message=" + encodeURIComponent($('.messtext' + id).val());
+        id = "&trid=" + id;
+        var uri = "/api.php?action=" + action + id + message;
+       $.ajax({
+            url: uri,
+            success: function(data) {
+                alert(data);
+                location.reload();
+            }
+        }); 
+    });
+
 });

@@ -8,6 +8,7 @@ $room = get_room($connectEDB);
 $root = get_root($connectEDB);
 $news = get_news($connectEDB);
 $trainings = get_trainings($connectEDB);
+$messagegroups = get_messgroup($connectEDB);
 $admin_tpl = New Template;
 $admin_tpl->get_tpl('templates/admin.tpl');
 $admin_tpl->set_value('TABLETRAINERS', $trainers[0]);
@@ -22,6 +23,9 @@ $admin_tpl->set_value('NEWS', $news[0]);
 $admin_tpl->set_value('NEWSMODALS', $news[1]);
 $admin_tpl->set_value('TABTRAINING', $trainings[0]);
 $admin_tpl->set_value('TRAININGSMODAL', $trainings[1]);
+$admin_tpl->set_value('MESSGROUP', $messagegroups[0]);
+$admin_tpl->set_value('MESSMODALS', $messagegroups[1]);
+$admin_tpl->set_value('TMESSENGES', $trainings[2]);
 $admin_tpl->tpl_parse();
 echo $admin_tpl->html;
 

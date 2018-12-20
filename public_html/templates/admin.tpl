@@ -102,18 +102,16 @@
                 </table>
             </div>
             <div class="tab-pane fade" id="messages_list" role="tabpanel" aria-labelledby="messages_list-tab">
+                <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Название группы</th>
                         <th scope="col">Участников</th>
                         <th scope="col">Управление</th>
-                        <th scope="col">Отправка сообщений</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <div class="row">
-                        {MESSGROUP}
-                    </div>
+                    {MESSGROUP}
                 </tbody>
                 </table>
             </div>
@@ -155,6 +153,7 @@
             {NEWSMODALS}
             {TRAININGSMODAL}
             {MESSMODALS}
+            {TMESSENGES}
             <script src="/assets/js/adm.js" type="text/javascript"></script>
 </body>
 

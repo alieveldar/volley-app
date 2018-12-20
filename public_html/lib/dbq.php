@@ -406,3 +406,103 @@ function get_news($connectEDB) {
 	}
 	return implode($newsarr);
 }
+function del_mess_list_group($connectEDB, $id) {
+	$sql = "DELETE FROM messages_list WHERE message_group='$id'";
+	$rez = mysqli_query($connectEDB, $sql);
+	if (mysqli_error($connectEDB)) {
+		return "DATABASE ERROR!";
+	} else {
+		return "Группа успешно изменена";
+	}
+}
+function edit_mess_group($connectEDB, $id, $vkids) {
+	$vkids = explode(",", $vkids);
+	foreach ($vkids as $vkid) {
+		if ($vkid != "") {
+			$sql = "INSERT INTO messages_list (message_group, member) VALUES ('$id', '$vkid')";
+			$rez = mysqli_query($connectEDB, $sql);
+			if (mysqli_error($connectEDB)) {
+				return "DATABASE ERROR!";
+			}
+		}
+	}
+	return "Группа успешно изменена";
+}
+function edit_mess_group_name($connectEDB, $id, $groupname) {
+	$sql = "SELECT name FROM message_group WHERE id='$id'";
+	$rez = mysqli_query($connectEDB, $sql);
+	$rez = mysqli_fetch_assoc($rez);
+	if ($rez['name'] == $groupname) {
+	} else {
+		$sql = "UPDATE message_group SET name='$groupname' WHERE id='$id'";
+		$rez = mysqli_query($connectEDB, $sql);
+
+	}
+}
+
+function add_mess_group($connectEDB, $groupname, $vkids) {
+	$sql = "INSERT INTO message_group (name) VALUES ('$groupname')";
+	$rez = mysqli_query($connectEDB, $sql);
+	if (mysqli_error($connectEDB)) {
+		return "DATABASE ERRROR";
+	} else {
+		add_message_list($connectEDB, $groupname, $vkids);
+
+	}
+	return "Группа рассылки создана";
+}
+function add_message_list($connectEDB, $groupname, $vkids) {
+	$sql = "SELECT * FROM message_group WHERE name='$groupname'";
+	$rez = mysqli_query($connectEDB, $sql);
+	if (mysqli_error($connectEDB)) {
+		return "DATABASE ERROR";
+	} else {
+		$rez = mysqli_fetch_assoc($rez);
+		$id = $rez['id'];
+		$vkids = explode(",", $vkids);
+		foreach ($vkids as $vkid) {
+			if ($vkid != "") {
+				$sql = "INSERT INTO messages_list (message_group, member) VALUES ('$id', '$vkid')";
+				$rez = mysqli_query($connectEDB, $sql);
+				if (mysqli_error($connectEDB)) {
+					return "DATABASE ERROR!";
+				}
+			}
+		}
+	}
+
+}
+function del_mess_group($connectEDB, $id) {
+	$chksql = "SELECT * FROM message_group";
+	$rez = mysqli_query($connectEDB, $chksql);
+	if ($rez->num_rows > 1) {
+		$sql = "DELETE FROM message_group WHERE id='$id'";
+		$rez = mysqli_query($connectEDB, $sql);
+		if (mysqli_error($connectEDB)) {
+			return "DATABASE ERROR";
+		} else {
+			return "Группа успешно удалена";
+		}
+	} else {
+		return "Пользователи удалены";
+	}
+}
+function send_group_message($connectEDB, $trainingid, $message) {
+	global $sevretmessagekey;
+	$sql = "SELECT * FROM event_training WHERE training='$trainingid' AND sched='1' OR sched='3'";
+	$rez = mysqli_query($connectEDB, $sql);
+	$vkusers = array();
+	while ($value = mysqli_fetch_assoc($rez)) {
+		$vkusers[] = $value['player'];
+	}
+	$vkids = implode(",", $vkusers);
+	$key = $sevretmessagekey;
+	return send_message_vk($key, $vkids, $message);
+}
+
+function send_message_vk($key, $vkids, $message) {
+	$random_id = random_int(1, 4294967295);
+	$message_send_result = json_decode(file_get_contents("https://api.vk.com/method/messages.send?random_id=" . $random_id . "&user_ids=" . $vkids . "&message=" . $message . "&access_token=" . $key . "&v=5.87"));
+	return $message_send_result;
+	//return $message;
+}

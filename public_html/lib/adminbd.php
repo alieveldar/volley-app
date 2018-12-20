@@ -138,6 +138,7 @@ function get_trainings($connectEDB) {
 	$rez = mysqli_query($connectEDB, $sql);
 	$trainingsarr = array();
 	$trainingsmodal = array();
+	$trainingsmessages = array();
 	while ($value = mysqli_fetch_assoc($rez)) {
 		$id = $value['id'];
 		$price = $value['price'];
@@ -151,9 +152,13 @@ function get_trainings($connectEDB) {
 		$capacity = $value['capacity'];
 		$trname = $value['first_name']; //. " " . $value['last_name'];
 		$button = '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#' . "edit_training$id" . '"' . '>Редактировать</button>';
-		$training_tr = "<tr><td>$day_week</td><td>$name_training</td><td>$adress</td><td>$time_start</td><td>$date</td><td>$capacity</td><td>$button</td></tr>";
+		$messagebutton = '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#' . "training_message$id" . '"' . '>Сообщение</button>';
+		$training_tr = "<tr><td>$day_week</td><td>$name_training</td><td>$adress</td><td>$time_start</td><td>$date</td><td>$capacity</td><td>$button</td><td>$messagebutton</td></tr>";
 		$trainingsarr[] = $training_tr;
 		$tp_add_trainings = new Template;
+		$tp_add_messages = new Template;
+		$tp_add_messages->get_tpl('templates/add_train_message.tpl');
+		$tp_add_messages->set_value('ID', $id);
 		$tp_add_trainings->get_tpl('templates/add_training.tpl');
 		$tp_add_trainings->set_value('ID', $id);
 		$tp_add_trainings->set_value('TRPRICE', $price);
@@ -171,11 +176,15 @@ function get_trainings($connectEDB) {
 		$tp_add_trainings->set_value('WEEKDAYS', get_key_value($connectEDB, "week_day", array("id", "dayname")));
 		$tp_add_trainings->set_value('TRAININGLEVELS', get_key_value($connectEDB, "training_level", array("id", "intensity")));
 		$tp_add_trainings->tpl_parse();
+		$tp_add_messages->tpl_parse();
 		$trainingsmodal[] = $tp_add_trainings->html;
+		$trainingsmessages[] = $tp_add_messages->html;
+
 	}
 	$trainingsmodal = implode($trainingsmodal);
 	$trainingsarr = implode($trainingsarr);
-	return array($trainingsarr, $trainingsmodal);
+	$trainingsmessages = implode($trainingsmessages);
+	return array($trainingsarr, $trainingsmodal, $trainingsmessages);
 }
 function get_key_value($connectEDB, $table, $fields) {
 	$fieldsql = implode(",", $fields);
@@ -189,4 +198,66 @@ function get_key_value($connectEDB, $table, $fields) {
 	}
 	//var_dump($tr_arr);
 	return implode($tr_arr);
+}
+
+function get_messgroup($connectEDB) {
+	$sql = "SELECT * FROM message_group";
+	$groupsarr = array();
+	$groupsmodal = array();
+	$rez = mysqli_query($connectEDB, $sql);
+	while ($value = mysqli_fetch_assoc($rez)) {
+		$id = $value['id'];
+		$name = $value['name'];
+		$count = get_msgroup_count($connectEDB, $id);
+		$button = '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#' . "edit_messgroup$id" . '"' . '>Редактировать</button>';
+		$groupsarr[] = "<tr><td>$name</td><td>$count</td><td>$button</td></tr>";
+		$groupusers = get_group_users($connectEDB, $id);
+		$tp_add_groups = new Template;
+		$tp_add_groups->get_tpl('templates/add_group.tpl');
+		$tp_add_groups->set_value('ID', $id);
+		$tp_add_groups->set_value('GROUPNAME', $name);
+		$tp_add_groups->set_value('ID', $id);
+		$tp_add_groups->set_value('GROUPUSERS', $groupusers);
+		$tp_add_groups->tpl_parse();
+		$groupsmodal[] = $tp_add_groups->html;
+	}
+	return array(implode($groupsarr), implode($groupsmodal));
+}
+
+function get_msgroup_count($connectEDB, $id) {
+	$sql = "SELECT * FROM messages_list WHERE message_group='$id'";
+	$rez = mysqli_query($connectEDB, $sql);
+	return $rez->num_rows;
+}
+
+function get_group_users($connectEDB, $id) {
+	$sql = "SELECT * FROM users";
+	$rez = mysqli_query($connectEDB, $sql);
+	$groupcheckbox = array();
+	while ($value = mysqli_fetch_assoc($rez)) {
+		$idvk = $value['id_vk'];
+		//$id = $value['id'];
+		$avatar = $value['avatar'];
+		$first_name = $value['first_name'];
+		$last_name = $value['last_name'];
+		$group_user = get_mess_group_users($connectEDB, $id, $idvk);
+		$checkbox_checked = '<input class="users_list' . $id . '" type="checkbox" checked="checked" data-vkid=' . $idvk . '><img src="' . $avatar . '"' . 'class="rounded-circle" style="width: 30px; height: 30px; margin:8px">' . $first_name . ' ' . $last_name . '<hr></hr>';
+		$checkbox_unchecked = '<input class="users_list' . $id . '" type="checkbox"  data-vkid=' . $idvk . '><img src="' . $avatar . '"' . 'class="rounded-circle" style="width: 30px; height: 30px; margin:8px">' . $first_name . ' ' . $last_name . '<hr></hr>';
+		if ($group_user > 0) {
+			$groupcheckbox[] = $checkbox_checked;
+		} else {
+			$groupcheckbox[] = $checkbox_unchecked;
+		}
+	}
+	return implode($groupcheckbox);
+}
+
+function get_mess_group_users($connectEDB, $id, $idvk) {
+	$sql = "SELECT * FROM all_mess WHERE id='$id' AND member='$idvk'";
+	$rez = mysqli_query($connectEDB, $sql);
+	if ($rez->num_rows > 0) {
+		return 1;
+	} else {
+		return 0;
+	}
 }

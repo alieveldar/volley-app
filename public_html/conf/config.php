@@ -26,3 +26,4 @@ $v = array(
 );
 $connectEDB = mysqli_connect($dbservice['dbhost'], $dbservice['dbuser'], $dbservice['dbpassword'], $dbservice['dbname']);
 mysqli_set_charset($connectEDB, "utf8");
+$sevretmessagekey = '8d34934067344b046af7a495c66d780c8935e84ddd5e9844640b31c97764a5a1e92215c101d5326803539'; //ключ сообщества

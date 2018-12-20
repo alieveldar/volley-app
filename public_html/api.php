@@ -219,12 +219,34 @@ if (isset($_GET["action"])) {
 		$table = 'training';
 		echo del_unit($connectEDB, $id, $table);
 		del_unit_training($connectEDB, $id);
+	} elseif ($_GET['action'] == 'groupedit') {
+		$id = $_GET['id'];
+		$vkids = $_GET['idvk'];
+		$groupname = $_GET['groupname'];
+		del_mess_list_group($connectEDB, $id);
+		edit_mess_group_name($connectEDB, $id, $groupname);
+		echo edit_mess_group($connectEDB, $id, $vkids);
+	} elseif ($_GET['action'] == 'groupadd') {
+		$vkids = $_GET['idvk'];
+		$groupname = $_GET['groupname'];
+		echo add_mess_group($connectEDB, $groupname, $vkids);
+	} elseif ($_GET['action'] == 'groupdel') {
+		$id = $_GET['id'];
+		$vkids = $_GET['idvk'];
+		$groupname = $_GET['groupname'];
+		del_mess_list_group($connectEDB, $id);
+		echo del_mess_group($connectEDB, $id);
+	} elseif ($_GET['action'] == 'sendmesstraining') {
+		$trainingid = $_GET["trid"];
+		$message = $_GET['message'];
+		$rez = send_group_message($connectEDB, $trainingid, $message);
+		echo var_dump($rez);
+		//echo $rez;
 	}
 
 }
 function Redirect($url, $permanent = false) {
 	header('Location: ' . $url, true, $permanent ? 301 : 302);
-
 	exit();
 }
 
