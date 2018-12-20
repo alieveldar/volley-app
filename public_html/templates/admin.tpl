@@ -154,6 +154,7 @@
             {TRAININGSMODAL}
             {MESSMODALS}
             {TMESSENGES}
+            {GMESSENGES}
             <script src="/assets/js/adm.js" type="text/javascript"></script>
 </body>
 

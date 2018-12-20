@@ -204,24 +204,31 @@ function get_messgroup($connectEDB) {
 	$sql = "SELECT * FROM message_group";
 	$groupsarr = array();
 	$groupsmodal = array();
+	$groupmessarr = array();
 	$rez = mysqli_query($connectEDB, $sql);
 	while ($value = mysqli_fetch_assoc($rez)) {
 		$id = $value['id'];
 		$name = $value['name'];
 		$count = get_msgroup_count($connectEDB, $id);
 		$button = '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#' . "edit_messgroup$id" . '"' . '>Редактировать</button>';
-		$groupsarr[] = "<tr><td>$name</td><td>$count</td><td>$button</td></tr>";
+		$messagebutton = '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#' . "group_message$id" . '"' . '>Сообщение</button>';
+		$groupsarr[] = "<tr><td>$name</td><td>$count</td><td>$button</td><td>$messagebutton</td></tr>";
 		$groupusers = get_group_users($connectEDB, $id);
 		$tp_add_groups = new Template;
+		$tp_add_group_mess = new Template;
 		$tp_add_groups->get_tpl('templates/add_group.tpl');
+		$tp_add_group_mess->get_tpl('templates/add_message.tpl');
 		$tp_add_groups->set_value('ID', $id);
 		$tp_add_groups->set_value('GROUPNAME', $name);
 		$tp_add_groups->set_value('ID', $id);
 		$tp_add_groups->set_value('GROUPUSERS', $groupusers);
+		$tp_add_group_mess->set_value('ID', $id);
+		$tp_add_group_mess->tpl_parse();
 		$tp_add_groups->tpl_parse();
 		$groupsmodal[] = $tp_add_groups->html;
+		$groupmessarr[] = $tp_add_group_mess->html;
 	}
-	return array(implode($groupsarr), implode($groupsmodal));
+	return array(implode($groupsarr), implode($groupsmodal), implode($groupmessarr));
 }
 
 function get_msgroup_count($connectEDB, $id) {

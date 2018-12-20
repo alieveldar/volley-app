@@ -25,6 +25,7 @@ $admin_tpl->set_value('TABTRAINING', $trainings[0]);
 $admin_tpl->set_value('TRAININGSMODAL', $trainings[1]);
 $admin_tpl->set_value('MESSGROUP', $messagegroups[0]);
 $admin_tpl->set_value('MESSMODALS', $messagegroups[1]);
+$admin_tpl->set_value('GMESSENGES', $messagegroups[2]);
 $admin_tpl->set_value('TMESSENGES', $trainings[2]);
 $admin_tpl->tpl_parse();
 echo $admin_tpl->html;

@@ -189,4 +189,20 @@ $(document).ready(function() {
         }); 
     });
 
+    var groupMessage = $(".gmess");
+    groupMessage.on("click", function(event){
+        var target = $(event.target);
+        var id = target.data('grid');
+        var action = target.data("act");
+        var message = "&message=" + encodeURIComponent($('.messtext' + id).val());
+        id = "&grid=" + id;        
+        var uri = "/api.php?action=" + action + id + message;
+       $.ajax({
+            url: uri,
+            success: function(data) {
+                alert(data);
+                location.reload();
+            }
+        }); 
+    });
 });

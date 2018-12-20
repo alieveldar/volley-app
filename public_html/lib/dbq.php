@@ -487,17 +487,29 @@ function del_mess_group($connectEDB, $id) {
 		return "Пользователи удалены";
 	}
 }
-function send_group_message($connectEDB, $trainingid, $message) {
+function send_group_message($connectEDB, $trainingid, $message, $flag) {
 	global $sevretmessagekey;
-	$sql = "SELECT * FROM event_training WHERE training='$trainingid' AND sched='1' OR sched='3'";
-	$rez = mysqli_query($connectEDB, $sql);
-	$vkusers = array();
-	while ($value = mysqli_fetch_assoc($rez)) {
-		$vkusers[] = $value['player'];
+	if ($flag == 1) {
+		$sql = "SELECT * FROM event_training WHERE training='$trainingid' AND sched='1' OR sched='3'";
+		$rez = mysqli_query($connectEDB, $sql);
+		$vkusers = array();
+		while ($value = mysqli_fetch_assoc($rez)) {
+			$vkusers[] = $value['player'];
+		}
+		$vkids = implode(",", $vkusers);
+		$key = $sevretmessagekey;
+		return send_message_vk($key, $vkids, $message);
+	} else {
+		$sql = "SELECT * FROM messages_list WHERE message_group='$trainingid'";
+		$rez = mysqli_query($connectEDB, $sql);
+		$vkusers = array();
+		while ($value = mysqli_fetch_assoc($rez)) {
+			$vkusers[] = $value['member'];
+		}
+		$vkids = implode(",", $vkusers);
+		$key = $sevretmessagekey;
+		return send_message_vk($key, $vkids, $message);
 	}
-	$vkids = implode(",", $vkusers);
-	$key = $sevretmessagekey;
-	return send_message_vk($key, $vkids, $message);
 }
 
 function send_message_vk($key, $vkids, $message) {

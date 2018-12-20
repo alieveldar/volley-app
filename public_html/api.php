@@ -239,9 +239,19 @@ if (isset($_GET["action"])) {
 	} elseif ($_GET['action'] == 'sendmesstraining') {
 		$trainingid = $_GET["trid"];
 		$message = $_GET['message'];
-		$rez = send_group_message($connectEDB, $trainingid, $message);
-		echo var_dump($rez);
+		$flag = 1;
+		$rez = send_group_message($connectEDB, $trainingid, $message, $flag);
+		//echo var_dump($rez);
 		//echo $rez;
+		echo "Сообщение отправлено, его получат лишь те пользователи у которых нет запрета получения сообщений из данного сообщества!";
+	} elseif ($_GET['action'] == 'sendmessgroup') {
+		$trainingid = $_GET["grid"];
+		$message = $_GET['message'];
+		$flag = 0;
+		$rez = send_group_message($connectEDB, $trainingid, $message, $flag);
+		//echo var_dump($rez);
+		//echo $rez;
+		echo "Сообщение отправлено, его получат лишь те пользователи у которых нет запрета получения сообщений из данного сообщества!";
 	}
 
 }
