@@ -129,15 +129,17 @@ $(document).ready(function() {
         var trainer = "&trainer=" + $(".training_trainer" + id).val();
         var room = "&volley_room=" + $(".training_room" + id).val();
         var date = "&date=" + $(".training_date" + id).val();
-        console.log(date);
-        var day = "&day_of_week=" + $(".training_weekDay" + id).val();
-        console.log(day);
+        var day2 = (new Date($(".training_date" + id).val())).getDay();
+        if (day2 == "0") { day2 = "7"; }
+        var day = "&day_of_week=" + day2;                
         var startTime = "&start_time=" + $(".training_time" + id).val();
         var capacity = "&capacity=" + $(".training_capacity" + id).val();
         var intensity = "&level=" + $(".training_level" + id).val();
         var price = "&price=" + $(".training_price" + id).val();
         id = "&id=" + id;
-        var uri = "/api.php?action=" + action + id + trainer + room + date + day + startTime + capacity + intensity + price;
+
+        var uri = "/api.php?action=" + action + id + trainer + room + date + day + startTime + capacity + intensity + price;        
+        alert(uri);
         $.ajax({
             url: uri,
             success: function(data) {
@@ -151,18 +153,18 @@ $(document).ready(function() {
     groups.on("click", function(event) {
         var target = $(event.target);
         var id = target.data("group");
-        var action = target.data("act");        
+        var action = target.data("act");
         var checked = $('.users_list' + id);
-        var idvkstr = '&idvk=';        
-        var groupname = '&groupname=' + $('.groupname' + id).val();        
+        var idvkstr = '&idvk=';
+        var groupname = '&groupname=' + $('.groupname' + id).val();
         checked.each(function() {
             if ($(this).prop('checked')) {
-               // checked.push($(this).data("vkid"));
-               idvkstr = idvkstr +  ($(this).data("vkid")) + ',';
+                // checked.push($(this).data("vkid"));
+                idvkstr = idvkstr + ($(this).data("vkid")) + ',';
             }
-        });        
+        });
         id = "&id=" + id;
-        var uri = "/api.php?action=" + action + idvkstr + id + groupname;        
+        var uri = "/api.php?action=" + action + idvkstr + id + groupname;
         $.ajax({
             url: uri,
             success: function(data) {
@@ -173,36 +175,36 @@ $(document).ready(function() {
     });
 
     var trainMessage = $(".tmess");
-    trainMessage.on("click", function(event){
+    trainMessage.on("click", function(event) {
         var target = $(event.target);
         var id = target.data('trid');
         var action = target.data("act");
         var message = "&message=" + encodeURIComponent($('.messtext' + id).val());
         id = "&trid=" + id;
         var uri = "/api.php?action=" + action + id + message;
-       $.ajax({
+        $.ajax({
             url: uri,
             success: function(data) {
                 alert(data);
                 location.reload();
             }
-        }); 
+        });
     });
 
     var groupMessage = $(".gmess");
-    groupMessage.on("click", function(event){
+    groupMessage.on("click", function(event) {
         var target = $(event.target);
         var id = target.data('grid');
         var action = target.data("act");
         var message = "&message=" + encodeURIComponent($('.messtext' + id).val());
-        id = "&grid=" + id;        
+        id = "&grid=" + id;
         var uri = "/api.php?action=" + action + id + message;
-       $.ajax({
+        $.ajax({
             url: uri,
             success: function(data) {
                 alert(data);
                 location.reload();
             }
-        }); 
+        });
     });
 });

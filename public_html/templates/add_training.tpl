@@ -11,7 +11,7 @@
                 <form>
                     <div class="input-group mb-3">
                         <select class="custom-select training_trainer{ID}" id="inputGroupSelect02">
-                            <option selected>{TRAINERNAME}</option>
+                            <option selected value="{TRAINERID}">{TRAINERNAME}</option>
                             {TRAINERS}
                         </select>
                     </div>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <select class="custom-select training_room{ID}" id="inputGroupSelect02">
-                            <option selected>{VOLLEYROOM}</option>
+                            <option selected value="{VOLLEYID}">{VOLLEYROOM}</option>
                             {VOLLEYROOMS}
                         </select>
                         <div class="input-group-append">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <select class="custom-select training_weekDay{ID}" id="inputGroupSelect02">
+                        <select class="custom-select training_weekDay{ID}" disabled="disabled" id="inputGroupSelect02">
                             <option selected>{WEEKDAY}</option>
                             {WEEKDAYS}
                         </select>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <select class="custom-select training_level{ID}" id="inputGroupSelect02">
-                            <option selected>{TRAININGLEVEL}</option>
+                            <option selected value="{LEVELID}">{TRAININGLEVEL}</option>
                             {TRAININGLEVELS}
                         </select>
                         <div class="input-group-append">

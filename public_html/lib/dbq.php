@@ -35,7 +35,7 @@ function get_alltraining($connectEDB, $vkid) {
 			$week["суббота"] = mysqli_query($connectEDB, $sql_find_training);
 			break;
 		case 7:
-			$week["воскресение"] = mysqli_query($connectEDB, $sql_find_training);
+			$week["воскресенье"] = mysqli_query($connectEDB, $sql_find_training);
 			break;
 		}
 	}
@@ -56,78 +56,79 @@ function td_and_modal($week, $connectEDB, $vkid) {
 		$tp_row = New Template;
 		$tp_row->get_tpl('templates/row.tpl');
 		$day_count = 0;
+		if ($value->num_rows > 0) {
 
-		foreach ($value as $my) {
-			global $day;
-			$tp_col = New Template;
-			$tp_modal = New Template;
-			$tp_col->get_tpl('templates/col.tpl');
-			$tp_modal->get_tpl('templates/modal.tpl');
-			$day = $dayarr;
-			$image_url = $my["image"];
-			$cell_id = "cell" . $my["id"];
-			$adress = str_replace(", Казань", "", $my["adress"]);
-			$shedcount = get_count_shed($connectEDB, $my['id']);
-			$capacity = $shedcount . "/" . $my["capacity"];
-			$contacts = "NOT VAR HERE";
-			$ya_map = $my["ya_map"];
-			$date = $my["date"];
-			$price = $my["price"];
-			$training_desc = $my["description"];
-			$intensity = $my["intensity"];
-			$start_time = substr($my["start_time"], 1, -3);
-			$tp_modal->set_value('DAY', $day);
-			$tp_modal->set_value('CELL_ID', $cell_id);
-			$tp_modal->set_value('ADRESS', $adress);
-			$tp_modal->set_value('CAPACITY', $capacity);
-			$tp_modal->set_value('CONTACTS', $contacts);
-			$tp_modal->set_value('YA_MAP', $ya_map);
-			$tp_modal->set_value('DATE', $date);
-			$tp_modal->set_value('PRICE', $price);
-			$tp_modal->set_value('TRAINING_DESC', $training_desc);
-			$tp_modal->set_value('vkid', $vkid);
-			$tp_modal->set_value('trid', $my["id"]);
+			foreach ($value as $my) {
+				global $day;
+				$tp_col = New Template;
+				$tp_modal = New Template;
+				$tp_col->get_tpl('templates/col.tpl');
+				$tp_modal->get_tpl('templates/modal.tpl');
+				$day = $dayarr;
+				$image_url = $my["image"];
+				$cell_id = "cell" . $my["id"];
+				$adress = str_replace(", Казань", "", $my["adress"]);
+				$shedcount = get_count_shed($connectEDB, $my['id']);
+				$capacity = $shedcount . "/" . $my["capacity"];
+				$contacts = "NOT VAR HERE";
+				$ya_map = $my["ya_map"];
+				$date = $my["date"];
+				$price = $my["price"];
+				$training_desc = $my["description"];
+				$intensity = $my["intensity"];
+				$start_time = substr($my["start_time"], 1, -3);
+				$tp_modal->set_value('DAY', $day);
+				$tp_modal->set_value('CELL_ID', $cell_id);
+				$tp_modal->set_value('ADRESS', $adress);
+				$tp_modal->set_value('CAPACITY', $capacity);
+				$tp_modal->set_value('CONTACTS', $contacts);
+				$tp_modal->set_value('YA_MAP', $ya_map);
+				$tp_modal->set_value('DATE', $date);
+				$tp_modal->set_value('PRICE', $price);
+				$tp_modal->set_value('TRAINING_DESC', $training_desc);
+				$tp_modal->set_value('vkid', $vkid);
+				$tp_modal->set_value('trid', $my["id"]);
 
-			$sched = find_by_cond("event_training", array("player", "training"), array($vkid, $my["id"]), "sched", $connectEDB);
-			if ($sched === NULL) {
-				$schedbutton = "Записаться";
-			} elseif ($sched == 1) {
-				$schedbutton = "Отписаться";
-			} elseif ($sched == 2) {
-				$schedbutton = "Записаться";
-			} elseif ($sched == 3) {
-				$schedbutton = "Отписаться";
+				$sched = find_by_cond("event_training", array("player", "training"), array($vkid, $my["id"]), "sched", $connectEDB);
+				if ($sched === NULL) {
+					$schedbutton = "Записаться";
+				} elseif ($sched == 1) {
+					$schedbutton = "Отписаться";
+				} elseif ($sched == 2) {
+					$schedbutton = "Записаться";
+				} elseif ($sched == 3) {
+					$schedbutton = "Отписаться";
+				}
+				$tp_modal->set_value('sched', $sched);
+				$tp_modal->set_value('schedbutton', $schedbutton);
+				$tp_col->set_value('CELL_ID', $cell_id);
+				$tp_col->set_value('IMAGE_URL', $image_url);
+				$tp_col->set_value('INTENSITY', $intensity);
+				$tp_col->set_value('ADRESS', $adress);
+				$tp_col->set_value('START_TIME', $start_time);
+				$tp_col->set_value('CAPACITY', $capacity);
+				$shed_users = get_shed_users($my["id"], $connectEDB, $vkid);
+				$tp_modal->set_value('SHED_USERS', $shed_users);
+				$tp_modal->tpl_parse();
+				$tp_col->tpl_parse();
+				global $col_arr;
+				global $mod_arr;
+				$col_arr[] = $tp_col->html;
+				$mod_arr[] = $tp_modal->html;
+				unset($tp_col, $tp_modal);
+			} //day end
+			global $rez_row, $rez_mod, $col_arr, $mod_arr, $day;
+			if (count($col_arr) > 0) {
+				$tp_row->set_value('DAY', $day);
+				$tp_row->set_value('SCHEDULE', implode($col_arr));
+				$tp_row->tpl_parse();
+				$rez_row[] = $tp_row->html;
+				$rez_mod[] = implode($mod_arr);
+				global $day;
+				$day = '';
+				$col_arr = array();
+				$mod_arr = array();
 			}
-			$tp_modal->set_value('sched', $sched);
-			$tp_modal->set_value('schedbutton', $schedbutton);
-			$tp_col->set_value('CELL_ID', $cell_id);
-			$tp_col->set_value('IMAGE_URL', $image_url);
-			$tp_col->set_value('INTENSITY', $intensity);
-			$tp_col->set_value('ADRESS', $adress);
-			$tp_col->set_value('START_TIME', $start_time);
-			$tp_col->set_value('CAPACITY', $capacity);
-			$shed_users = get_shed_users($my["id"], $connectEDB, $vkid);
-			$tp_modal->set_value('SHED_USERS', $shed_users);
-			$tp_modal->tpl_parse();
-			$tp_col->tpl_parse();
-			global $col_arr;
-			global $mod_arr;
-			$col_arr[] = $tp_col->html;
-			$mod_arr[] = $tp_modal->html;
-			unset($tp_col, $tp_modal);
-		} //day end
-		global $rez_row, $rez_mod, $col_arr, $mod_arr, $day;
-		if (count($col_arr) > 0) {
-
-			$tp_row->set_value('DAY', $day);
-			$tp_row->set_value('SCHEDULE', implode($col_arr));
-			$tp_row->tpl_parse();
-			$rez_row[] = $tp_row->html;
-			$rez_mod[] = implode($mod_arr);
-			global $day;
-			$day = '';
-			$col_arr = array();
-			$mod_arr = array();
 		}
 	}
 
