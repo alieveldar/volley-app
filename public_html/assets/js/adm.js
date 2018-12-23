@@ -131,15 +131,15 @@ $(document).ready(function() {
         var date = "&date=" + $(".training_date" + id).val();
         var day2 = (new Date($(".training_date" + id).val())).getDay();
         if (day2 == "0") { day2 = "7"; }
-        var day = "&day_of_week=" + day2;                
+        var day = "&day_of_week=" + day2;
         var startTime = "&start_time=" + $(".training_time" + id).val();
         var capacity = "&capacity=" + $(".training_capacity" + id).val();
         var intensity = "&level=" + $(".training_level" + id).val();
         var price = "&price=" + $(".training_price" + id).val();
         id = "&id=" + id;
 
-        var uri = "/api.php?action=" + action + id + trainer + room + date + day + startTime + capacity + intensity + price;        
-        alert(uri);
+        var uri = "/api.php?action=" + action + id + trainer + room + date + day + startTime + capacity + intensity + price;
+
         $.ajax({
             url: uri,
             success: function(data) {

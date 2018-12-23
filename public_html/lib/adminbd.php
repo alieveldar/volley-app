@@ -151,6 +151,9 @@ function get_trainings($connectEDB) {
 		$date = date_format($date, 'd-m-y');
 		$capacity = $value['capacity'];
 		$trname = $value['first_name']; //. " " . $value['last_name'];
+		$trainer_id = $value['trainer_id'];
+		$volley_room_id = $value['room_id'];
+		$intensity_id = $value['training_intesid'];
 		$button = '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#' . "edit_training$id" . '"' . '>Редактировать</button>';
 		$messagebutton = '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#' . "training_message$id" . '"' . '>Сообщение</button>';
 		$training_tr = "<tr><td>$day_week</td><td>$name_training</td><td>$adress</td><td>$time_start</td><td>$date</td><td>$capacity</td><td>$button</td><td>$messagebutton</td></tr>";
@@ -161,6 +164,9 @@ function get_trainings($connectEDB) {
 		$tp_add_messages->set_value('ID', $id);
 		$tp_add_trainings->get_tpl('templates/add_training.tpl');
 		$tp_add_trainings->set_value('ID', $id);
+		$tp_add_trainings->set_value('TRAINERID', $trainer_id);
+		$tp_add_trainings->set_value('VOLLEYID', $volley_room_id);
+		$tp_add_trainings->set_value('LEVELID', $intensity_id);
 		$tp_add_trainings->set_value('TRPRICE', $price);
 		$tp_add_trainings->set_value('TRCAPACITY', $capacity);
 		$tp_add_trainings->set_value('TRAINERNAME', $trname);

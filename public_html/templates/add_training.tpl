@@ -14,9 +14,9 @@
                             <option selected value="{TRAINERID}">{TRAINERNAME}</option>
                             {TRAINERS}
                         </select>
-                    </div>
-                    <div class="input-group-append">
-                        <label class="input-group-text" for="inputGroupSelect02">Тренер</label>
+                        <div class="input-group-append">
+                            <label class="input-group-text" for="inputGroupSelect02">Тренер</label>
+                        </div>
                     </div>
                     <div class="input-group mb-3">
                         <select class="custom-select training_room{ID}" id="inputGroupSelect02">

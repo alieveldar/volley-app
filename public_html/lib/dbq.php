@@ -149,6 +149,7 @@ function find_by_cond($table = "event_training", $req_fields = array("player", "
 	return $rez["sched"];
 }
 function sched_user($vkid, $trid, $connectEDB) {
+	$intruding = check_player_intruding($connectEDB, $vkid, $trid);
 	$count = get_count_shed($connectEDB, $trid);
 	$capacity = get_training_capacity($connectEDB, $trid);
 	if ($count >= ($capacity)) {
@@ -518,4 +519,7 @@ function send_message_vk($key, $vkids, $message) {
 	$message_send_result = json_decode(file_get_contents("https://api.vk.com/method/messages.send?random_id=" . $random_id . "&user_ids=" . $vkids . "&message=" . $message . "&access_token=" . $key . "&v=5.87"));
 	return $message_send_result;
 	//return $message;
+}
+function check_player_intruding($connectEDB, $vkid, $trid){
+
 }

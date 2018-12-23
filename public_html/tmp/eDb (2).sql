@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Дек 21 2018 г., 14:43
+-- Время создания: Дек 23 2018 г., 13:25
 -- Версия сервера: 5.5.62-0ubuntu0.14.04.1
 -- Версия PHP: 7.2.12-1+ubuntu14.04.1+deb.sury.org+1
 
@@ -32,6 +32,19 @@ CREATE TABLE IF NOT EXISTS `all_mess` (
 ,`first_name` text
 ,`last_name` text
 ,`avatar` text
+);
+-- --------------------------------------------------------
+
+--
+-- Дублирующая структура для представления `all_player`
+--
+CREATE TABLE IF NOT EXISTS `all_player` (
+`player` int(11)
+,`trid` int(11)
+,`day_of_week` int(11)
+,`date` date
+,`start_time` time
+,`intensity` text
 );
 -- --------------------------------------------------------
 
@@ -71,6 +84,15 @@ CREATE TABLE IF NOT EXISTS `event_training` (
   `sched` int(11) NOT NULL COMMENT '1 - yes, 2-usheduled',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп данных таблицы `event_training`
+--
+
+INSERT INTO `event_training` (`id`, `training`, `player`, `sched`) VALUES
+(1, 18, 514842413, 1),
+(2, 21, 514842413, 1),
+(3, 23, 514842413, 1);
 
 -- --------------------------------------------------------
 
@@ -183,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `ssid` (
 --
 
 INSERT INTO `ssid` (`id`, `us_key`) VALUES
-(1, '49f8ace2b17026b3609690eca562601a003083d59cacc84b62face43c84aebeef348681ace8c0bdac4fe8');
+(1, '9231f92964e34f6e468af0800358552958bcdc9e52d5ea43828b649002c8e576dea86f8431de99499c6e6');
 
 -- --------------------------------------------------------
 
@@ -199,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `trainer` (
   `vk_id` int(11) NOT NULL,
   `sex` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Дамп данных таблицы `trainer`
@@ -228,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `training` (
   `repeatability` int(11) NOT NULL,
   `price` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
 -- Дамп данных таблицы `training`
@@ -238,7 +260,7 @@ INSERT INTO `training` (`id`, `trainer`, `volley_room`, `date`, `day_of_week`, `
 (17, 2, 1, '2018-12-30', 7, '00:10:00', 0, 20, 2, 0, 2003),
 (18, 2, 1, '2018-12-03', 1, '00:10:00', 0, 20, 4, 0, 2003),
 (21, 2, 1, '2018-12-03', 1, '00:10:00', 0, 20, 1, 0, 2003),
-(22, 0, 0, '2018-12-30', 7, '00:10:00', 0, 20, 0, 0, 2003);
+(23, 2, 1, '2018-12-12', 3, '00:10:00', 0, 20, 2, 0, 2003);
 
 -- --------------------------------------------------------
 
@@ -297,7 +319,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `sex` int(11) NOT NULL,
   `avatar` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=106 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=109 ;
 
 --
 -- Дамп данных таблицы `users`
@@ -306,8 +328,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `id_vk`, `first_name`, `last_name`, `age`, `nick_name`, `tel`, `role`, `sex`, `avatar`) VALUES
 (44, 276839006, 'Василий', 'Васин', 202, '', 0, 0, 2, 'https://pp.userapi.com/c631318/v631318006/3283c/KEneP8ekU-Y.jpg?ava=1'),
 (66, 1306508, 'Артем', 'Прокопьев', 59, '', 0, 0, 2, 'https://pp.userapi.com/c639520/v639520633/46a5b/ZKsqqzSdXmw.jpg?ava=1'),
-(100, 514842413, 'Пишу', 'Приложение', 3110, '', 0, 0, 2, 'https://vk.com/images/camera_50.png?ava=1'),
-(105, 39891999, 'Эльдар', 'Юрьевич', 3110, '', 0, 0, 2, 'https://pp.userapi.com/c638519/v638519999/2389/jFzCxZsRaPs.jpg?ava=1');
+(107, 39891999, 'Эльдар', 'Юрьевич', 3110, '', 0, 0, 2, 'https://pp.userapi.com/c638519/v638519999/2389/jFzCxZsRaPs.jpg?ava=1'),
+(108, 514842413, 'Пишу', 'Приложение', 3110, '', 0, 0, 2, 'https://vk.com/images/camera_50.png?ava=1');
 
 -- --------------------------------------------------------
 
@@ -351,7 +373,7 @@ CREATE TABLE IF NOT EXISTS `volley_room` (
 --
 
 INSERT INTO `volley_room` (`id`, `name`, `city`, `adress`, `gps_longitude`, `gps_latitude`, `image`, `ya_map`) VALUES
-(1, 'Центральный стадион', 'Казань', 'ул. Ташаяк, 2А', 0, 0, 'assets/img/rooms/central.jpg', ''),
+(1, 'Центральный стадион', 'Казань', 'ул. Ташаяк, 2А', 0, 0, 'assets/img/rooms/central.jpg', '<iframe src="https://yandex.ru/map-widget/v1/-/CBRIYPr6WC" width="560" height="400" frameborder="1" allowfullscreen="true"></iframe>'),
 (2, 'Казань Арена', 'Казань', 'просп. Ямашева, 115А, Казань', 0, 0, 'https://lvh.me/assets/img/rooms/central.jpg', '645'),
 (3, 'Каи Олимп', 'Казань', 'Чистопольская ул., 67, Казань\r\n', 0, 0, 'https://lvh.me/assets/img/rooms/central.jpg', ''),
 (4, 'Динамо', 'Казань', 'ул. Максима Горького, 10А, Казань\r\n', 0, 0, 'assets/img/rooms/central.jpg', '');
@@ -389,6 +411,15 @@ INSERT INTO `week_day` (`id`, `dayname`) VALUES
 DROP TABLE IF EXISTS `all_mess`;
 
 CREATE ALGORITHM=TEMPTABLE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_mess` AS select `message_group`.`id` AS `id`,`message_group`.`name` AS `name`,`messages_list`.`member` AS `member`,`users`.`first_name` AS `first_name`,`users`.`last_name` AS `last_name`,`users`.`avatar` AS `avatar` from ((`messages_list` left join `message_group` on((`messages_list`.`message_group` = `message_group`.`id`))) left join `users` on((`messages_list`.`member` = `users`.`id_vk`)));
+
+-- --------------------------------------------------------
+
+--
+-- Структура для представления `all_player`
+--
+DROP TABLE IF EXISTS `all_player`;
+
+CREATE ALGORITHM=TEMPTABLE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_player` AS select `event_training`.`player` AS `player`,`training`.`id` AS `trid`,`training`.`day_of_week` AS `day_of_week`,`training`.`date` AS `date`,`training`.`start_time` AS `start_time`,`training_level`.`intensity` AS `intensity` from ((`event_training` left join `training` on((`event_training`.`training` = `training`.`id`))) left join `training_level` on((`training`.`level` = `training_level`.`id`)));
 
 -- --------------------------------------------------------
 
