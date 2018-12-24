@@ -76,7 +76,7 @@ function td_and_modal($week, $connectEDB, $vkid) {
 				$price = $my["price"];
 				$training_desc = $my["description"];
 				$intensity = $my["intensity"];
-				$start_time = substr($my["start_time"], 1, -3);
+				$start_time = substr($my["start_time"], 0, -3);
 				$tp_modal->set_value('DAY', $day);
 				$tp_modal->set_value('CELL_ID', $cell_id);
 				$tp_modal->set_value('ADRESS', $adress);
@@ -520,6 +520,22 @@ function send_message_vk($key, $vkids, $message) {
 	return $message_send_result;
 	//return $message;
 }
-function check_player_intruding($connectEDB, $vkid, $trid){
-
+function check_player_intruding($connectEDB, $vkid, $trid) {
+	$sql_all_training = "SELECT * FROM all_training WHERE id='$trid'";
+	$rez_all_training = mysqli_query($connectEDB, $sql_all_training);
+	$rez_all_training = mysqli_fetch_assoc($rez_all_training);
+	$tr_date = $rez_all_training['date'];
+	$tr_time = $rez_all_training['start_time'];
+	$tr_time = ((integer) (str_replace(":", "", $tr_time)) / 100);
+	$sql_all_player = "SELECT * FROM all_player WHERE player='$vkid' AND date='$tr_date' AND sched='1' OR sched='3'";
+	$rez_all_player = mysqli_query($connectEDB, $sql_all_player);
+	while ($value = mysqli_fetch_assoc($rez_all_player)) {
+		$time = $value['start_time'];
+		$time = ((integer) (str_replace(":", "", $time)) / 100);
+		if ($tr_time - $time < 200 && $tr_time - $time > -200) {
+			return 1;
+			exit();
+		}
+	}
+	return 0;
 }

@@ -21,6 +21,10 @@ if (isset($_GET["action"])) {
 		$req_fields = array('player', 'training');
 		$shed_rez = find_by_cond($table, $req_fields, $fields_value, $rez_field, $connectEDB);
 		if ($shed_rez === NULL) {
+			if (check_player_intruding($connectEDB, $vkid, $trid)) {
+				echo "Вы не можете одновременно быть в двух разных местах";
+				exit();
+			}
 			$rez = sched_user($vkid, $trid, $connectEDB);
 			echo "Вы записались на тренировку!";
 
@@ -40,7 +44,10 @@ if (isset($_GET["action"])) {
 			echo "Вы отписались с тренировки";
 		}
 		if ($shed_rez == 2) {
-
+			if (check_player_intruding($connectEDB, $vkid, $trid)) {
+				echo "Вы не можете одновременно быть в двух разных местах";
+				exit();
+			}
 			$req_field = "sched";
 			$value = 1;
 			$condition_value = array();
