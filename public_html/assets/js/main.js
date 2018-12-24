@@ -1,7 +1,8 @@
 $(document).ready(function() {
     // find elements
     var vkUsers = $(".sign-up");
-
+    var searchVkid;
+    var searchTrid;
     // handle click and add class
     vkUsers.on("click", function(event) {
         var target = $(event.target);
@@ -60,10 +61,14 @@ $(document).ready(function() {
 }, '5.92'); 
  var vkFUsers = $(".signup-friend");
   vkFUsers.on("click", function(event){
- VK.callMethod("showInviteBox");
- 
-
- 
+ //VK.callMethod("showInviteBox");
+ var target = $(event.target);
+ window.searchVkid = target.data('vkid');
+ window.searchTrid = target.data('trid'); 
 });
+  function searchFriends(name){
+    var url = "/api.php?action=friendssearch&q=" + name + "&vkid=" + window.searchVkid + "&trid=" + window.searchTrid;
+    alert(url);
+  }
   //VK.callMethod("showAllowMessagesFromCommunityBox", -173367750); //запрос сообщений группы
 });

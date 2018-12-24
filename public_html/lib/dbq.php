@@ -539,3 +539,10 @@ function check_player_intruding($connectEDB, $vkid, $trid) {
 	}
 	return 0;
 }
+function get_search_friends($connectEDB) {
+	$tp_add_friends_modal = new Template;
+	$tp_add_friends_modal->get_tpl('templates/add_friends_modal.tpl');
+	$tp_add_friends_modal->set_value('SEARCHING', "searching");
+	$tp_add_friends_modal->tpl_parse();
+	return $tp_add_friends_modal->html;
+}

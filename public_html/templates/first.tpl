@@ -38,6 +38,7 @@
             <hr>
             </hr>
             {MODAL}
+            {FINDFRIENDS}
 </body>
 
 </html>
