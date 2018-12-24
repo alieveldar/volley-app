@@ -24,7 +24,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary sign-up " data-vkid="{vkid}" data-trid="{trid}" data-sched="{sched}">{schedbutton}</button>
-                <button type="button" class="btn btn-primary signup-friend" data-vkid="{vkid}">Пригласить друга</button>
+                <button type="button" class="btn btn-primary signup-friend" data-vkid="{vkid}" data-trid="{trid}">Пригласить друга</button>
             </div>
         </div>
     </div>
