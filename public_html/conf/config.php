@@ -20,7 +20,7 @@ $v = array(
 	'client_id' => 6739525, // (обязательно) номер приложения standalone
 	'secret_key' => 'Z1G1vY4Hj2fxbG1qkTmA', // (обязательно) standalone
 	'user_id' => 12345, // not used
-	'scope' => 'offline', // used
+	'scope' => 'offline,friends', // used
 	'v' => '5.87',
 	'redirect_url' => "https://lvh.me/api.php",
 );

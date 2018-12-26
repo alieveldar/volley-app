@@ -10,9 +10,11 @@ if (isset($_GET['code'])) {
 }
 
 if (isset($_GET["action"])) {
-
+	$referer = 0;
 	if ($_GET["action"] == 'schedule') {
-
+		if (isset($_GET['referer'])) {
+			$referer = $_GET['referer'];
+		}
 		$vkid = $_GET['vkid'];
 		$trid = $_GET['trid'];
 		$table = 'event_training';
@@ -22,11 +24,21 @@ if (isset($_GET["action"])) {
 		$shed_rez = find_by_cond($table, $req_fields, $fields_value, $rez_field, $connectEDB);
 		if ($shed_rez === NULL) {
 			if (check_player_intruding($connectEDB, $vkid, $trid)) {
-				echo "Вы не можете одновременно быть в двух разных местах";
-				exit();
+				if ($referer == 0) {
+
+				} else {
+					echo "Ваш друг не может одновременно быть в двух разных местах";
+					exit();
+				}
+
 			}
-			$rez = sched_user($vkid, $trid, $connectEDB);
-			echo "Вы записались на тренировку!";
+			$rez = sched_user($vkid, $trid, $connectEDB, $referer);
+			if ($referer == 0) {
+				echo "Вы записались на тренировку!";
+			} else {
+				add_friend_to_userlist($connectEDB, $vkid);
+				echo "Вы записали друга на тренировку";
+			}
 
 		}
 		if ($shed_rez == 1 || $shed_rez == 3) {
@@ -39,9 +51,14 @@ if (isset($_GET["action"])) {
 			$condition_field[] = "training";
 			$condition_value[] = $vkid;
 			$condition_value[] = $trid;
-			$rez = update_field($table, $req_field, $value, $condition_field, $condition_value, $connectEDB);
 			//echo $rez;
-			echo "Вы отписались с тренировки";
+			if ($referer == 0) {
+				$rez = update_field($table, $req_field, $value, $condition_field, $condition_value, $connectEDB);
+				echo "Вы отписались с тренировки";
+			} else {
+
+				echo "Этот участник уже записан";
+			}
 		}
 		if ($shed_rez == 2) {
 			if (check_player_intruding($connectEDB, $vkid, $trid)) {
@@ -59,7 +76,12 @@ if (isset($_GET["action"])) {
 
 			$rez = update_field($table, $req_field, $value, $condition_field, $condition_value, $connectEDB);
 			//echo $rez;
-			echo "Вы снова записались на тренировку";
+			if ($referer == 0) {
+				echo "Вы снова записались на тренировку";
+			} else {
+				echo "Вы снова записали друга на тренировку";
+			}
+
 		}
 
 	} elseif ($_GET["action"] == 'traineredit') {
@@ -259,6 +281,12 @@ if (isset($_GET["action"])) {
 		//echo var_dump($rez);
 		//echo $rez;
 		echo "Сообщение отправлено, его получат лишь те пользователи у которых нет запрета получения сообщений из данного сообщества!";
+	} elseif ($_GET['action'] == 'friendssearch') {
+		$trid = $_GET["trid"];
+		$vkid = $_GET['vkid'];
+		$reqtemplate = $_GET['q'];
+		$list = search_friends_vk($connectEDB, $vkid, $reqtemplate, $trid);
+		echo $list;
 	}
 
 }

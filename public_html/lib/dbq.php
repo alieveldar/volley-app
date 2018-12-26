@@ -136,6 +136,19 @@ function td_and_modal($week, $connectEDB, $vkid) {
 	$result[] = implode($rez_mod);
 	return $result;
 }
+function get_search_friends($connectEDB) {
+	$tp_add_friends_modal = new Template;
+	$tp_add_friends_modal->get_tpl('templates/add_friends_modal.tpl');
+	$tp_add_friends_modal->set_value('SEARCHING', "searching");
+	$tp_add_friends_modal->tpl_parse();
+	return $tp_add_friends_modal->html;
+}
+function get_ssid($connectEDB) {
+	$sql = "SELECT * FROM " . TSSID;
+	$rez = mysqli_query($connectEDB, $sql);
+	$rez = mysqli_fetch_assoc($rez);
+	return $rez["us_key"];
+}
 function find_by_cond($table = "event_training", $req_fields = array("player", "training"), $fields, $rez_field = "sched", $connectEDB) {
 	$req_sql = "SELECT * FROM " . $table . " WHERE "
 		. $req_fields[0] . "=" . $fields[0] . " AND " . $req_fields[1] . "=" . $fields[1];
@@ -148,7 +161,7 @@ function find_by_cond($table = "event_training", $req_fields = array("player", "
 	$rez = mysqli_fetch_assoc($rez);
 	return $rez["sched"];
 }
-function sched_user($vkid, $trid, $connectEDB) {
+function sched_user($vkid, $trid, $connectEDB, $referer) {
 	$intruding = check_player_intruding($connectEDB, $vkid, $trid);
 	$count = get_count_shed($connectEDB, $trid);
 	$capacity = get_training_capacity($connectEDB, $trid);
@@ -157,7 +170,7 @@ function sched_user($vkid, $trid, $connectEDB) {
 	} else {
 		$shed_es = 1;
 	}
-	$req_sql1 = "INSERT INTO event_training (training,player,sched) VALUES ($trid,$vkid,'$shed_es')";
+	$req_sql1 = "INSERT INTO event_training (training,player,sched,referer) VALUES ($trid,$vkid,'$shed_es','$referer')";
 	$rez_sched = mysqli_query($connectEDB, $req_sql1);
 	if ($rez_sched) {
 		return 1;
@@ -203,7 +216,7 @@ function get_user_vk($vkid, $connectEDB) {
 function get_shed_users($trid, $connectEDB, $vkid) {
 	global $current_user;
 	$rezarr = array();
-	$users_sql = "SELECT player, sched FROM event_training WHERE training = $trid AND sched != 2 ORDER BY id";
+	$users_sql = "SELECT * FROM event_training WHERE training = $trid AND sched != 2 ORDER BY id";
 	$rez = mysqli_query($connectEDB, $users_sql);
 	//$rez = mysqli_fetch_assoc($rez);
 
@@ -220,8 +233,6 @@ function get_shed_users($trid, $connectEDB, $vkid) {
 				$reservestyle = "";
 			}
 			if ($value["sched"] == 3) {
-				//echo "<BR> VALUE SCHED 3 FROM GETSVHED USERS " . $value["sched"];
-
 				$table = 'event_training';
 				$req_field = "sched";
 				$condition_value = array();
@@ -234,6 +245,10 @@ function get_shed_users($trid, $connectEDB, $vkid) {
 
 				update_field($table, $req_field, $value_key, $condition_field, $condition_value, $connectEDB);
 			}
+			$removefriend = "";
+			if ($value['referer'] == $vkid) {
+				$removefriend = '<a class="removefriend" href="#" data-trid="' . $value['training'] . '"' . 'data-vkid="' . $value['player'] . '"' . 'data-referer="' . $vkid . '"' . '>Отписать</a>';
+			}
 			$tp_colusers = New Template;
 			$tp_colusers->get_tpl('templates/colusers.tpl');
 			$arr_users = get_user_vk($value["player"], $connectEDB);
@@ -241,6 +256,7 @@ function get_shed_users($trid, $connectEDB, $vkid) {
 			$tp_colusers->set_value('AVATAR_URL', $arr_users["avatar"]);
 			$tp_colusers->set_value('USERNAME', $arr_users['first_name'] . "<BR>" . $arr_users['last_name']);
 			$tp_colusers->set_value('RESERVESTYLE', $reservestyle);
+			$tp_colusers->set_value('REMOVEFRIEND', $removefriend);
 			$tp_colusers->tpl_parse();
 			$arr_cols[] = $tp_colusers->html;
 
@@ -539,10 +555,34 @@ function check_player_intruding($connectEDB, $vkid, $trid) {
 	}
 	return 0;
 }
-function get_search_friends($connectEDB) {
-	$tp_add_friends_modal = new Template;
-	$tp_add_friends_modal->get_tpl('templates/add_friends_modal.tpl');
-	$tp_add_friends_modal->set_value('SEARCHING', "searching");
-	$tp_add_friends_modal->tpl_parse();
-	return $tp_add_friends_modal->html;
+function search_friends_vk($connectEDB, $vkid, $reqtemplate, $trid) {
+	$reqtemplate = str_replace(" ", "", $reqtemplate);
+	$access_token = get_ssid($connectEDB);
+	$uri = "https://api.vk.com/method/friends.search?user_id=$vkid&q=$reqtemplate&fields=photo_50&count=1000&access_token=$access_token&v=5.87A";
+	if ($friends = json_decode(file_get_contents($uri), true)) {
+		$friend_arr = array();
+		foreach ($friends["response"]["items"] as $value) {
+			$name = $value['first_name'];
+			$last_name = $value['last_name'];
+			$avatar = $value['photo_50'];
+			$uservkid = $value['id'];
+			$friend_arr[] = '<li class="list-group-item"><img src="' . $avatar . '"' . 'class="rounded-circle" style="width: 30px; height: 30px; margin:8px">' . $name . " " . $last_name . '<a class="addfriend" href="#" data-referer="' . $vkid . '" data-trid="' . $trid . '" data-vkid="' . $uservkid . '" title="Записать друга на тренировку">Записать друга</a></li>';
+		}
+	} else {
+		return $uri;
+		die();}
+	return implode($friend_arr);
+}
+function add_friend_to_userlist($connectEDB, $vkid) {
+	$sql_find_user = "SELECT * FROM users WHERE id_vk='$vkid'";
+	if (mysqli_query($connectEDB, $sql_find_user)->num_rows == 0) {
+		$access_token = gets_ssid($connectEDB);
+		$role = 0;
+		$user_data_db = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids=" . $vkid . "&fields=first_name,last_name,contacts,nickname,photo_50,sex,bdate&access_token=" . $access_token . "&v=5.87"), true);
+		$sql_querry_add_user = "INSERT INTO " . TUSERS . " (id_vk, first_name, last_name,role, sex, avatar) VALUES (" . $vkid . "," . "'" . $user_data_db["response"][0]["first_name"] . "'" . "," . "'" . $user_data_db["response"][0]["last_name"] . "'" . "," . $role . "," . $user_data_db["response"][0]["sex"] . "," . "'" . $user_data_db["response"][0]["photo_50"] . "'" . ")";
+
+		if (mysqli_query($connectEDB, $sql_querry_add_user)) {
+
+		}
+	}
 }

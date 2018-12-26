@@ -16,9 +16,9 @@
                     <label>
                         Поиск в списке друзей
                     </label>
-                    <input class="form-control {SEARCHING}" onkeyup="if($(this).val().length>2) searchFriends($(this).val()); return false;" placeholder="Начните вводить имя друга" type="text">
+                    <input class="form-control {SEARCHING}"  placeholder="Начните вводить имя друга" type="text">
                 </div>
-                <ul class="search_result list-group">
+                <ul class="search_result list-group" style="block:inline;">
                 </ul>
             </div>
         </div>

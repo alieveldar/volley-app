@@ -7,4 +7,5 @@
         </div> 
         <div class="reserve hide-rez" style="{RESERVESTYLE}">Резерв
         </div> 
+        <div class="remove_friend">{REMOVEFRIEND}</div>
     </div>

@@ -5,6 +5,8 @@ $datasecret = new stdClass();
 $count = 0;
 $urlind;
 $bigGet;
+//echo $_GET['access_token'];
+//die();
 if (isset($_GET['api_url'])) {
 	$bigGet = $_GET;
 	global $datasecret, $urlind;
