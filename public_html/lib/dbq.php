@@ -161,8 +161,7 @@ function find_by_cond($table = "event_training", $req_fields = array("player", "
 	$rez = mysqli_fetch_assoc($rez);
 	return $rez["sched"];
 }
-function sched_user($vkid, $trid, $connectEDB, $referer) {
-	$intruding = check_player_intruding($connectEDB, $vkid, $trid);
+function sched_user($vkid, $trid, $connectEDB, $referer) {	
 	$count = get_count_shed($connectEDB, $trid);
 	$capacity = get_training_capacity($connectEDB, $trid);
 	if ($count >= ($capacity)) {
@@ -545,13 +544,16 @@ function check_player_intruding($connectEDB, $vkid, $trid) {
 	$tr_time = ((integer) (str_replace(":", "", $tr_time)) / 100);
 	$sql_all_player = "SELECT * FROM all_player WHERE player='$vkid' AND date='$tr_date' AND sched='1' OR sched='3'";
 	$rez_all_player = mysqli_query($connectEDB, $sql_all_player);
+	if($rez_all_player->num_rows > 1){
 	while ($value = mysqli_fetch_assoc($rez_all_player)) {
 		$time = $value['start_time'];
 		$time = ((integer) (str_replace(":", "", $time)) / 100);
 		if ($tr_time - $time < 200 && $tr_time - $time > -200) {
 			return 1;
+			exit();
 		}
 	}
+}
 	return 0;
 }
 function search_friends_vk($connectEDB, $vkid, $reqtemplate, $trid) {
