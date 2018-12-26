@@ -550,7 +550,6 @@ function check_player_intruding($connectEDB, $vkid, $trid) {
 		$time = ((integer) (str_replace(":", "", $time)) / 100);
 		if ($tr_time - $time < 200 && $tr_time - $time > -200) {
 			return 1;
-			exit();
 		}
 	}
 	return 0;
@@ -584,5 +583,13 @@ function add_friend_to_userlist($connectEDB, $vkid) {
 		if (mysqli_query($connectEDB, $sql_querry_add_user)) {
 
 		}
+	}
+}
+function remove_friend_from_training($connectEDB, $trid, $vkid, $referer) {
+	$sql = "UPDATE event_training SET sched='2' WHERE training='$trid' AND player='$vkid' AND referer='$referer'";
+	if (mysqli_query($connectEDB, $sql)) {
+		return "Вы отписали Вашего друга с тренировки";
+	} else {
+		return "Друг не найден в БД";
 	}
 }

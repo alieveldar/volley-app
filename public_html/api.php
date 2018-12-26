@@ -25,7 +25,6 @@ if (isset($_GET["action"])) {
 		if ($shed_rez === NULL) {
 			if (check_player_intruding($connectEDB, $vkid, $trid)) {
 				if ($referer == 0) {
-
 				} else {
 					echo "Ваш друг не может одновременно быть в двух разных местах";
 					exit();
@@ -63,23 +62,22 @@ if (isset($_GET["action"])) {
 		if ($shed_rez == 2) {
 			if (check_player_intruding($connectEDB, $vkid, $trid)) {
 				echo "Вы не можете одновременно быть в двух разных местах";
-				exit();
-			}
-			$req_field = "sched";
-			$value = 1;
-			$condition_value = array();
-			$condition_field = array();
-			$condition_field[] = "player";
-			$condition_field[] = "training";
-			$condition_value[] = $vkid;
-			$condition_value[] = $trid;
-
-			$rez = update_field($table, $req_field, $value, $condition_field, $condition_value, $connectEDB);
-			//echo $rez;
-			if ($referer == 0) {
-				echo "Вы снова записались на тренировку";
 			} else {
-				echo "Вы снова записали друга на тренировку";
+				$req_field = "sched";
+				$value = 1;
+				$condition_value = array();
+				$condition_field = array();
+				$condition_field[] = "player";
+				$condition_field[] = "training";
+				$condition_value[] = $vkid;
+				$condition_value[] = $trid;
+				$rez = update_field($table, $req_field, $value, $condition_field, $condition_value, $connectEDB);
+				//echo $rez;
+				if ($referer == 0) {
+					echo "Вы снова записались на тренировку";
+				} else {
+					echo "Вы снова записали друга на тренировку";
+				}
 			}
 
 		}
@@ -287,6 +285,11 @@ if (isset($_GET["action"])) {
 		$reqtemplate = $_GET['q'];
 		$list = search_friends_vk($connectEDB, $vkid, $reqtemplate, $trid);
 		echo $list;
+	} elseif ($_GET['action'] == 'removefriend') {
+		$trid = $_GET["trid"];
+		$vkid = $_GET['vkid'];
+		$referer = $_GET['referer'];
+		echo remove_friend_from_training($connectEDB, $trid, $vkid, $referer);
 	}
 
 }

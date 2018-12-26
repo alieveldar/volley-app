@@ -88,6 +88,22 @@ $(document).ready(function() {
         });
     });
 
+    var removeFriend  = $(".removefriend");
+    removeFriend.on("click", function(event){
+        var target = $(event.target);
+        var uri = "/api.php?action=";
+        var action = "removefriend";
+        var vkid = "&vkid=" + target.data("vkid");
+        var trid = "&trid=" + target.data("trid");
+        var referer = "&referer=" + target.data("referer");        
+         $.ajax({
+            url: uri + action + vkid + trid + referer,
+            success: function(data) {
+                alert(data);
+                location.reload();
+            }
+        });
+    });
     VK.init(function() {
         // API initialization succeeded 
         // Your code here 

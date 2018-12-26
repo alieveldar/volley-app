@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Дек 26 2018 г., 10:53
+-- Время создания: Дек 26 2018 г., 13:44
 -- Версия сервера: 5.5.62-0ubuntu0.14.04.1
 -- Версия PHP: 7.2.12-1+ubuntu14.04.1+deb.sury.org+1
 
@@ -86,25 +86,21 @@ CREATE TABLE IF NOT EXISTS `event_training` (
   `sched` int(11) NOT NULL COMMENT '1 - yes, 2-usheduled',
   `referer` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Дамп данных таблицы `event_training`
 --
 
 INSERT INTO `event_training` (`id`, `training`, `player`, `sched`, `referer`) VALUES
-(1, 18, 514842413, 1, 0),
-(2, 21, 514842413, 1, 0),
-(3, 23, 514842413, 1, 0),
-(4, 24, 39891999, 2, 0),
-(5, 21, 39891999, 1, 0),
-(6, 25, 39891999, 1, 0),
-(7, 18, 39891999, 2, 0),
-(8, 27, 39891999, 1, 0),
-(9, 23, 39891999, 1, 0),
-(27, 24, 1306508, 1, 39891999),
-(28, 24, 25728480, 1, 39891999),
-(31, 24, 5110497, 3, 39891999);
+(1, 21, 39891999, 2, 0),
+(2, 24, 39891999, 1, 0),
+(3, 18, 39891999, 2, 0),
+(4, 24, 1306508, 1, 39891999),
+(5, 24, 273124770, 2, 39891999),
+(6, 26, 39891999, 1, 0),
+(7, 27, 39891999, 1, 0),
+(8, 23, 39891999, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -217,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `ssid` (
 --
 
 INSERT INTO `ssid` (`id`, `us_key`) VALUES
-(1, 'a3d2e33da208e6cc87dfdb8b759d536530fcc2bb31608cb0a5b52898c8135a19e13262e67d0baf306eaec');
+(1, '45b6536a6f83396aaf5ffa8cffc70fcde7b400321a2804c95f6d91d606041c6916d08dec9233597d0c007');
 
 -- --------------------------------------------------------
 
@@ -335,7 +331,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `sex` int(11) NOT NULL,
   `avatar` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=267 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=290 ;
 
 --
 -- Дамп данных таблицы `users`
@@ -344,10 +340,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `id_vk`, `first_name`, `last_name`, `age`, `nick_name`, `tel`, `role`, `sex`, `avatar`) VALUES
 (44, 276839006, 'Василий', 'Васин', 202, '', 0, 0, 2, 'https://pp.userapi.com/c631318/v631318006/3283c/KEneP8ekU-Y.jpg?ava=1'),
 (66, 1306508, 'Артем', 'Прокопьев', 59, '', 0, 0, 2, 'https://pp.userapi.com/c639520/v639520633/46a5b/ZKsqqzSdXmw.jpg?ava=1'),
-(245, 514842413, 'Пишу', 'Приложение', 3110, '', 0, 0, 2, 'https://vk.com/images/camera_50.png?ava=1'),
 (259, 25728480, 'Regina', 'Vladimirovna', 31, '', 0, 0, 1, 'https://pp.userapi.com/c851124/v851124122/42677/oG9O64Sc_3c.jpg?ava=1'),
-(265, 39891999, 'Эльдар', 'Юрьевич', 31, '', 0, 0, 2, 'https://pp.userapi.com/c638519/v638519999/2389/jFzCxZsRaPs.jpg?ava=1'),
-(266, 5110497, 'Дяковецкий', 'Артем', 0, '', 0, 0, 2, 'https://pp.userapi.com/c723/u5110497/e_09da4e52.jpg?ava=1');
+(266, 5110497, 'Дяковецкий', 'Артем', 0, '', 0, 0, 2, 'https://pp.userapi.com/c723/u5110497/e_09da4e52.jpg?ava=1'),
+(268, 514842413, 'Пишу', 'Приложение', 3110, '', 0, 0, 2, 'https://vk.com/images/camera_50.png?ava=1'),
+(277, 273124770, 'Path-Of', 'The-Force', 0, '', 0, 0, 2, 'https://pp.userapi.com/c845120/v845120764/124021/MuRXxk5Bs7k.jpg?ava=1'),
+(278, 3664950, 'Андрей', 'Аа', 0, '', 0, 0, 2, 'https://pp.userapi.com/c834303/v834303075/14a12d/ulwIVAhGvOs.jpg?ava=1'),
+(289, 39891999, 'Эльдар', 'Юрьевич', 3110, '', 0, 0, 2, 'https://pp.userapi.com/c638519/v638519999/2389/jFzCxZsRaPs.jpg?ava=1');
 
 -- --------------------------------------------------------
 
