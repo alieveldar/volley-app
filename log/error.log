@@ -1,7 +1,6 @@
-[Wed Dec 26 12:02:32.279889 2018] [ssl:warn] [pid 41] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
-[Wed Dec 26 12:02:32.394901 2018] [ssl:warn] [pid 42] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
-[Wed Dec 26 12:57:47.245055 2018] [php7:emerg] [pid 502] [client 172.17.0.1:47566] PHP Parse error:  syntax error, unexpected ')' in /var/www/html/volley-app.com/public_html/lib/dbq.php on line 553, referer: https://lvh.me/index.php?vkid=39891999
-[Wed Dec 26 13:31:36.687083 2018] [php7:emerg] [pid 47] [client 172.17.0.1:49386] PHP Parse error:  syntax error, unexpected '=' in /var/www/html/volley-app.com/public_html/api.php on line 292, referer: https://lvh.me/index.php?vkid=39891999
-[Wed Dec 26 13:39:33.191846 2018] [php7:notice] [pid 46] [client 172.17.0.1:50748] PHP Notice:  Undefined index: test in /var/www/html/volley-app.com/public_html/login.php on line 132
-[Wed Dec 26 13:44:38.891522 2018] [ssl:warn] [pid 88] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
-[Wed Dec 26 13:44:38.929793 2018] [ssl:warn] [pid 89] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Dec 27 06:24:17.751448 2018] [ssl:warn] [pid 41] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Dec 27 06:24:17.863045 2018] [ssl:warn] [pid 42] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Dec 27 06:26:37.911943 2018] [php7:notice] [pid 86] [client 172.17.0.1:41578] PHP Notice:  Undefined index: test in /var/www/html/volley-app.com/public_html/login.php on line 132
+[Thu Dec 27 07:33:14.164957 2018] [php7:notice] [pid 47] [client 172.17.0.1:42896] PHP Notice:  Undefined index: test in /var/www/html/volley-app.com/public_html/login.php on line 132
+[Thu Dec 27 07:39:15.932867 2018] [php7:notice] [pid 486] [client 172.17.0.1:43346] PHP Notice:  Undefined index: test in /var/www/html/volley-app.com/public_html/login.php on line 132
+[Thu Dec 27 08:12:47.782679 2018] [php7:notice] [pid 486] [client 172.17.0.1:49546] PHP Notice:  Undefined index: test in /var/www/html/volley-app.com/public_html/login.php on line 132
