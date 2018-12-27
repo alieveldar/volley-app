@@ -17,6 +17,10 @@ if (isset($_GET["action"])) {
 		}
 		$vkid = $_GET['vkid'];
 		$trid = $_GET['trid'];
+		if (check_expiration_day($connectEDB, $vkid, $trid)) {
+			echo "Время записи на тренировку инстекло";
+			exit();
+		}
 		$table = 'event_training';
 		$rez_field = "sched";
 		$fields_value = array($vkid, $trid);

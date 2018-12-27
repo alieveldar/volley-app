@@ -72,6 +72,7 @@ function td_and_modal($week, $connectEDB, $vkid) {
 				$capacity = $shedcount . "/" . $my["capacity"];
 				$contacts = "NOT VAR HERE";
 				$ya_map = $my["ya_map"];
+				//$date = date_format(new DateTime($my["date"]), 'd-m-Y ');
 				$date = $my["date"];
 				$price = $my["price"];
 				$training_desc = $my["description"];
@@ -594,4 +595,21 @@ function remove_friend_from_training($connectEDB, $trid, $vkid, $referer) {
 	} else {
 		return "Друг не найден в БД";
 	}
+}
+function check_expiration_day($connectEDB, $vkid, $trid) {
+	$sql = "SELECT * FROM all_training WHERE id='$trid'";
+	$rez = mysqli_query($connectEDB, $sql);
+	$rez = mysqli_fetch_assoc($rez);
+	$tr_date = $rez["date"];
+	$tr_time = ((integer) (str_replace(":", "", $rez["start_time"])) / 100);
+	$current_date = date('Y-m-d');
+	$current_time = ((integer) date('Gi'));
+	if ($tr_date === $current_date) {
+		if (($current_time - $tr_time > -200)) {
+			return 1;
+			exit();
+		}
+	}
+	return 0;
+
 }
