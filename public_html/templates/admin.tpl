@@ -42,7 +42,7 @@
                 <a class="nav-link" id="admins-tab" data-toggle="tab" href="#admins" role="tab" aria-controls="admins" aria-selected="false">Администраторы</a>
             </li>
         </ul>
-        <div class="tab-content" id="myTabContent">
+        <div class="tab-content" id="myTabContent" style="height: 700px; overflow-y: scroll">
             <div class="tab-pane fade show active" id="trainers" role="tabpanel" aria-labelledby="trainers-tab">
                 <table class="table table-striped">
                     <thead>
