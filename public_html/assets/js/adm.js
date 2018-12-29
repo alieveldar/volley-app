@@ -207,4 +207,18 @@ $(document).ready(function() {
             }
         });
     });
+    var trainingusers = $(".check_users");
+    trainingusers.on("click", function(event){
+        var target = $(event.target);
+        var trid = "&trid=" + target.data("trid");
+        var action = "get_train_users";
+        var uri = "/api.php?action=" + action + trid;        
+        $.ajax({
+            url: uri,
+            success: function(data) {                
+                $('.trusers').html(data);
+                //location.reload();
+            }
+        });
+    });
 });

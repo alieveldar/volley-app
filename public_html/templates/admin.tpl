@@ -93,7 +93,7 @@
                             <th scope="col">Время</th>
                             <th scope="col">Дата</th>
                             <th scope="col">Кол. участников</th>
-                            <th scope="col"></th>
+                            <th scope="col"></th>                            
                         </tr>
                     </thead>
                     <tbody>
@@ -103,16 +103,16 @@
             </div>
             <div class="tab-pane fade" id="messages_list" role="tabpanel" aria-labelledby="messages_list-tab">
                 <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Название группы</th>
-                        <th scope="col">Участников</th>
-                        <th scope="col">Управление</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {MESSGROUP}
-                </tbody>
+                    <thead>
+                        <tr>
+                            <th scope="col">Название группы</th>
+                            <th scope="col">Участников</th>
+                            <th scope="col">Управление</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {MESSGROUP}
+                    </tbody>
                 </table>
             </div>
             <div class="tab-pane fade" id="analitik" role="tabpanel" aria-labelledby="analitik-tab"></div>
@@ -155,6 +155,26 @@
             {MESSMODALS}
             {TMESSENGES}
             {GMESSENGES}
+            <div class="modal fade" id="add_part" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Пользователи записавшиеся на тренировку</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="users container trusers" style="width:400px; height:400px; overflow-y:scroll; border:solid 1px #C3E4FE;">
+                                
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary group"  data-act="checkintruders">Отметить пропустивших тренировку</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <script src="/assets/js/adm.js" type="text/javascript"></script>
 </body>
 

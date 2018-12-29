@@ -31,7 +31,7 @@ function get_trainers($connectEDB) {
 	return array($trainersarr, $trainersmod);
 }
 function get_level($connectEDB) {
-	$sql = "SELECT * FROM " . TTRAINING_LEVEL;
+	$sql = "SELECT * FROM " . TTRAINING_LEVEL . " WHERE arch='0'";
 	$rez = mysqli_query($connectEDB, $sql);
 	$levelsarr = array();
 	$levelsmod = array();
@@ -55,7 +55,7 @@ function get_level($connectEDB) {
 	return array($levelsarr, $levelsmod);
 }
 function get_room($connectEDB) {
-	$sql = "SELECT * FROM " . TVOLLEY_ROOM;
+	$sql = "SELECT * FROM " . TVOLLEY_ROOM . " WHERE arch='0'";
 	$rez = mysqli_query($connectEDB, $sql);
 	$roomsarr = array();
 	$roomsmod = array();
@@ -85,7 +85,7 @@ function get_room($connectEDB) {
 	return array($roomsarr, $roomsmod);
 }
 function get_root($connectEDB) {
-	$sql = "SELECT * FROM " . TROOTS;
+	$sql = "SELECT * FROM " . TROOTS . " WHERE arch='0'";
 	$rez = mysqli_query($connectEDB, $sql);
 	$rootsarr = array();
 	$rootsmod = array();
@@ -111,7 +111,7 @@ function get_root($connectEDB) {
 	return array($rootsarr, $rootsmod);
 }
 function get_news($connectEDB) {
-	$sql = "SELECT * FROM " . TNEWS;
+	$sql = "SELECT * FROM " . TNEWS . " WHERE arch='0'";
 	$rez = mysqli_query($connectEDB, $sql);
 	$rootsarr = array();
 	$rootsmod = array();
@@ -134,7 +134,7 @@ function get_news($connectEDB) {
 }
 function get_trainings($connectEDB) {
 
-	$sql = "SELECT * FROM all_training ORDER BY day";
+	$sql = "SELECT * FROM all_training WHERE arch='0' ORDER BY day";
 	$rez = mysqli_query($connectEDB, $sql);
 	$trainingsarr = array();
 	$trainingsmodal = array();
@@ -156,7 +156,8 @@ function get_trainings($connectEDB) {
 		$intensity_id = $value['training_intesid'];
 		$button = '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#' . "edit_training$id" . '"' . '>Редактировать</button>';
 		$messagebutton = '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#' . "training_message$id" . '"' . '>Сообщение</button>';
-		$training_tr = "<tr><td>$day_week</td><td>$name_training</td><td>$adress</td><td>$time_start</td><td>$date</td><td>$capacity</td><td>$button</td><td>$messagebutton</td></tr>";
+		$buttontrainusers = '<button type="button" class="btn btn-light check_users" data-toggle="modal" data-trid="' . $id . '" data-target="#add_part" style="margin: 5px 0px 0px 0px;">Участники</button>';
+		$training_tr = "<tr><td>$day_week</td><td>$name_training</td><td>$adress</td><td>$time_start</td><td>$date</td><td>$capacity</td><td>$button</td><td>$messagebutton<div>$buttontrainusers</div></td></tr>";
 		$trainingsarr[] = $training_tr;
 		$tp_add_trainings = new Template;
 		$tp_add_messages = new Template;

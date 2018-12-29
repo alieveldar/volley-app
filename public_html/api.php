@@ -17,10 +17,7 @@ if (isset($_GET["action"])) {
 		}
 		$vkid = $_GET['vkid'];
 		$trid = $_GET['trid'];
-		if (check_expiration_day($connectEDB, $vkid, $trid)) {
-			echo "Время записи на тренировку инстекло";
-			exit();
-		}
+
 		$table = 'event_training';
 		$rez_field = "sched";
 		$fields_value = array($vkid, $trid);
@@ -55,6 +52,10 @@ if (isset($_GET["action"])) {
 			$condition_value[] = $vkid;
 			$condition_value[] = $trid;
 			//echo $rez;
+			if (check_expiration_day($connectEDB, $vkid, $trid)) {
+				echo "Время записи на тренировку инстекло";
+				exit();
+			}
 			if ($referer == 0) {
 				$rez = update_field($table, $req_field, $value, $condition_field, $condition_value, $connectEDB);
 				echo "Вы отписались с тренировки";
@@ -294,6 +295,9 @@ if (isset($_GET["action"])) {
 		$vkid = $_GET['vkid'];
 		$referer = $_GET['referer'];
 		echo remove_friend_from_training($connectEDB, $trid, $vkid, $referer);
+	} elseif ($_GET['action'] == 'get_train_users') {
+		$trid = $_GET["trid"];
+		echo get_train_users($connectEDB, $trid);
 	}
 
 }

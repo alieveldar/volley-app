@@ -13,7 +13,7 @@ function get_alltraining($connectEDB, $vkid) {
 					$sql_find_training = "SELECT training.day_of_week, training_level.description, volley_room.adress, training.start_time, training.capacity, trainer.first_name, trainer.last_name, trainer.tel, volley_room.ya_map,volley_room.image, training.date, training.price, training_level.intensity, training.id
 			FROM training, volley_room, training_level, trainer
 		*/
-		$sql_find_training = "SELECT * FROM all_training WHERE day=$day ORDER BY start_time";
+		$sql_find_training = "SELECT * FROM all_training WHERE (day=$day AND arch='0') ORDER BY start_time";
 		mysqli_set_charset($connectEDB, "utf8");
 		switch ($i) {
 		case 1:
@@ -404,7 +404,8 @@ function del_unit($connectEDB, $id, $table) {
 		return "Невозможно удалить единственную запись, отредактируйте данные";
 		exit();
 	}
-	$sql = "DELETE FROM " . $table . " WHERE id='$id'";
+	//$sql = "DELETE FROM " . $table . " WHERE id='$id'";
+	$sql = "UPDATE $table SET arch='1' WHERE id='$id'";
 	$result = mysqli_query($connectEDB, $sql);
 	if (mysqli_error($connectEDB)) {
 		return "DATABASE ERROR!";
@@ -413,7 +414,8 @@ function del_unit($connectEDB, $id, $table) {
 	}
 }
 function del_unit_training($connectEDB, $id) {
-	$sql = "DELETE FROM event_training WHERE training='$id'";
+	//$sql = "DELETE FROM event_training WHERE training='$id'";
+	$sql = "UPDATE event_training SET arch='1' WHERE id='$id'";
 	$rez = mysqli_query($connectEDB, $sql);
 }
 function get_news($connectEDB) {
@@ -611,5 +613,18 @@ function check_expiration_day($connectEDB, $vkid, $trid) {
 		}
 	}
 	return 0;
-
+}
+function get_train_users($connectEDB, $trid) {
+	$sql = "SELECT * FROM all_player WHERE trid='$trid'";
+	$rez = mysqli_query($connectEDB, $sql);
+	$person_arr = array();
+	while ($value = mysqli_fetch_assoc($rez)) {
+		$first_name = $value['first_name'];
+		$last_name = $value['last_name'];
+		$avatar = $value['avatar'];
+		$uservkid = $value['player'];
+		$person_arr[] = '<input class="users_list" type="checkbox" data-vkid=' . $uservkid . '><img src="' . $avatar . '"' . 'class="rounded-circle" style="width: 30px; height: 30px; margin:8px">' . $first_name . ' ' . $last_name . '<hr></hr>';
+	}
+	return implode($person_arr);
+	//return $sql;
 }
