@@ -145,7 +145,7 @@ function get_trainings($connectEDB) {
 		$day_week = $value['dayname'];
 		$name_training = $value['intensity'];
 		$adress = $value['adress'];
-		$time_start = $value['start_time'];
+		$time_start = substr($value["start_time"], 0, -3);
 		$dates = $value['date'];
 		$date = new DateTime($value['date']);
 		$date = date_format($date, 'd-m-y');

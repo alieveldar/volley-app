@@ -1,0 +1,2 @@
+[Wed Jan 09 22:27:20.647055 2019] [ssl:warn] [pid 81] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Jan 09 22:27:20.769036 2019] [ssl:warn] [pid 82] AH01906: RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)

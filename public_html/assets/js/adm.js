@@ -235,12 +235,12 @@ $(document).ready(function() {
 
         });
         var action = "check_intruders";
-        var uri = "/api.php?action=" + action + trid + idvk;
-        alert(uri);
+        var uri = "/api.php?action=" + action + trid + idvk;        
         $.ajax({
             url: uri,
             success: function(data) {               
                 alert(data);
+                location.reload();
             }
         });
     });
