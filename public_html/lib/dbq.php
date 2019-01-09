@@ -619,12 +619,26 @@ function get_train_users($connectEDB, $trid) {
 	$rez = mysqli_query($connectEDB, $sql);
 	$person_arr = array();
 	while ($value = mysqli_fetch_assoc($rez)) {
+		$checked = "";
 		$first_name = $value['first_name'];
 		$last_name = $value['last_name'];
 		$avatar = $value['avatar'];
 		$uservkid = $value['player'];
-		$person_arr[] = '<input class="users_list" type="checkbox" data-vkid=' . $uservkid . '><img src="' . $avatar . '"' . 'class="rounded-circle" style="width: 30px; height: 30px; margin:8px">' . $first_name . ' ' . $last_name . '<hr></hr>';
+		if ($value['intruder']) {
+			$checked = "checked";
+		}
+		$person_arr[] = '<input class="users_list" type="checkbox" ' . $checked . ' data-vkid=' . $uservkid . '><img src="' . $avatar . '"' . 'class="rounded-circle" style="width: 30px; height: 30px; margin:8px">' . $first_name . ' ' . $last_name . '<hr></hr>';
 	}
 	return implode($person_arr);
 	//return $sql;
+}
+function check_intruders($connectEDB, $trid, $vkid) {
+	$sql = "UPDATE event_training SET intruding='0' WHERE training ='$trid'";
+	$rez = mysqli_query($connectEDB, $sql);
+	$vkid = explode(",", $vkid);
+	foreach ($vkid as $value) {
+		$sql = "UPDATE event_training SET intruding='1' WHERE (training ='$trid' AND player='$value')";
+		$rez = mysqli_query($connectEDB, $sql);
+	}
+	return "Подписчики отмечены как пропутившие тренировку";
 }

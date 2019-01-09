@@ -170,7 +170,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary group"  data-act="checkintruders">Отметить пропустивших тренировку</button>
+                            <button type="button" class="btn btn-primary intruders"  data-act="checkintruders">Отметить пропустивших тренировку</button>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Дек 29 2018 г., 21:49
+-- Время создания: Янв 09 2019 г., 15:10
 -- Версия сервера: 5.5.62-0ubuntu0.14.04.1
 -- Версия PHP: 7.2.12-1+ubuntu14.04.1+deb.sury.org+1
 
@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS `all_player` (
 ,`first_name` text
 ,`last_name` text
 ,`avatar` text
+,`intruder` int(11)
 );
 -- --------------------------------------------------------
 
@@ -90,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `event_training` (
   `sched` int(11) NOT NULL COMMENT '1 - yes, 2-usheduled',
   `referer` int(11) NOT NULL,
   `arch` int(11) NOT NULL,
+  `intruding` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
@@ -97,31 +99,31 @@ CREATE TABLE IF NOT EXISTS `event_training` (
 -- Дамп данных таблицы `event_training`
 --
 
-INSERT INTO `event_training` (`id`, `training`, `player`, `sched`, `referer`, `arch`) VALUES
-(1, 21, 39891999, 1, 0, 0),
-(2, 24, 39891999, 2, 0, 0),
-(3, 18, 39891999, 2, 0, 0),
-(4, 24, 1306508, 1, 39891999, 0),
-(5, 24, 273124770, 1, 39891999, 0),
-(6, 26, 39891999, 2, 0, 0),
-(7, 27, 39891999, 1, 0, 0),
-(8, 23, 39891999, 1, 0, 0),
-(9, 24, 25728480, 1, 39891999, 0),
-(10, 21, 25728480, 1, 39891999, 0),
-(11, 24, 5110497, 1, 39891999, 0),
-(12, 24, 14944443, 3, 39891999, 0),
-(13, 24, 25949218, 3, 39891999, 0),
-(14, 24, 1000490, 3, 39891999, 0),
-(15, 21, 14944443, 1, 39891999, 0),
-(16, 25, 39891999, 2, 0, 0),
-(17, 28, 39891999, 2, 0, 0),
-(18, 28, 25728480, 2, 39891999, 1),
-(19, 17, 39891999, 1, 0, 0),
-(20, 25, 514842413, 2, 0, 0),
-(21, 23, 514842413, 1, 0, 1),
-(22, 28, 514842413, 2, 0, 0),
-(23, 29, 514842413, 1, 0, 0),
-(24, 24, 514842413, 3, 0, 0);
+INSERT INTO `event_training` (`id`, `training`, `player`, `sched`, `referer`, `arch`, `intruding`) VALUES
+(1, 21, 39891999, 1, 0, 0, 0),
+(2, 24, 39891999, 2, 0, 0, 1),
+(3, 18, 39891999, 2, 0, 0, 0),
+(4, 24, 1306508, 1, 39891999, 0, 0),
+(5, 24, 273124770, 1, 39891999, 0, 0),
+(6, 26, 39891999, 2, 0, 0, 0),
+(7, 27, 39891999, 1, 0, 0, 0),
+(8, 23, 39891999, 1, 0, 0, 0),
+(9, 24, 25728480, 1, 39891999, 0, 0),
+(10, 21, 25728480, 1, 39891999, 0, 0),
+(11, 24, 5110497, 1, 39891999, 0, 0),
+(12, 24, 14944443, 3, 39891999, 0, 0),
+(13, 24, 25949218, 3, 39891999, 0, 0),
+(14, 24, 1000490, 3, 39891999, 0, 0),
+(15, 21, 14944443, 1, 39891999, 0, 0),
+(16, 25, 39891999, 2, 0, 0, 0),
+(17, 28, 39891999, 2, 0, 0, 0),
+(18, 28, 25728480, 2, 39891999, 1, 0),
+(19, 17, 39891999, 1, 0, 0, 0),
+(20, 25, 514842413, 2, 0, 0, 0),
+(21, 23, 514842413, 1, 0, 1, 0),
+(22, 28, 514842413, 2, 0, 0, 0),
+(23, 29, 514842413, 1, 0, 0, 0),
+(24, 24, 514842413, 3, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -236,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `ssid` (
 --
 
 INSERT INTO `ssid` (`id`, `us_key`) VALUES
-(1, 'c956306276445ca35c26eda5a5bdb12e856c580f5028b63aed0b7c8ddabe9e4258d26bc478f2d079ade66');
+(1, '344d25aa0b4cc8b78c5d2de20c4555628c6bcc9daa25fa581c8c4125bf631326a2418dcfe836a5e309e38');
 
 -- --------------------------------------------------------
 
@@ -358,7 +360,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `sex` int(11) NOT NULL,
   `avatar` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=348 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=350 ;
 
 --
 -- Дамп данных таблицы `users`
@@ -375,7 +377,7 @@ INSERT INTO `users` (`id`, `id_vk`, `first_name`, `last_name`, `age`, `nick_name
 (300, 25949218, 'Кристина', 'Ларионова', 0, '', 0, 0, 1, 'https://pp.userapi.com/c851136/v851136285/6fc8c/tSjB93_EUG8.jpg?ava=1'),
 (301, 1000490, 'Александр', 'Никитин', 0, '', 0, 0, 2, 'https://pp.userapi.com/c626426/v626426490/bc4d5/5Zzwft5BA1c.jpg?ava=1'),
 (346, 514842413, 'Пишу', 'Приложение', 3110, '', 0, 0, 2, 'https://vk.com/images/camera_50.png?ava=1'),
-(347, 39891999, 'Эльдар', 'Юрьевич', 3110, '', 0, 0, 2, 'https://pp.userapi.com/c638519/v638519999/2389/jFzCxZsRaPs.jpg?ava=1');
+(349, 39891999, 'Эльдар', 'Юрьевич', 3110, '', 0, 0, 2, 'https://pp.userapi.com/c638519/v638519999/2389/jFzCxZsRaPs.jpg?ava=1');
 
 -- --------------------------------------------------------
 
@@ -466,7 +468,7 @@ CREATE ALGORITHM=TEMPTABLE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `all_player`;
 
-CREATE ALGORITHM=TEMPTABLE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_player` AS select `event_training`.`player` AS `player`,`training`.`id` AS `trid`,`training`.`day_of_week` AS `day_of_week`,`training`.`date` AS `date`,`training`.`start_time` AS `start_time`,`training_level`.`intensity` AS `intensity`,`event_training`.`sched` AS `sched`,`event_training`.`referer` AS `referer`,`users`.`first_name` AS `first_name`,`users`.`last_name` AS `last_name`,`users`.`avatar` AS `avatar` from (((`event_training` left join `training` on((`event_training`.`training` = `training`.`id`))) left join `training_level` on((`training`.`level` = `training_level`.`id`))) left join `users` on((`event_training`.`player` = `users`.`id_vk`)));
+CREATE ALGORITHM=TEMPTABLE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_player` AS select `event_training`.`player` AS `player`,`training`.`id` AS `trid`,`training`.`day_of_week` AS `day_of_week`,`training`.`date` AS `date`,`training`.`start_time` AS `start_time`,`training_level`.`intensity` AS `intensity`,`event_training`.`sched` AS `sched`,`event_training`.`referer` AS `referer`,`users`.`first_name` AS `first_name`,`users`.`last_name` AS `last_name`,`users`.`avatar` AS `avatar`,`event_training`.`intruding` AS `intruder` from (((`event_training` left join `training` on((`event_training`.`training` = `training`.`id`))) left join `training_level` on((`training`.`level` = `training_level`.`id`))) left join `users` on((`event_training`.`player` = `users`.`id_vk`)));
 
 -- --------------------------------------------------------
 

@@ -298,6 +298,10 @@ if (isset($_GET["action"])) {
 	} elseif ($_GET['action'] == 'get_train_users') {
 		$trid = $_GET["trid"];
 		echo get_train_users($connectEDB, $trid);
+	} elseif ($_GET['action'] == 'check_intruders') {
+		$trid = $_GET["trid"];
+		$vkid = $_GET["vkid"];
+		echo check_intruders($connectEDB, $trid, $vkid);
 	}
 
 }

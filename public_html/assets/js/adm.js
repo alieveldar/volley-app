@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    // find elements
+    var intruderstrid = 0;
     var trainers = $(".trainer");
 
-    // handle click and add class
+
     trainers.on("click", function(event) {
         var sex;
         var target = $(event.target);
@@ -208,16 +208,39 @@ $(document).ready(function() {
         });
     });
     var trainingusers = $(".check_users");
-    trainingusers.on("click", function(event){
+    trainingusers.on("click", function(event) {
         var target = $(event.target);
         var trid = "&trid=" + target.data("trid");
+        intruderstrid = target.data("trid");
         var action = "get_train_users";
-        var uri = "/api.php?action=" + action + trid;        
+        var uri = "/api.php?action=" + action + trid;
         $.ajax({
             url: uri,
-            success: function(data) {                
+            success: function(data) {
                 $('.trusers').html(data);
                 //location.reload();
+            }
+        });
+    });
+    var intruders = $(".intruders");
+    intruders.on("click", function(event) {
+        var trid = "&trid=" + intruderstrid;
+        var idvk = "&vkid=";
+        checked = $(".users_list");
+        checked.each(function() {
+            if ($(this).prop('checked')) {
+                // checked.push($(this).data("vkid"));
+                idvk = idvk + ($(this).data("vkid")) + ',';
+            }
+
+        });
+        var action = "check_intruders";
+        var uri = "/api.php?action=" + action + trid + idvk;
+        alert(uri);
+        $.ajax({
+            url: uri,
+            success: function(data) {               
+                alert(data);
             }
         });
     });
