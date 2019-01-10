@@ -53,7 +53,7 @@ if (isset($_GET["action"])) {
 			$condition_value[] = $trid;
 			//echo $rez;
 			if (check_expiration_day($connectEDB, $vkid, $trid)) {
-				echo "Время записи на тренировку инстекло";
+				echo "Время записи на тренировку истекло";
 				exit();
 			}
 			if ($referer == 0) {

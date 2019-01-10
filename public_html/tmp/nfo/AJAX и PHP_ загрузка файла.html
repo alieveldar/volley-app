@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://ruseller.com/lessons.php?rub=32&id=2876 -->
+<html xmlns="//www.w3.org/1999/xhtml"><script type="text/javascript" async="" src="./AJAX и PHP_ загрузка файла_files/watch.js"></script><script type="text/javascript" async="" src="./AJAX и PHP_ загрузка файла_files/widget.js"></script><script src="./AJAX и PHP_ загрузка файла_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" charset="utf-8" id="zm-extension" src="chrome-extension://fdcgdnkidjaadafnichfpabhfomcebme/scripts/webrtc-patch.js" async=""></script><script type="text/javascript" async="" src="./AJAX и PHP_ загрузка файла_files/widget(1).js"></script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+    <meta http-equiv="X-UA-Compatible" content="IE=9">	<title>AJAX и PHP: загрузка файла</title>
+	<meta name="title" content="AJAX и PHP: загрузка файла">
+	<meta name="keywords" content=" E44157">
+	<meta name="description" content="Пример того как осуществить загрузку файла через PHP и jQuery ajax.">
+    <link rel="shortcut icon" href="https://ruseller.com/css/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="./AJAX и PHP_ загрузка файла_files/goodalert.css">
+    <script src="./AJAX и PHP_ загрузка файла_files/goodalert.js" type="text/javascript"></script>
+    
+    <link rel="stylesheet" href="./AJAX и PHP_ загрузка файла_files/bookmarks.css&amp;1500981005" type="text/css" media="screen, projection">    <link rel="stylesheet" type="text/css" href="./AJAX и PHP_ загрузка файла_files/colorbox.css">
+    <link rel="stylesheet" media="print" type="text/css" href="./AJAX и PHP_ загрузка файла_files/print.css">
+        <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/ie.css" /><![endif]-->
+    
+    <script src="./AJAX и PHP_ загрузка файла_files/jquery.min.js"></script><style>@media print {#ghostery-purple-box {display:none !important}}</style>
+    <script src="./AJAX и PHP_ загрузка файла_files/jquery.cookie.min.js"></script>
+    <script src="./AJAX и PHP_ загрузка файла_files/oa.js" type="text/javascript"></script>
+    <script src="./AJAX и PHP_ загрузка файла_files/jquery.colorbox-min.js" type="text/javascript"></script>
+    
+    <script src="./AJAX и PHP_ загрузка файла_files/bookmarks.js&amp;1358395463"></script>        <!--[if lte IE 8]><script src="/min/b=js&amp;f=ie_corner.js,ie_must_die.js&amp;1296138205"></script><![endif]-->
+    <script>
+    SyntaxHighlighter.config.clipboardSwf = 'plugins/syntax/scripts/clipboard.swf';
+    SyntaxHighlighter.all();
+    </script>    
+    <script src="./AJAX и PHP_ загрузка файла_files/b=js&amp;f=jquery.bbcode.js,autoresize.jquery.js,comments.js&amp;1313749703"></script><link rel="alternate" type="application/rss+xml" title="RSS" href="https://feeds.feedburner.com/ruseller/CdHX">      
+<!--Digital window verification 001 -->
+<link rel="stylesheet" type="text/css" media="screen" href="./AJAX и PHP_ загрузка файла_files/index.css"></head>
+
+<body><div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" style="padding-bottom: 42px; padding-right: 42px; display: none;"><div id="cboxWrapper" style=""><div style=""><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxLoadedContent" class="" style="width: 0px; height: 0px; overflow: hidden;"></div><div id="cboxLoadingOverlay" class="" style=""></div><div id="cboxLoadingGraphic" class="" style=""></div><div id="cboxTitle" class="" style=""></div><div id="cboxCurrent" class="" style=""></div><div id="cboxNext" class="" style=""></div><div id="cboxPrevious" class="" style=""></div><div id="cboxSlideshow" class="" style=""></div><div id="cboxClose" class="" style=""></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div></div>
+<div id="body" style="width: auto;">
+ 
+    <div id="wrapper">
+    
+    	<div id="header">
+		
+		
+           
+            <div id="innerHeader" class="corner15">
+                <img id="droshaHeader" src="./AJAX и PHP_ загрузка файла_files/drosha_header.png" alt="*">
+                <img id="header1" src="./AJAX и PHP_ загрузка файла_files/header1.jpg">
+                <img id="header2" src="./AJAX и PHP_ загрузка файла_files/header2.jpg" style="display: inline;">
+                <a href="https://ruseller.com/"><img id="logo" src="./AJAX и PHP_ загрузка файла_files/logo.png" alt="ruseller.com"></a>
+                <p>Частная коллекция качественных материалов для тех, кто делает сайты</p>
+                  <div id="www-projects-list-wrapper">
+                       <a id="www-projects-list-toogle" href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#www-projects-list" class="toggle"></a> 
+                       <div id="www-projects-list">
+                            <ul>
+                                <li>
+                                    <img src="./AJAX и PHP_ загрузка файла_files/favicon.ico">
+                                    <a href="https://photoshop-master.ru/" target="_blank">Фотошоп-мастер</a>
+                                    <span><strong>2000+</strong> уроков по фотошопу</span>
+                                </li>
+                                
+                                <li>
+                                    <img src="./AJAX и PHP_ загрузка файла_files/favicon(1).ico">
+                                    <a href="https://photo-monster.ru/" target="_blank">Фото-монстр</a>
+                                    <span><strong>300+</strong> уроков для фотографов</span>
+                                </li>                       
+                               
+                                <li>
+                                    <img src="./AJAX и PHP_ загрузка файла_files/favicon(2).ico">
+                                    <a href="https://videosmile.ru/" target="_blank">Видео-смайл</a>
+                                    <span><strong>200+ </strong>уроков по видеообработке</span>
+                                </li>
+
+                                <li style="height: 72px;">
+                                    <img src="./AJAX и PHP_ загрузка файла_files/favicon32.png">
+                                    <a href="https://kzen.ru/" target="_blank">Жизнь в стиле «Кайдзен»</a> 
+                                    <span>Техники и приемы для гармоничной и сбалансированной жизни</span>
+                                </li>   
+                                                                    
+                            </ul>
+                       </div>
+                  </div>
+                  <script>
+                  $(function (){ 
+	                   $('#www-projects-list-toogle').click(function(){
+	                        $('#www-projects-list').slideToggle();
+                            return false;
+	                   });
+                  });
+                  </script>                
+            </div>
+    	</div>
+   
+	   <section id="top_menu"> 
+           <nav>
+                    <a href="https://ruseller.com/"><img id="homeButton" src="./AJAX и PHP_ загрузка файла_files/home.png"><img class="separator" src="./AJAX и PHP_ загрузка файла_files/menu_separator.png"></a>
+                    <a href="https://ruseller.com/page.php?doc=goodies">Видеокурсы на DVD<img class="separator" src="./AJAX и PHP_ загрузка файла_files/menu_separator.png"></a>
+                                     
+                    <a href="https://ruseller.com/page.php?doc=to_offer_lessons">Предложить урок<img class="separator" src="./AJAX и PHP_ загрузка файла_files/menu_separator.png"> </a>
+                    <a href="https://ruseller.com/page.php?doc=recommend">Рекомендую</a>
+           </nav>
+            <div id="search">
+                <form method="get" action="https://ruseller.com/search.php">
+                        <div class="input">
+                            <input type="text" name="s" class="fields_default" value="Поиск">
+                        </div>
+                    <input id="searchSubmit" type="submit" class="corner5" value="»»">
+                </form>
+            </div>
+            <div class="clear"></div>
+        </section>	
+
+		<div id="after_header" style="text-align: center; position: relative; top: 99; z-index: 99; margin: 0 0 10px 0;"></div>    		
+
+	   <section id="middle">
+    		<div id="container">
+    			<div id="content">
+                <div id="hideRightSidebar" style="display: none;"></div>
+                <div id="generalContent" class="contentConteiner">
+<ul id="track">
+         <li><a href="https://ruseller.com/">Главная</a>»</li>
+                  <li>
+                            <a href="https://ruseller.com/lessons.php">Уроки</a>»
+                
+         </li>
+                  <li>
+                            <a href="https://ruseller.com/lessons.php?rub=32">jQuery</a>»
+                
+         </li>
+                  <li>
+                            AJAX и PHP: загрузка файла                
+         </li>
+             </ul>
+<div class="clear"></div>        
+
+     
+    
+    <div id="lessons">
+        <div style="text-align: center;">
+            <div style="text-align: center;"><a class="ayfdetkl_25 rotor-item" target="_blank" href="https://redhappy.ru/2017//150"> <img style="max-width: 100%;" src="./AJAX и PHP_ загрузка файла_files/3704c4790f6f4efd059da924cc6c35d4.gif" alt="" title=""> </a> </div>        </div>        
+       
+                
+          
+        <h1 style="margin-top: 40px;">AJAX и PHP: загрузка файла</h1>
+        <p>Пример того как осуществить загрузку файла через PHP и jQuery ajax.</p>
+<p>Для начала необходимо создать HTML элемент для загрузки файла.</p>
+<div class="code_sample">
+<div id="highlighter_493997" class="syntaxhighlighter  "><div class="bar   "><div class="toolbar"><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#viewSource" title="view source" class="item viewSource" style="width: 16px; height: 16px;">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_493997_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_493997" menu="false" src="plugins/syntax/scripts/clipboard.swf"></div><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#printSource" title="print" class="item printSource" style="width: 16px; height: 16px;">print</a><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="plain">&lt;</code><code class="keyword">input</code> <code class="color1">id</code><code class="plain">=</code><code class="string">"sortpicture"</code> <code class="color1">type</code><code class="plain">=</code><code class="string">"file"</code> <code class="color1">name</code><code class="plain">=</code><code class="string">"sortpic"</code> <code class="plain">/&gt;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>2</code></td><td class="content"><code class="plain">&lt;</code><code class="keyword">button</code> <code class="color1">id</code><code class="plain">=</code><code class="string">"upload"</code><code class="plain">&gt;Upload&lt;/</code><code class="keyword">button</code><code class="plain">&gt;</code></td></tr></tbody></table></div></div></div>
+</div>
+<p>Далее необходимо дописать JS код:</p>
+<div class="code_sample">
+<div id="highlighter_982007" class="syntaxhighlighter  "><div class="bar                                                                                      "><div class="toolbar"><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#viewSource" title="view source" class="item viewSource" style="width: 16px; height: 16px;">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_982007_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_982007" menu="false" src="plugins/syntax/scripts/clipboard.swf"></div><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#printSource" title="print" class="item printSource" style="width: 16px; height: 16px;">print</a><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>01</code></td><td class="content"><code class="plain">$(</code><code class="string">'#upload'</code><code class="plain">).on(</code><code class="string">'click'</code><code class="plain">, </code><code class="keyword">function</code><code class="plain">() {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>02</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">var</code> <code class="plain">file_data = $(</code><code class="string">'#sortpicture'</code><code class="plain">).prop(</code><code class="string">'files'</code><code class="plain">)[0];</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>03</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">var</code> <code class="plain">form_data = </code><code class="keyword">new</code> <code class="plain">FormData();</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>04</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">form_data.append(</code><code class="string">'file'</code><code class="plain">, file_data);</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>05</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">alert(form_data);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>06</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">$.ajax({</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>07</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">url: </code><code class="string">'upload.php'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>08</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">dataType: </code><code class="string">'text'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>09</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">cache: </code><code class="keyword">false</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">contentType: </code><code class="keyword">false</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">processData: </code><code class="keyword">false</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">data: form_data,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">type: </code><code class="string">'post'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">success: </code><code class="keyword">function</code><code class="plain">(php_script_response){</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">alert(php_script_response);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>17</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">});</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>18</code></td><td class="content"><code class="plain">});</code></td></tr></tbody></table></div></div></div>
+</div>
+<p>Теперь приступим к PHP скрипту, где загрузим файл на сервер.</p>
+<p><em>upload.php</em>:</p>
+<div class="code_sample">
+<div id="highlighter_253388" class="syntaxhighlighter  "><div class="bar                 "><div class="toolbar"><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#viewSource" title="view source" class="item viewSource" style="width: 16px; height: 16px;">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_253388_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_253388" menu="false" src="plugins/syntax/scripts/clipboard.swf"></div><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#printSource" title="print" class="item printSource" style="width: 16px; height: 16px;">print</a><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>01</code></td><td class="content"><code class="plain">&lt;?php</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>02</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>03</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">if</code> <code class="plain">( 0 &lt; </code><code class="variable">$_FILES</code><code class="plain">[</code><code class="string">'file'</code><code class="plain">][</code><code class="string">'error'</code><code class="plain">] ) {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>04</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="functions">echo</code> <code class="string">'Error: '</code> <code class="plain">. </code><code class="variable">$_FILES</code><code class="plain">[</code><code class="string">'file'</code><code class="plain">][</code><code class="string">'error'</code><code class="plain">] . </code><code class="string">'&lt;br&gt;'</code><code class="plain">;</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>05</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>06</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">else</code> <code class="plain">{</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>07</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">move_uploaded_file(</code><code class="variable">$_FILES</code><code class="plain">[</code><code class="string">'file'</code><code class="plain">][</code><code class="string">'tmp_name'</code><code class="plain">], </code><code class="string">'uploads/'</code> <code class="plain">. </code><code class="variable">$_FILES</code><code class="plain">[</code><code class="string">'file'</code><code class="plain">][</code><code class="string">'name'</code><code class="plain">]);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>08</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>09</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="plain">?&gt;</code></td></tr></tbody></table></div></div></div>
+</div>
+<p>Несколько слов о каталоге, в который загружается файл:</p>
+<ol>
+<li>Убедитесь, что путь к каталогу верен</li>
+<li>Каталог должен быть доступен для <em>записи</em>.</li>
+</ol>
+<p>Пару слов о PHP функции <a href="http://php.net/manual/en/function.move-uploaded-file.php">move_uploaded_file</a>, которая используется в upload.php:</p>
+<div class="code_sample">
+<div id="highlighter_467563" class="syntaxhighlighter  "><div class="bar                                  "><div class="toolbar"><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#viewSource" title="view source" class="item viewSource" style="width: 16px; height: 16px;">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_467563_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_467563" menu="false" src="plugins/syntax/scripts/clipboard.swf"></div><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#printSource" title="print" class="item printSource" style="width: 16px; height: 16px;">print</a><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="plain">move_uploaded_file(</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>2</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>3</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="comments">// временное расположение файла</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>4</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="variable">$_FILES</code><code class="plain">[</code><code class="string">'file'</code><code class="plain">][</code><code class="string">'tmp_name'</code><code class="plain">],</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>5</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>6</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="comments">// конечный путь к файлу и его название</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>7</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="string">'uploads/'</code> <code class="plain">. </code><code class="variable">$_FILES</code><code class="plain">[</code><code class="string">'file'</code><code class="plain">][</code><code class="string">'name'</code><code class="plain">]</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>8</code></td><td class="content"><code class="plain">);</code></td></tr></tbody></table></div></div></div>
+</div>
+<p><code>$_FILES['file']['name']</code> — изначальное имя файла. Можете задать своё название:</p>
+<div class="code_sample">
+<div id="highlighter_851786" class="syntaxhighlighter  "><div class="bar   "><div class="toolbar"><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#viewSource" title="view source" class="item viewSource" style="width: 16px; height: 16px;">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_851786_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_851786" menu="false" src="plugins/syntax/scripts/clipboard.swf"></div><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#printSource" title="print" class="item printSource" style="width: 16px; height: 16px;">print</a><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#about" title="?" class="item about" style="width: 16px; height: 16px;">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="plain">move_uploaded_file(</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>2</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="variable">$_FILES</code><code class="plain">[</code><code class="string">'file'</code><code class="plain">][</code><code class="string">'tmp_name'</code><code class="plain">],</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>3</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="string">'uploads/my_new_filename.whatever'</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>4</code></td><td class="content"><code class="plain">);</code></td></tr></tbody></table></div></div></div>
+</div>
+<p>Также стоит убедиться что в конфигурационных настройках PHP, значения <a href="http://php.net/manual/en/ini.core.php#ini.upload-max-filesize" target="_blank">upload_max_filesize</a> и     <a href="http://php.net/manual/en/ini.core.php#ini.post-max-size" target="_blank">post_max_size</a> соответствуют вашим требованиям.</p>        <div id="lessonPrepared">
+            <p>Данный урок подготовлен для вас командой сайта <a href="http://ruseller.com/">ruseller.com</a><br>
+               Источник урока: <a target="_blank" href="https://stackoverflow.com/questions/23980733/jquery-ajax-file-upload-php">https://stackoverflow.com/questions/23980733/jquery-ajax-file-upload-php</a><br>
+               Перевел: Станислав Протасевич<br>
+               Урок создан: 24 Мая 2017<br>
+               Просмотров: 28996<br>
+               <a href="https://ruseller.com/page.php?doc=reprint">Правила перепечатки</a>
+            </p>
+        </div>
+    </div>
+    <hr>                     
+    <div id="contentInfo">    
+                         
+	  
+      	
+    </div>           
+</div>    
+<div class="contentConteiner">    
+    <h2>5 последних уроков рубрики "jQuery"</h2>
+
+    <ul id="last5" class="lessons">
+             <li>  
+             <img src="./AJAX и PHP_ загрузка файла_files/thumbnail.png"> 
+             <h4><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2906">Анимация набора текста на jQuery</a></h4>
+             <p>Сегодня мы бы хотели вам рассказать о библиотеке TypeIt — бесплатном jQuery плагине. С её помощью можно имитировать набор текста. Если всё настроить правильно, то можно добиться очень реалистичного эффекта.</p>
+             <div class="clear"></div>
+        </li>                     
+            <li>  
+             <img src="./AJAX и PHP_ загрузка файла_files/thumbnail(1).png"> 
+             <h4><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2875">Временная шкала на jQuery</a></h4>
+             <p>jQuery плагин для создания временной шкалы.</p>
+             <div class="clear"></div>
+        </li>                     
+            <li>  
+             <img src="./AJAX и PHP_ загрузка файла_files/thumbnail(2).png"> 
+             <h4><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2893">Заметка: Перезагрузка и редирект на JavaScript</a></h4>
+             <p>Быстрая заметка, где вы сможете найти парочку JS сниппетов для перезагрузки и перенаправления пользователей через JavaScript.</p>
+             <div class="clear"></div>
+        </li>                     
+            <li>  
+             <img src="./AJAX и PHP_ загрузка файла_files/thumbnail(3).png"> 
+             <h4><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2880">Рисуем диаграмму Ганта</a></h4>
+             <p>jQuery плагин для создания диаграммы Ганта.</p>
+             <div class="clear"></div>
+        </li>                     
+            <li>  
+             <img src="./AJAX и PHP_ загрузка файла_files/thumbnail(4).png"> 
+             <h4><a href="https://ruseller.com/lessons.php?rub=32&amp;id=2886">Stimed — стили в зависимости от времени суток</a></h4>
+             <p>Интересная библиотека с помощью которой можно задать определённым элементам страницы особые стили в зависимости от времени суток.</p>
+             <div class="clear"></div>
+        </li>                     
+                                                                                           
+    </ul> 
+    <div class="clear"></div>
+       
+
+</div>
+<style>
+    #hypercomments_widget{
+        margin-top: 30px;
+    }
+    #comment{
+        display: none;
+    }
+    
+    .hc__form__send {
+        background: #3da115 url(/css/images/button_green_bg.png) repeat-x !important;
+        border: solid 1px #fff !important; 
+        color: white !important;
+        border-radius: 6px !important;
+        padding: 2px 15px !important;
+    }    
+    
+</style>
+<div class="contentConteiner">
+     <article>
+                               <div class="noRegister">
+                <a class="sign_up">Зарегистрируйтесь</a> или <a id="autorizLink" href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#">авторизуйтесь</a>, чтобы добавлять комментарии, оценивать уроки и сохранять их в личном кабинете
+             </div>
+         
+                  <div id="hypercomments_widget">
+             <ul id="comment">
+                                                                                 
+             </ul>
+         </div>
+    </article> 
+</div>         
+
+
+<script type="text/javascript">
+var hc_config = {"widget":"Stream","widget_id":83049,"xid":"1_2876"};
+hc_config.callback = function(app, init){
+    var form = document.querySelector('.hc__form'); 
+    var menu = document.querySelector('.hc__menu'); 
+  
+      if (document.cookie.indexOf("policy_accept") < 0){
+          form.classList.add('hidden');    
+          var div = document.createElement('div');
+          var btn = document.createElement('button');
+          
+          div.classList.add('hc_accept_private'); 
+          btn.classList.add('hc__form__send'); 
+          
+          btn.innerHTML = '✔ Согласен'; 
+          div.innerHTML = '<p>Сервис комментирования материалов сайта ruseller.com не является частью сайта ruseller.com, а предоставлен сервисом hypercomments.com. При размещении комментария администрация сайта в целях вашей безопасности просит не размещать персональные данные, а при их размещении ознакомиться с политикой конфиденциальности сервиса hypercomments.com, поскольку обработка персональных данных осуществляется сервисом hypercomments.com самостоятельно.</p>';
+          
+          btn.addEventListener("click", function() {
+            var date = new Date(new Date().getTime() + 31536000 * 1000);
+            
+            form.classList.remove('hidden');
+            div.classList.add('hidden');
+            
+            document.cookie = "policy_accept=1; path=/; expires=" + date.toUTCString();
+            return false;
+         });                  
+          
+          div.appendChild(btn);
+          menu.parentNode.insertBefore(div, menu.nextSibling);
+    }; 
+}
+_hcwp = window._hcwp || [];
+_hcwp.push(hc_config);
+(function() {
+if("HC_LOAD_INIT" in window)return;
+HC_LOAD_INIT = true;
+var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/83049/"+lang+"/widget.js";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(hcc, s.nextSibling);
+})();
+</script>            	</div><!-- #content-->
+    		</div><!-- #container-->
+    
+  		<aside id="sideLeft">
+                <div class="box">
+    <div class="innerBox">
+        <h3><a href="https://ruseller.com/lessons.php">Уроки и статьи:</a></h3>
+            <menu>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/lessons.php?rub=1">
+                            HTML и DHTML                             
+                                <span>(85)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/lessons.php?rub=2">
+                            CSS                             
+                                <span>(557)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li style="margin-left: 0px;">
+                       <a href="https://ruseller.com/lessons.php?rub=28">
+                            Разное                             
+                                <span>(441)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/lessons.php?rub=29">
+                            Для сайта                             
+                                <span>(186)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li style="margin-left: 0px;">
+                       <a href="https://ruseller.com/lessons.php?rub=30">
+                            Электронные деньги                             
+                                <span>(2)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/lessons.php?rub=32">
+                            jQuery                             
+                                <span>(580)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li style="margin-left: 0px;">
+                       <a href="https://ruseller.com/lessons.php?rub=33">
+                            Mootools                             
+                                <span>(17)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li style="margin-left: 0px;">
+                       <a href="https://ruseller.com/lessons.php?rub=35">
+                            Юзабилити                             
+                                <span>(22)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/lessons.php?rub=37">
+                            PHP                             
+                                <span>(502)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/lessons.php?rub=40">
+                            Wordpress                             
+                                <span>(107)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/lessons.php?rub=41">
+                            Joomla!                             
+                                <span>(16)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/lessons.php?rub=42">
+                            SEO                             
+                                <span>(12)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/lessons.php?rub=43">
+                            HTML5                             
+                                <span>(45)</span>
+                                                   </a>
+                   </li>
+                
+                                <li><a href="https://ruseller.com/project">Проекты <span style="color: #5e0404;">NEW!</span></a></li>
+                            </menu>
+      </div>           
+</div><div class="box">
+    <div class="innerBox">
+        <h3><a href="https://ruseller.com/adds.php">Скачать:</a></h3>
+            <menu>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/adds.php?rub=10">
+                            Программы                             
+                                <span>(23)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/adds.php?rub=11">
+                            Скрипты                             
+                                <span>(105)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/adds.php?rub=12">
+                            Видеоуроки                             
+                                <span>(95)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/adds.php?rub=31">
+                            Дизайн                             
+                                <span>(686)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/adds.php?rub=34">
+                            Полезное                             
+                                <span>(45)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/adds.php?rub=36">
+                            Шаблоны сайтов                             
+                                <span>(1540)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/adds.php?rub=38">
+                            Flash заготовки                             
+                                <span>(122)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/adds.php?rub=39">
+                            Wordpress темы                             
+                                <span>(248)</span>
+                                                   </a>
+                   </li>
+                
+                            </menu>
+      </div>           
+</div><div class="box">
+    <div class="innerBox">
+        <h3><a href="https://ruseller.com/service.php">Online-инструменты:</a></h3>
+            <menu>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/service.php?rub=19">
+                            CSS                             
+                                <span>(55)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/service.php?rub=21">
+                            Изображения                             
+                                <span>(40)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a href="https://ruseller.com/service.php?rub=22">
+                            Разное                             
+                                <span>(52)</span>
+                                                   </a>
+                   </li>
+                                    
+                   <li>
+                       <a target="_blank" href="http://hosting-ninja.ru/">
+                            Подобрать хостинг                                                   </a>
+                   </li>
+                
+                            </menu>
+      </div>           
+</div> 			    <div class="box hn">
+                    <div class="innerBox">
+    			         <h3>ТОП-10 Хостеров:</h3>
+                         <menu>
+                                                     </menu>
+                         <div class="center"><a style="text-decoration: underline;" target="_blank" href="https://hosting-ninja.ru/rating/">Смотреть весь рейтинг</a></div>
+                    </div>                
+                </div>
+                
+    			<div class="box">
+                    <div class="innerBox">
+    			         <h3>Шпаргалки:</h3>
+                         <menu>
+                            <li style="margin-left: 0px;"><a target="_blank" rel="nofollow" href="http://jquery.page2page.ru/">JQUERY</a></li>
+                            <li><a href="https://ruseller.com/shporacss.php">CSS</a></li>
+                            <li style="margin-left: 0px;"><a href="https://ruseller.com/htmlshpora.php">HTML</a></li>
+                         </menu>
+                    </div>                
+                </div>
+                                
+    			<div class="box">
+                    <div id="bonusHtml" class="innerBox cours">
+                        <p class="question">Видеокурс "HTML с нуля"</p>
+                        <a href="https://1popov.ru/bonuscourse/htmlform/" target="_blank" class="small">
+                            <img src="./AJAX и PHP_ загрузка файла_files/HTML.png">
+                        </a>                            
+                        <p>Если вы давно хотите как следует изучить HTML, то у меня для Вас есть отличная новость!</p>
+                        <p>Вы можете совершенно бесплатно получить полноценный курс по HTML из моего платного сборника. 33 видеоурока от Евгения Попова!</p> 
+                        <p class="freeCours">Бесплатно!</p>
+                        <p class="center"><a href="https://1popov.ru/bonuscourse/htmlform/" target="_blank" class="small">Список уроков и подробности получения курса здесь</a></p>
+                        
+                    </div>
+                </div>   
+
+    			<div class="box">
+                    <div id="bonusHtml" class="innerBox cours">
+                        <p class="question">Видеокурс "CSS с нуля"</p>
+                        <a href="https://1popov.ru/bonuscourse/cssform/" target="_blank" class="small">
+                            <img src="./AJAX и PHP_ загрузка файла_files/CSS.png">
+                        </a>
+                        <p>Если вы уже изучили HTML и хотите двигаться дальше, то следующим шагом будет изучение технологии CSS. </p>
+                        <p>Так же, как и в случае с HTML, вы можете совершенно бесплатно получить полноценный курс по СSS из моего платного сборника. Вас ждет 45 подробных видеоуроков от Евгения Попова!</p> 
+                        <p class="freeCours">Бесплатно!</p>
+                        <p class="center"><a href="https://1popov.ru/bonuscourse/cssform/" target="_blank" class="small">Список уроков и подробности получения курса здесь</a></p>
+                    </div>
+                </div>  
+                    			<div class="box">
+                    <div id="subscribeEmail" class="innerBox sidebarForm">
+    			        <h4>Получать новые уроки на E-mail:</h4>
+                        <form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#39;//feedburner.google.com/fb/a/mailverify?uri=ruseller/CdHX&#39;, &#39;popupwindow&#39;,&#39;scrollbars=yes,width=550,height=520&#39;);return true">
+                            <label>Ваш email:</label>
+                            <div class="input">
+                                <input type="text" name="email">
+                            </div>    
+                            <input type="hidden" value="ruseller/CdHX" name="uri">
+                            <input type="hidden" name="loc" value="ru_RU">
+                            <button type="submit" class="button green">Подписаться</button>
+                        </form>
+                    </div>                
+                </div>                                
+    			<div class="box">
+                    <div id="rss" class="innerBox">
+                        <h4>RSS подписка</h4>
+                        <img src="./AJAX и PHP_ загрузка файла_files/rss.jpg"><br>
+                        <p><img src="./AJAX и PHP_ загрузка файла_files/CdHX" height="26" width="88" style="border:0" alt="feed"></p>
+                        <a href="https://feeds.feedburner.com/ruseller/CdHX" class="button orange">Подписаться</a>
+                    </div>
+ 
+                                      
+                </div>                 
+                                                               
+    		</aside><!-- #sideLeft -->
+    		<aside id="sideRight">
+                <div class="box">
+                    <div id="login" class="innerBox sidebarForm">
+                    <span class="oAuth" id="oAuthTop">
+                                                    <a href="http://oauth.vk.com//authorize?client_id=2438490&amp;redirect_uri=http://ruseller.com/oauth/?provider=vkontakte&amp;response_type=code" title="Войти с Вконтакте">
+                                <img src="./AJAX и PHP_ загрузка файла_files/vkontakte.png">
+                            </a>  
+                                                    <a href="https://connect.mail.ru/oauth/authorize?client_id=639618&amp;response_type=code&amp;redirect_uri=http://ruseller.com/oauth/?provider=mailru" title="Войти с Mail.ru">
+                                <img src="./AJAX и PHP_ загрузка файла_files/mailru.png">
+                            </a>  
+                                                    <a href="http://www.odnoklassniki.ru/oauth/authorize?client_id=3621888&amp;response_type=code&amp;redirect_uri=http://ruseller.com/oauth/?provider=odnoklassniki" title="Войти с Одноклассники">
+                                <img src="./AJAX и PHP_ загрузка файла_files/odnoklassniki.png">
+                            </a>  
+                                                    <a href="https://www.facebook.com/dialog/oauth?client_id=220051411380386&amp;redirect_uri=http%3A%2F%2Fruseller.com%2Foauth%2F%3Fprovider%3Dfacebook" title="Войти с Facebook">
+                                <img src="./AJAX и PHP_ загрузка файла_files/facebook.png">
+                            </a>  
+                                              </span>    			        
+                        
+                         <h4>Авторизация</h4>
+                         <form action="https://ruseller.com/userarea.php?action=login" method="post">
+                             <label>Логин </label>
+                             <div class="input">
+                                <input type="text" name="name">
+                             </div>                         
+                            <label>Пароль</label>
+                            <div class="input">
+                                <input type="password" name="password">                         
+                            </div>
+                            <button type="submit" class="button green">Я все заполнил</button>
+                        </form>
+                        <div id="recoveryPassword">
+                            <a class="sign_up">Регистрация</a> <br> <a class="recoveryPassword" href="https://ruseller.com/lessons.php?rub=32&amp;id=2876#">Забыли пароль?</a>
+                        </div>
+                    </div>
+                </div>                                <div class="box">
+                    <div style="padding-bottom: 0; overflow: hidden;" class="innerBox">
+                        <h3>Рекомендуем</h3>
+                        <div style="overflow: hidden;">
+                            <div style="text-align: center;"><a class="oedrq1wi_24 rotor-item" target="_blank" href="https://redhappy.ru/2017//31"> <img style="max-width: 100%;" src="./AJAX и PHP_ загрузка файла_files/1af840a360f96baf581d2d7dd5b47e2b.png" alt="" title=""> </a> </div>                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="box">
+                    <div style="padding-bottom: 0; overflow: hidden;" class="innerBox">
+                        <div style="overflow: hidden;">
+                            <a target="_blank" href="https://4994.ru/911">
+                                <img style="position: relative;left: -9px;" src="./AJAX и PHP_ загрузка файла_files/in_s240.gif">
+                            </a>
+                            <p style="text-align: center; padding-bottom: 15px;">При регистрации введите промокод <strong>1popov</strong> и получите 28 дней бесплатного использования.</p>
+                        </div>
+                    </div>
+                </div>                
+                
+                                
+               
+
+                
+    			<div class="box">
+                    <div class="innerBox red" style="padding-left: 10px; padding-top: 15px; padding-bottom: 15px;">
+                    <div style="text-align: center;"><a class="hysxd9ai_26 rotor-item" target="_blank" href="https://redhappy.ru/2017//32"> <img style="max-width: 100%;" src="./AJAX и PHP_ загрузка файла_files/b60dea6e1fad2ae38d2ec9bfbe075e20.jpg" alt="" title=""> </a> </div>                    </div>                
+                </div>
+                
+    			<div class="box">
+                    <div class="innerBox red" style="padding-bottom: 0;">
+    			         <h3>Немного рекламы</h3>
+                                             </div> 
+                                   
+                </div> 
+                
+                <div class="box">       
+                    <div class="innerBox"> 
+                        <script type="text/javascript" src="./AJAX и PHP_ загрузка файла_files/orphus.js"></script>
+                        <div style="padding-top: 15px;">
+                        <a href="https://orphus.ru/" id="orphus" target="_blank" title="undefined">
+                        <img alt="Система Orphus" src="./AJAX и PHP_ загрузка файла_files/img.png" border="0">
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                                                               
+    		</aside><!-- #sideRight -->
+           
+    	</section><!-- #middle-->
+    </div><!-- #wrapper -->
+        <div id="footer_wrap"></div>
+    	<footer id="footer">
+                <nav>
+                    <ul> 
+                        <li><a href="https://ruseller.com/">Главная</a><span>|</span></li>
+                        
+                        <li><a href="https://ruseller.com/page.php?doc=goodies">Видеокурсы на DVD</a><span>|</span></li>
+                                             
+                        <li><a href="https://ruseller.com/page.php?doc=to_offer_lessons">Предложить урок</a></li>
+                    </ul>
+                </nav> 
+                <small id="copyright">© 2019 Евгений Попов. Все права защищены. <a href="https://evgeniypopov.ru/">Служба поддержки</a><br>
+                Сайт мониторится с помощью сервиса  <a href="https://r.1popov.ru/1325663033">ping-admin</a>
+                </small>
+                <a href="https://ruseller.com/images/comix.jpg" id="kinderSurprise" class="cboxElement">:)</a>
+    	</footer><!-- #footer -->
+</div>
+
+<div id="rusellerOverlay"></div>
+<img id="big_loader" src="./AJAX и PHP_ загрузка файла_files/big_loader.gif">
+<div id="rusellerBox">
+    <a id="rusellerBoxClose"></a>
+    <div id="rusellerBoxContent">
+    </div>
+</div>
+<a id="toTop" style="display: block; cursor: pointer;">^ Наверх ^</a>
+<script type="text/javascript" src="./AJAX и PHP_ загрузка файла_files/plusone.js" gapi_processed="true">
+  {lang: 'ru'}
+</script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter3946864 = new Ya.Metrika({
+                    id:3946864,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript>&lt;div&gt;&lt;img src="https://mc.yandex.ru/watch/3946864" style="position:absolute; left:-9999px;" alt="" /&gt;&lt;/div&gt;</noscript>
+<!-- /Yandex.Metrika counter -->
+
+            
+   
+
+ 
+    
+
+</body></html>

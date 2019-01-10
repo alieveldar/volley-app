@@ -612,6 +612,11 @@ function check_expiration_day($connectEDB, $vkid, $trid) {
 			exit();
 		}
 	}
+	$date_check = (strtotime($current_date) - strtotime($tr_date));	
+	if ($date_check > 0) {
+		return 1;
+		exit();
+	}
 	return 0;
 }
 function get_train_users($connectEDB, $trid) {
