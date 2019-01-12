@@ -235,13 +235,39 @@ $(document).ready(function() {
 
         });
         var action = "check_intruders";
-        var uri = "/api.php?action=" + action + trid + idvk;        
+        var uri = "/api.php?action=" + action + trid + idvk;
         $.ajax({
             url: uri,
-            success: function(data) {               
+            success: function(data) {
                 alert(data);
                 location.reload();
             }
+        });
+    });
+
+    $('#upload').on('click', function(event) {
+        event.preventDefault();
+        var id = $(this).data('id');
+        var file_data = $('#sortpicture' + id).prop('files')[0];
+        var form_data = new FormData();
+        form_data.append('file', file_data);
+        var filename = "assets/img/rooms/" + ($('#sortpicture' + id).prop('files')[0].name);
+        $('.filebanner').html("Файл загружается");        
+        $.ajax({
+            url: 'uploadpict.php',
+            dataType: 'text',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(data) {
+                $('.filebanner').html(data);
+                $('.roomimage' + id).val(filename);
+                
+                
+            }
+
         });
     });
 });
